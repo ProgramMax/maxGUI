@@ -1,0 +1,31 @@
+# Copyright 2019, The maxGUI Contributors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+version: 0.0.{build}
+
+pull_requests:
+  do_not_increment_build_number: true
+
+skip_branch_with_pr: true
+
+shallow_clone: true
+
+image:
+  - Visual Studio 2019
+
+build:
+  project: "Projects/VisualStudio/maxGUI.sln"
+  parallel: true
+
+platform:
+  - Win32
+  - x64
+configuration:
+  - Debug
+  - Release
+
+test_script:
+  - "%APPVEYOR_BUILD_FOLDER%/Projects/VisualStudio/maxGUIAutomatedTests/%PLATFORM%/%CONFIGURATION%/maxGUIAutomatedTests.exe"
+  - ps: $wc = New-Object 'System.Net.WebClient'
+  - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\Tooling\AppVeyor\junit-results.xml))

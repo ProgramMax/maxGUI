@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Docs">
+      <UniqueIdentifier>{3b879ea2-66b7-408c-bf62-b2ec3ed2f98c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tooling">
+      <UniqueIdentifier>{d7d730fa-bd95-4b9c-be25-5e4b5860cd0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tooling\AppVeyor">
+      <UniqueIdentifier>{1e210f1d-80d1-4725-813f-03c51f976f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tooling\Cppcheck">
+      <UniqueIdentifier>{90a8cb83-d25a-4233-94d3-26478224469f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include=".github">
+      <UniqueIdentifier>{46f21d66-e7d7-4bce-b90a-8137ed2d8dbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include=".github\ISSUE_TEMPLATE">
+      <UniqueIdentifier>{81b11694-da67-4625-a242-44785093aab6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code">
+      <UniqueIdentifier>{cca7a791-9622-4787-b948-a144413985af}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Docs\README.md">
+      <Filter>Docs</Filter>
+    </None>
+    <None Include="..\..\..\.travis.yml" />
+    <None Include="..\..\..\AUTHORS" />
+    <None Include="..\..\..\LICENSE" />
+    <None Include="..\..\..\Tooling\AppVeyor\AppVeyor.yml">
+      <Filter>Tooling\AppVeyor</Filter>
+    </None>
+    <None Include="..\..\..\Tooling\Cppcheck\.gitignore">
+      <Filter>Tooling\Cppcheck</Filter>
+    </None>
+    <None Include="..\..\..\Tooling\Cppcheck\maxGUI.cppcheck">
+      <Filter>Tooling\Cppcheck</Filter>
+    </None>
+    <None Include="..\..\..\.github\ISSUE_TEMPLATE\bug_report.md">
+      <Filter>.github\ISSUE_TEMPLATE</Filter>
+    </None>
+    <None Include="..\..\..\.github\ISSUE_TEMPLATE\feature_request.md">
+      <Filter>.github\ISSUE_TEMPLATE</Filter>
+    </None>
+    <None Include="..\..\..\Docs\DeprecationSchedule.md">
+      <Filter>Docs</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml">
+      <Filter>Tooling\AppVeyor</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\Form.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\Button.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBox.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\Form.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\Control.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
