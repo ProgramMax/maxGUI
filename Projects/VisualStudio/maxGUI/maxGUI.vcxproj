@@ -41,6 +41,7 @@
     <ClCompile Include="..\..\..\Code\maxGUI\Form.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Rectangle.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\Win32String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\..\..\Code\maxGUI\Form.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Rectangle.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\Win32String.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A9E3E87-9F00-4240-8E5D-489DC37C73DA}</ProjectGuid>
