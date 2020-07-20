@@ -10,10 +10,7 @@ namespace maxGUI
 {
 	
 	Button::Button(HWND window_handle) MAX_DOES_NOT_THROW
-		: Control(std::move(window_handle))
-	{}
-
-	void Button::OnPressed() MAX_DOES_NOT_THROW
+		: ControlWithText(std::move(window_handle))
 	{}
 
 	void Button::OnCommand(WORD notification) MAX_DOES_NOT_THROW {

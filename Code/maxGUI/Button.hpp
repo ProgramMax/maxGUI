@@ -6,14 +6,14 @@
 #define MAXGUI_BUTTON_HPP
 
 #include <max/Compiling/ThrowSpecification.hpp>
-#include <maxGUI/Control.hpp>
+#include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
 
 namespace maxGUI
 {
 
-	class Button : public Control
+	class Button : public ControlWithText
 	{
 	public:
 
@@ -41,7 +41,6 @@ namespace maxGUI
 
 	//private:
 
-		std::string text_;
 
 	};
 

@@ -6,7 +6,7 @@
 #define MAXGUI_MULTILINETEXTBOX_HPP
 
 #include <max/Compiling/ThrowSpecification.hpp>
-#include <maxGUI/Control.hpp>
+#include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <memory>
 #include <string>
@@ -14,7 +14,7 @@
 namespace maxGUI
 {
 	
-	class MultilineTextBox : public Control
+	class MultilineTextBox : public ControlWithText
 	{
 	public:
 
@@ -36,7 +36,6 @@ namespace maxGUI
 
 	private:
 
-		std::string text_;
 
 	};
 
