@@ -36,7 +36,7 @@ namespace maxGUI
 	class ControlFactory {
 	public:
 
-		virtual ~ControlFactory() MAX_DOES_NOT_THROW;
+		virtual ~ControlFactory() MAX_DOES_NOT_THROW = default;
 
 		virtual std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW = 0;
 
