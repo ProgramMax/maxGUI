@@ -8,6 +8,8 @@
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Control.hpp>
 #include <memory>
+#include <string>
+#include <utility>
 #include <vector>
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
@@ -41,9 +43,9 @@ namespace maxGUI
 		explicit FormContainer(HINSTANCE instance_handle) MAX_DOES_NOT_THROW;
 
 		template <typename FormFactoryType>
-		bool CreateForm(FormFactoryType& form_factory) MAX_DOES_NOT_THROW {
+		bool CreateForm(FormFactoryType& form_factory, int height, int width, std::string title) MAX_DOES_NOT_THROW {
 			form_factory.form_container_ = this;
-			return form_factory.CreateForm(*this);
+			return form_factory.CreateForm(instance_handle_, std::move(height), std::move(width), std::move(title));
 		}
 
 		std::vector<std::unique_ptr<Form>> forms_;
@@ -51,19 +53,30 @@ namespace maxGUI
 
 	};
 
-	struct FormFactory {
+	class FormFactoryImplementationDetails {
+	public:
+
+		bool CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) MAX_DOES_NOT_THROW;
+
+		virtual std::unique_ptr<Form> AllocateForm(HWND window_handle) MAX_DOES_NOT_THROW = 0;
+
+		// This is set by FormContainer::CreateForm() and needs to remain set until WM_CREATE is received
+		FormContainer* form_container_ = nullptr;
+
+	};
+
+	template <typename FormType>
+	class FormFactory : public FormFactoryImplementationDetails {
 	public:
 
 		virtual ~FormFactory() MAX_DOES_NOT_THROW = default;
 
-		bool CreateForm(const FormContainer& form_container) MAX_DOES_NOT_THROW;
-
-		virtual std::unique_ptr<Form> AllocateForm(HWND window_handle) MAX_DOES_NOT_THROW;
+		std::unique_ptr<Form> AllocateForm(HWND window_handle) MAX_DOES_NOT_THROW override {
+			// TODO: Use allocator
+			return std::make_unique<FormType>(window_handle);
+		}
 
 		// TODO: Add allocator
-
-		// This is set by FormContainer::CreateForm() and needs to remain set until WM_CREATE is received
-		FormContainer* form_container_ = nullptr;
 
 	};
 

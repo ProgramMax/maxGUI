@@ -4,8 +4,6 @@
 
 #include <maxGUI/Button.hpp>
 
-#include <utility>
-
 namespace maxGUI
 {
 	
@@ -19,18 +17,11 @@ namespace maxGUI
 			OnPressed();
 		}
 	}
-	
-	ButtonFactory::ButtonFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
-		: ControlWithTextFactory(std::move(rectangle), std::move(text))
-	{}
 
-	std::unique_ptr<Control> ButtonFactory::CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW {
+	HWND ButtonFactoryImplementationDetails::CreateButton(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW {
 		// BS_DEFPUSHBUTTON
 		// BS_FLAT
-		HWND window_handle = CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("BUTTON"), TEXT(""), WS_CHILD | WS_VISIBLE | WS_TABSTOP, rectangle_.left_, rectangle_.top_, rectangle_.width_, rectangle_.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
-		// TODO: Convert the std::string (lets go with UTF-8) into TCHAR
-		//SendMessage(window_handle, WM_SETTEXT, 0, static_cast<LPARAM>(tchar_string));
-		return std::make_unique<Button>(std::move(window_handle));
+		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("BUTTON"), TEXT(""), WS_CHILD | WS_VISIBLE | WS_TABSTOP, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 
 } //  namespace maxGUI

@@ -4,6 +4,7 @@
 
 #include <maxGUI/Form.hpp>
 #include <maxGUI/EntryPoint.hpp>
+#include <utility>
 
 namespace {
 
@@ -30,8 +31,8 @@ namespace {
 				CREATESTRUCT* creation_parameters = reinterpret_cast<CREATESTRUCT*>(lparam);
 				if (creation_parameters)
 				{
-					maxGUI::FormFactory* form_factory = reinterpret_cast<maxGUI::FormFactory*>(creation_parameters->lpCreateParams);
-					BOOL result = SetProp(window_handle, maxgui_creation_parameters_property_name, static_cast<HANDLE>(form_factory));
+					maxGUI::FormFactoryImplementationDetails* form_factory_implementation_details = reinterpret_cast<maxGUI::FormFactoryImplementationDetails*>(creation_parameters->lpCreateParams);
+					BOOL result = SetProp(window_handle, maxgui_creation_parameters_property_name, static_cast<HANDLE>(form_factory_implementation_details));
 					if (result == 0) {
 						return -1;
 					}
@@ -43,8 +44,8 @@ namespace {
 				maxGUI::Form* form = nullptr;
 				HANDLE property = GetProp(window_handle, maxgui_creation_parameters_property_name);
 				if (property != NULL) {
-					maxGUI::FormFactory* form_factory = reinterpret_cast<maxGUI::FormFactory*>(property);
-					std::unique_ptr<maxGUI::Form> created_form = form_factory->AllocateForm(window_handle);
+					maxGUI::FormFactoryImplementationDetails* form_factory_implementation_details = reinterpret_cast<maxGUI::FormFactoryImplementationDetails*>(property);
+					std::unique_ptr<maxGUI::Form> created_form = form_factory_implementation_details->AllocateForm(window_handle);
 
 					RemoveProp(window_handle, maxgui_creation_parameters_property_name);
 
@@ -54,7 +55,7 @@ namespace {
 					}
 					form = created_form.get();
 
-					form_factory->form_container_->forms_.push_back(std::move(created_form));
+					form_factory_implementation_details->form_container_->forms_.push_back(std::move(created_form));
 				}
 				form->OnCreated();
 			}
@@ -120,25 +121,28 @@ namespace maxGUI {
 	}
 
 	Control* Form::AddControl(const ControlFactory* control_factory) MAX_DOES_NOT_THROW {
-		controls_.push_back(control_factory->CreateControl(window_handle_));
-		return controls_[controls_.size() - 1].get();
+		std::unique_ptr<Control> control_ptr = control_factory->CreateControl(window_handle_);
+		Control* raw_control_ptr = control_ptr.get();
+		controls_.push_back(std::move(control_ptr));
+		return raw_control_ptr;
 	}
 
 	FormContainer::FormContainer(HINSTANCE instance_handle) MAX_DOES_NOT_THROW
 		: instance_handle_(instance_handle)
 	{}
 
-	bool FormFactory::CreateForm(const FormContainer& form_container) MAX_DOES_NOT_THROW {
+	bool FormFactoryImplementationDetails::CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) MAX_DOES_NOT_THROW {
 		WNDCLASSEX wcx = {0};
 		wcx.cbSize = sizeof(wcx);
 		wcx.style = 0;
 		wcx.lpfnWndProc = BaseWindowProcedure;
 		wcx.cbClsExtra = 0;
 		wcx.cbWndExtra = 0;
-		wcx.hInstance = form_container.instance_handle_;
+		wcx.hInstance = instance_handle;
 		wcx.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 		wcx.hCursor = LoadCursor(NULL, IDC_ARROW);
-		wcx.hbrBackground = (HBRUSH)(COLOR_3DFACE + 1);
+		//wcx.hbrBackground = (HBRUSH)(COLOR_3DFACE + 1);
+		wcx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 		wcx.lpszMenuName = NULL;
 		wcx.lpszClassName = maxgui_window_class_name;
 		wcx.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
@@ -147,8 +151,6 @@ namespace maxGUI {
 
 		int virtual_top = CW_USEDEFAULT;
 		int virtual_left = CW_USEDEFAULT;
-		int height = 400;
-		int width = 600;
 
 		RECT area;
 		area.top = 0;
@@ -157,7 +159,8 @@ namespace maxGUI {
 		area.right = width;
 
 		DWORD style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
-		DWORD extra_style = NULL;
+		//DWORD extra_style = NULL;
+		DWORD extra_style = WS_EX_CLIENTEDGE;
 
 		AdjustWindowRectEx(&area, style, FALSE, extra_style);
 		DWORD total_height = 0;
@@ -184,7 +187,7 @@ namespace maxGUI {
 		}
 
 		// TODO: Allow specific window title
-		HWND window_handle = CreateWindowEx(extra_style, reinterpret_cast<LPCWSTR>(atom), TEXT(""), style, area.left, area.top, total_width, total_height, 0, 0, form_container.instance_handle_, static_cast<LPVOID>(this));
+		HWND window_handle = CreateWindowEx(extra_style, reinterpret_cast<LPCWSTR>(atom), TEXT("Test"), style, area.left, area.top, total_width, total_height, 0, 0, instance_handle, static_cast<LPVOID>(this));
 		if (window_handle == NULL) {
 			return false;
 		}
@@ -193,11 +196,6 @@ namespace maxGUI {
 		UpdateWindow(window_handle);
 
 		return true;
-	}
-
-	std::unique_ptr<Form> FormFactory::AllocateForm(HWND window_handle) MAX_DOES_NOT_THROW {
-		// TODO: Use allocator
-		return std::make_unique<Form>(window_handle);
 	}
 
 } // namespace maxGUI
