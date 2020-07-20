@@ -2,9 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef SIMPLEEXAMPLE_ENTRYPOINT_HPP
-#define SIMPLEEXAMPLE_ENTRYPOINT_HPP
-
 // Include both max and maxGUI in your project's libraries & include paths.
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Form.hpp>
@@ -65,5 +62,3 @@ int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) MAX_DOES_NOT_THROW 
 	// when a form is closed.
 	return maxGUI::MessagePump(form_container);
 }
-
-#endif // #ifndef SIMPLEEXAMPLE_ENTRYPOINT_HPP
