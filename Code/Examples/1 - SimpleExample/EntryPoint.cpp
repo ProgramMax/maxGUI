@@ -7,6 +7,7 @@
 
 // Include both max and maxGUI in your project's libraries & include paths.
 #include <max/Compiling/ThrowSpecification.hpp>
+#include <maxGUI/Form.hpp>
 #include <maxGUI/EntryPoint.hpp>
 #include <maxGUI/MultilineTextBox.hpp>
 #include <maxGUI/Rectangle.hpp>
