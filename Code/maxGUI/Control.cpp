@@ -20,7 +20,4 @@ namespace maxGUI
 	void Control::OnCommand(WORD /*notification*/) MAX_DOES_NOT_THROW
 	{}
 
-	ControlFactory::~ControlFactory() MAX_DOES_NOT_THROW
-	{}
-
 } // namespace maxGUI
