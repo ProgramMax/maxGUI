@@ -21,7 +21,7 @@ namespace maxGUI
 
 		~Button() MAX_DOES_NOT_THROW override = default;
 
-		virtual void OnPressed() MAX_DOES_NOT_THROW;
+		virtual void OnPressed() MAX_DOES_NOT_THROW = 0;
 
 	//protected:
 

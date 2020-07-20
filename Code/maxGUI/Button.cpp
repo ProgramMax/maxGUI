@@ -13,9 +13,6 @@ namespace maxGUI
 		: ControlWithText(std::move(window_handle))
 	{}
 
-	void Button::OnPressed() MAX_DOES_NOT_THROW {
-	}
-
 	void Button::OnCommand(WORD notification) MAX_DOES_NOT_THROW {
 		if (notification == BN_CLICKED)
 		{
