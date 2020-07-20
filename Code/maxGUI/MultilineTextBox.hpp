@@ -5,10 +5,11 @@
 #ifndef MAXGUI_MULTILINETEXTBOX_HPP
 #define MAXGUI_MULTILINETEXTBOX_HPP
 
+#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Control.hpp>
+#include <maxGUI/Rectangle.hpp>
 #include <memory>
 #include <string>
-#include <max/Compiling/ThrowSpecification.hpp>
 
 namespace maxGUI
 {
@@ -27,7 +28,7 @@ namespace maxGUI
 	{
 	public:
 
-		MultilineTextBoxFactory(int top, int left, int height, int width, std::string text) MAX_DOES_NOT_THROW;
+		MultilineTextBoxFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW;
 
 		~MultilineTextBoxFactory() MAX_DOES_NOT_THROW override = default;
 
@@ -35,10 +36,7 @@ namespace maxGUI
 
 	private:
 
-		int top_;
-		int left_;
-		int height_;
-		int width_;
+		Rectangle rectangle_;
 		std::string text_;
 
 	};
