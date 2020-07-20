@@ -55,5 +55,5 @@ You can find some parts of max under [Dependencies/max](https://github.com/Progr
 
 [travis-shield]: https://travis-ci.org/ProgramMax/maxGUI.svg?branch=tip-of-tree
 [travis-link]: https://travis-ci.org/ProgramMax/maxGUI/builds
-[appveyor-shield]: https://ci.appveyor.com/api/projects/status/aywy853hgjph5w1m/branch/tip-of-tree?svg=true
+[appveyor-shield]: https://ci.appveyor.com/api/projects/status/l9hx76k72iayghrv/branch/tip-of-tree?svg=true
 [appveyor-link]: https://ci.appveyor.com/project/ProgramMax/maxGUI
