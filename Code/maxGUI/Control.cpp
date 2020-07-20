@@ -20,4 +20,8 @@ namespace maxGUI
 	void Control::OnCommand(WORD /*notification*/) MAX_DOES_NOT_THROW
 	{}
 
+	ControlFactory::ControlFactory(Rectangle rectangle) MAX_DOES_NOT_THROW
+		: rectangle_(std::move(rectangle))
+	{}
+
 } // namespace maxGUI

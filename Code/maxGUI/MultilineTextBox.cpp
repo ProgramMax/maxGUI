@@ -14,7 +14,7 @@ namespace maxGUI
 	{}
 	
 	MultilineTextBoxFactory::MultilineTextBoxFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
-		: rectangle_(std::move(rectangle))
+		: ControlFactory(std::move(rectangle))
 		, text_(std::move(text_))
 	{}
 

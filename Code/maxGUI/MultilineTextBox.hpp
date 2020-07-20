@@ -36,7 +36,6 @@ namespace maxGUI
 
 	private:
 
-		Rectangle rectangle_;
 		std::string text_;
 
 	};
