@@ -4,6 +4,7 @@
 
 #include <maxGUI/Form.hpp>
 #include <maxGUI/EntryPoint.hpp>
+#include <maxGUI/Win32String.hpp>
 #include <utility>
 
 namespace {
@@ -187,7 +188,8 @@ namespace maxGUI {
 		}
 
 		// TODO: Allow specific window title
-		HWND window_handle = CreateWindowEx(extra_style, reinterpret_cast<LPCWSTR>(atom), TEXT("Test"), style, area.left, area.top, total_width, total_height, 0, 0, instance_handle, static_cast<LPVOID>(this));
+		Win32String win32_title = Utf8ToWin32String(title);
+		HWND window_handle = CreateWindowEx(extra_style, reinterpret_cast<LPCWSTR>(atom), /*win32_title.text_*/TEXT("yay"), style, area.left, area.top, total_width, total_height, 0, 0, instance_handle, static_cast<LPVOID>(this));
 		if (window_handle == NULL) {
 			return false;
 		}

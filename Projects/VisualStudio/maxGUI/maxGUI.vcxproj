@@ -37,20 +37,34 @@
     <ClCompile Include="..\..\..\Code\maxGUI\Button.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\DropDownBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Form.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\Frame.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\Label.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ListBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBox.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ProgressBar.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\RadioButton.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Rectangle.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\TextBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Win32String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Control.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithText.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\DropDownBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Form.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\Frame.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\Label.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ListBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ProgressBar.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\RadioButton.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Rectangle.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\TextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Win32String.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
