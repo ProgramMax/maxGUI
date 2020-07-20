@@ -4,9 +4,7 @@
 
 #include <maxGUI/Button.hpp>
 
-
 #include <maxGUI/Win32String.hpp>
-#include <utility>
 
 namespace maxGUI
 {
