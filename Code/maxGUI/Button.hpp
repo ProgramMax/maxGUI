@@ -29,7 +29,7 @@ namespace maxGUI
 
 	};
 	
-	class ButtonFactory : public ControlFactory
+	class ButtonFactory : public ControlWithTextFactory
 	{
 	public:
 
@@ -38,9 +38,6 @@ namespace maxGUI
 		~ButtonFactory() MAX_DOES_NOT_THROW override = default;
 
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override;
-
-	//private:
-
 
 	};
 

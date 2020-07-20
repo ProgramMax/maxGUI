@@ -73,6 +73,9 @@
     <ClCompile Include="..\..\..\Code\maxGUI\Rectangle.cpp">
       <Filter>Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp">
@@ -91,6 +94,9 @@
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\Rectangle.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\ControlWithText.hpp">
       <Filter>Code</Filter>
     </ClInclude>
   </ItemGroup>

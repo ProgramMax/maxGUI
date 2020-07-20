@@ -13,6 +13,9 @@ namespace maxGUI
 		: ControlWithText(std::move(window_handle))
 	{}
 
+	void Button::OnPressed() MAX_DOES_NOT_THROW {
+	}
+
 	void Button::OnCommand(WORD notification) MAX_DOES_NOT_THROW {
 		if (notification == BN_CLICKED)
 		{
@@ -21,8 +24,7 @@ namespace maxGUI
 	}
 	
 	ButtonFactory::ButtonFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
-		: ControlFactory(std::move(rectangle))
-		, text_(std::move(text_))
+		: ControlWithTextFactory(std::move(rectangle), std::move(text))
 	{}
 
 	std::unique_ptr<Control> ButtonFactory::CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW {
