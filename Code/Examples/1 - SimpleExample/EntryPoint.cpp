@@ -9,6 +9,7 @@
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/EntryPoint.hpp>
 #include <maxGUI/MultilineTextBox.hpp>
+#include <maxGUI/Rectangle.hpp>
 
 // Create a custom form that implements the behavior you want.
 class CustomForm : public maxGUI::Form {
@@ -21,13 +22,13 @@ public:
 
 	void OnCreated() MAX_DOES_NOT_THROW override {
 		// Add controls inside the Form's OnCreated().
-		maxGUI::MultilineTextBoxFactory multiline_textbox_factory(0, 0, 100, 100, "Test");
+		maxGUI::MultilineTextBoxFactory multiline_textbox_factory(maxGUI::Rectangle(0, 0, 100, 100), "Test");
 		multiline_textbox_ = AddControl(&multiline_textbox_factory);
 	}
 
-	void OnResized(int new_width, int new_height) MAX_DOES_NOT_THROW override {
+	void OnResized(int new_height, int new_width) MAX_DOES_NOT_THROW override {
 		// In this example, make the multiline textbox take the entire area.
-		multiline_textbox_->Move(0, 0, new_width, new_height);
+		multiline_textbox_->Move(maxGUI::Rectangle(0, 0, new_height, new_width));
 	}
 
 	// The default OnClosed() function will call PostExitMessage(0) to exit the message pump.

@@ -25,7 +25,7 @@ namespace maxGUI
 		virtual ~Form() MAX_DOES_NOT_THROW = default;
 
 		virtual void OnCreated() MAX_DOES_NOT_THROW;
-		virtual void OnResized(int new_width, int new_height) MAX_DOES_NOT_THROW;
+		virtual void OnResized(int new_height, int new_width) MAX_DOES_NOT_THROW;
 		virtual void OnClosed() MAX_DOES_NOT_THROW;
 
 		Control* AddControl(const ControlFactory* control_factory) MAX_DOES_NOT_THROW;

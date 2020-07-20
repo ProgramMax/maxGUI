@@ -63,9 +63,9 @@ namespace {
 			{
 				auto form = GetFormFromHWND(window_handle);
 
-				int width = LOWORD(lparam);
 				int height = HIWORD(lparam);
-				form->OnResized(width, height);
+				int width = LOWORD(lparam);
+				form->OnResized(height, width);
 			}
 			return TRUE;
 		case WM_DESTROY:

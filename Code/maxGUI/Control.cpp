@@ -13,8 +13,8 @@ namespace maxGUI
 		: window_handle_(std::move(window_handle))
 	{}
 
-	void Control::Move(int left, int top, int width, int height) MAX_DOES_NOT_THROW {
-		SetWindowPos(window_handle_, NULL, left, top, width, height, SWP_NOZORDER);
+	void Control::Move(Rectangle rectangle) MAX_DOES_NOT_THROW {
+		SetWindowPos(window_handle_, NULL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, SWP_NOZORDER);
 	}
 
 	void Control::OnCommand(WORD /*notification*/) MAX_DOES_NOT_THROW

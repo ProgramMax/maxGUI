@@ -6,6 +6,7 @@
 #define MAXGUI_CONTROL_HPP
 
 #include <max/Compiling/ThrowSpecification.hpp>
+#include <maxGUI/Rectangle.hpp>
 #include <memory>
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
@@ -22,7 +23,7 @@ namespace maxGUI
 
 		virtual ~Control() MAX_DOES_NOT_THROW = default;
 
-		void Move(int left, int top, int width, int height) MAX_DOES_NOT_THROW;
+		void Move(Rectangle rectangle) MAX_DOES_NOT_THROW;
 
 		HWND window_handle_;
 

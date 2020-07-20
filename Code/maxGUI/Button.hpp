@@ -6,6 +6,7 @@
 #define MAXGUI_BUTTON_HPP
 
 #include <maxGUI/Control.hpp>
+#include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <max/Compiling/ThrowSpecification.hpp>
 
@@ -32,7 +33,7 @@ namespace maxGUI
 	{
 	public:
 
-		ButtonFactory(int top, int left, int height, int width, std::string text) MAX_DOES_NOT_THROW;
+		ButtonFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW;
 
 		~ButtonFactory() MAX_DOES_NOT_THROW override = default;
 
@@ -40,10 +41,7 @@ namespace maxGUI
 
 	//private:
 
-		int top_;
-		int left_;
-		int height_;
-		int width_;
+		Rectangle rectangle_;
 		std::string text_;
 
 	};
