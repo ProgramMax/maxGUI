@@ -36,6 +36,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\Code\maxGUI\Button.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Form.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBox.cpp" />
@@ -44,6 +45,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Control.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ControlWithText.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Form.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp" />

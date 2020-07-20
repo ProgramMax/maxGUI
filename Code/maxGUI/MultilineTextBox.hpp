@@ -24,7 +24,7 @@ namespace maxGUI
 
 	};
 	
-	class MultilineTextBoxFactory : public ControlFactory
+	class MultilineTextBoxFactory : public ControlWithTextFactory
 	{
 	public:
 
@@ -33,9 +33,6 @@ namespace maxGUI
 		~MultilineTextBoxFactory() MAX_DOES_NOT_THROW override = default;
 
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override;
-
-	private:
-
 
 	};
 

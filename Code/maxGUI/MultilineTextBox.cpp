@@ -10,12 +10,11 @@ namespace maxGUI
 {
 	
 	MultilineTextBox::MultilineTextBox(HWND window_handle) MAX_DOES_NOT_THROW
-		: Control(std::move(window_handle))
+		: ControlWithText(std::move(window_handle))
 	{}
 	
 	MultilineTextBoxFactory::MultilineTextBoxFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
-		: ControlFactory(std::move(rectangle))
-		, text_(std::move(text_))
+		: ControlWithTextFactory(std::move(rectangle), std::move(text))
 	{}
 
 	std::unique_ptr<Control> MultilineTextBoxFactory::CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW {
