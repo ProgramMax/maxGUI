@@ -5,10 +5,10 @@
 #ifndef MAXGUI_BUTTON_HPP
 #define MAXGUI_BUTTON_HPP
 
+#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Control.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
-#include <max/Compiling/ThrowSpecification.hpp>
 
 namespace maxGUI
 {
