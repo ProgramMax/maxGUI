@@ -18,7 +18,7 @@ constexpr bool IsBetween(
 	const T Value,
 	const max::Containers::Range< T > & Range
 
-) MAX_DOES_NOT_THROW
+) noexcept
 );
 ```
 

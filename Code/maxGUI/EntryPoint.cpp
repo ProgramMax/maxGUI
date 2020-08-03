@@ -11,11 +11,11 @@ int WINAPI WinMain(HINSTANCE instance_handle, HINSTANCE /*previous_instance_hand
 
 namespace maxGUI {
 
-	void PostExitMessage(const int exit_code) MAX_DOES_NOT_THROW {
+	void PostExitMessage(const int exit_code) noexcept {
 		PostQuitMessage(exit_code);
 	}
 
-	int MessagePump(const FormContainer& form_container) MAX_DOES_NOT_THROW {
+	int MessagePump(const FormContainer& form_container) noexcept {
 		MSG Message = {0};
 		while (GetMessage(&Message, NULL, 0, 0) > 0)
 		{

@@ -18,7 +18,7 @@ Range(
 	const T Minimum,
 	const T Maximum
 
-) MAX_DOES_NOT_THROW
+) noexcept
 );
 ```
 

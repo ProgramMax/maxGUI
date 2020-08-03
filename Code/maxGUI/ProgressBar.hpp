@@ -5,7 +5,6 @@
 #ifndef MAXGUI_PROGRESSBAR_HPP
 #define MAXGUI_PROGRESSBAR_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Control.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <utility>
@@ -17,9 +16,14 @@ namespace maxGUI
 	{
 	public:
 
-		explicit ProgressBar(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit ProgressBar(HWND window_handle) noexcept;
 
-		~ProgressBar() MAX_DOES_NOT_THROW override = default;
+		~ProgressBar() noexcept override = default;
+
+		void SetRange(int min, int max) noexcept;
+		void GetRange(int& min, int& max) noexcept;
+		void SetValue(int value) noexcept;
+		int GetValue() noexcept;
 
 	};
 		
@@ -27,7 +31,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateProgressBar(Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW;
+		static HWND CreateProgressBar(Rectangle rectangle, int min, int max, int value, HWND parent_window_handle) noexcept;
 
 	};
 
@@ -36,16 +40,23 @@ namespace maxGUI
 	{
 	public:
 
-		ProgressBarFactory(Rectangle rectangle) MAX_DOES_NOT_THROW
+		ProgressBarFactory(Rectangle rectangle, int min, int max, int value) noexcept
 			: ControlFactory(std::move(rectangle))
+			, min_(std::move(min))
+			, max_(std::move(max))
+			, value_(std::move(value))
 		{}
 
-		~ProgressBarFactory() MAX_DOES_NOT_THROW override = default;
+		~ProgressBarFactory() noexcept override = default;
 
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override {
-			HWND window_handle = ProgressBarFactoryImplementationDetails::CreateProgressBar(rectangle_, std::move(parent_window_handle));
+		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
+			HWND window_handle = ProgressBarFactoryImplementationDetails::CreateProgressBar(rectangle_, min_, max_, value_, std::move(parent_window_handle));
 			return std::make_unique<ProgressBarType>(std::move(window_handle));
 		}
+
+		int min_;
+		int max_;
+		int value_;
 
 	};
 

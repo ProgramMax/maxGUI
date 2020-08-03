@@ -10,11 +10,11 @@
 namespace maxGUI
 {
 
-	ControlWithText::ControlWithText(HWND window_handle) MAX_DOES_NOT_THROW
+	ControlWithText::ControlWithText(HWND window_handle) noexcept
 		: Control(std::move(window_handle))
 	{}
 
-	std::string ControlWithText::GetText() const MAX_DOES_NOT_THROW {
+	std::string ControlWithText::GetText() const noexcept {
 		LRESULT length_in_chars = SendMessage(window_handle_, WM_GETTEXTLENGTH, 0, 0);
 		TCHAR* buffer = new wchar_t[length_in_chars];
 		SendMessage(window_handle_, WM_GETTEXT, length_in_chars, reinterpret_cast<LPARAM>(buffer));
@@ -22,12 +22,12 @@ namespace maxGUI
 		return Win32StringToUtf8(std::move(win32_string));
 	}
 
-	void ControlWithText::SetText(std::string text) MAX_DOES_NOT_THROW {
+	void ControlWithText::SetText(std::string text) noexcept {
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
 		SendMessage(window_handle_, WM_SETTEXT, 0, reinterpret_cast<LPARAM>(win32_text.text_));
 	}
 
-	ControlWithTextFactory::ControlWithTextFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
+	ControlWithTextFactory::ControlWithTextFactory(Rectangle rectangle, std::string text) noexcept
 		: ControlFactory(std::move(rectangle))
 		, text_(std::move(text))
 	{}

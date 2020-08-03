@@ -5,7 +5,6 @@
 #ifndef MAXGUI_CONTROLWITHTEXT_HPP
 #define MAXGUI_CONTROLWITHTEXT_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Control.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
@@ -20,21 +19,21 @@ namespace maxGUI
 	class ControlWithText : public Control {
 	public:
 
-		explicit ControlWithText(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit ControlWithText(HWND window_handle) noexcept;
 
-		~ControlWithText() MAX_DOES_NOT_THROW override = default;
+		~ControlWithText() noexcept override = default;
 
-		std::string GetText() const MAX_DOES_NOT_THROW;
-		void SetText(std::string text) MAX_DOES_NOT_THROW;
+		std::string GetText() const noexcept;
+		void SetText(std::string text) noexcept;
 
 	};
 
 	class ControlWithTextFactory : public ControlFactory {
 	public:
 
-		ControlWithTextFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW;
+		ControlWithTextFactory(Rectangle rectangle, std::string text) noexcept;
 
-		~ControlWithTextFactory() MAX_DOES_NOT_THROW override = default;
+		~ControlWithTextFactory() noexcept override = default;
 
 		std::string text_;
 

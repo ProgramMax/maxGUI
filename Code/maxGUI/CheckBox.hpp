@@ -5,7 +5,6 @@
 #ifndef MAXGUI_CHECKBOX_HPP
 #define MAXGUI_CHECKBOX_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
@@ -18,19 +17,19 @@ namespace maxGUI
 	{
 	public:
 
-		explicit CheckBox(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit CheckBox(HWND window_handle) noexcept;
 
-		~CheckBox() MAX_DOES_NOT_THROW override = default;
+		~CheckBox() noexcept override = default;
 
-		virtual void OnPressed() MAX_DOES_NOT_THROW;
+		virtual void OnPressed() noexcept;
 
-		bool IsChecked() const MAX_DOES_NOT_THROW;
-		void Check() MAX_DOES_NOT_THROW;
-		void Uncheck() MAX_DOES_NOT_THROW;
+		bool IsChecked() const noexcept;
+		void Check() noexcept;
+		void Uncheck() noexcept;
 
 	//protected:
 
-		void OnCommand(WORD notification) MAX_DOES_NOT_THROW override;
+		void OnCommand(WORD notification) noexcept override;
 
 	};
 	
@@ -38,7 +37,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateCheckBox(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW;
+		static HWND CreateCheckBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
 
 	};
 
@@ -47,13 +46,13 @@ namespace maxGUI
 	{
 	public:
 
-		CheckBoxFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
+		CheckBoxFactory(Rectangle rectangle, std::string text) noexcept
 			: ControlWithTextFactory(std::move(rectangle), std::move(text))
 		{}
 
-		~CheckBoxFactory() MAX_DOES_NOT_THROW override = default;
+		~CheckBoxFactory() noexcept override = default;
 
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override {
+		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = CheckBoxFactoryImplementationDetails::CreateCheckBox(text_, rectangle_, std::move(parent_window_handle));
 			return std::make_unique<CheckBoxType>(std::move(window_handle));
 		}

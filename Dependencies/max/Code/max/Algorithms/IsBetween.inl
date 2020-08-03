@@ -11,7 +11,7 @@ namespace Algorithms
 
 	// Documentation: IsBetween.md
 	template< typename T >
-	MAX_PURE_DEFINITION( constexpr inline bool IsBetween( const T Value, const max::Containers::Range< T > & Range ) MAX_DOES_NOT_THROW )
+	MAX_PURE_DEFINITION( constexpr inline bool IsBetween( const T Value, const max::Containers::Range< T > & Range ) noexcept )
 	{
 		return Range.Minimum <= Value && Value <= Range.Maximum;
 	}

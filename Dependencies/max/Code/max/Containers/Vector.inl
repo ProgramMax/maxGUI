@@ -12,14 +12,14 @@ namespace Containers
 {
 
 	template< typename T, size_t Dimensions >
-	Vector< T, Dimensions >::Vector( const std::initializer_list< T > & rhs ) MAX_DOES_NOT_THROW
+	Vector< T, Dimensions >::Vector( const std::initializer_list< T > & rhs ) noexcept
 		: Elements()
 	{
 		std::copy( rhs.begin(), rhs.end(), Elements.begin() );
 	}
 
 	template< typename T, size_t Dimensions >
-	Vector< T, Dimensions > Vector< T, Dimensions >::operator +( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW
+	Vector< T, Dimensions > Vector< T, Dimensions >::operator +( const Vector< T, Dimensions > & rhs ) const noexcept
 	{
 		Vector< T, Dimensions > Returning;
 
@@ -32,7 +32,7 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	Vector< T, Dimensions > Vector< T, Dimensions >::operator -( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW
+	Vector< T, Dimensions > Vector< T, Dimensions >::operator -( const Vector< T, Dimensions > & rhs ) const noexcept
 	{
 		Vector< T, Dimensions > Returning;
 
@@ -45,7 +45,7 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	Vector< T, Dimensions > Vector< T, Dimensions >::Cross( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW
+	Vector< T, Dimensions > Vector< T, Dimensions >::Cross( const Vector< T, Dimensions > & rhs ) const noexcept
 	{
 		// TODO: This is currently implemented in 3D only
 		Vector< T, Dimensions > Returning;
@@ -58,7 +58,7 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	T Vector< T, Dimensions >::Dot( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW
+	T Vector< T, Dimensions >::Dot( const Vector< T, Dimensions > & rhs ) const noexcept
 	{
 		T Sum = 0;
 
@@ -71,7 +71,7 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	Vector< T, Dimensions > Vector< T, Dimensions >::operator *( const T rhs ) const MAX_DOES_NOT_THROW
+	Vector< T, Dimensions > Vector< T, Dimensions >::operator *( const T rhs ) const noexcept
 	{
 		Vector< T, Dimensions > Returning;
 
@@ -84,7 +84,7 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	Vector< T, Dimensions > Vector< T, Dimensions >::operator /( const T rhs ) const MAX_DOES_NOT_THROW
+	Vector< T, Dimensions > Vector< T, Dimensions >::operator /( const T rhs ) const noexcept
 	{
 		Vector< T, Dimensions > Returning;
 
@@ -97,7 +97,7 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	T Vector< T, Dimensions >::Length() const MAX_DOES_NOT_THROW
+	T Vector< T, Dimensions >::Length() const noexcept
 	{
 		T Sum = 0;
 
@@ -111,7 +111,7 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	Vector< T, Dimensions > Vector< T, Dimensions >::Normalize() const MAX_DOES_NOT_THROW
+	Vector< T, Dimensions > Vector< T, Dimensions >::Normalize() const noexcept
 	{
 		Vector< T, Dimensions > Returning;
 
@@ -127,19 +127,19 @@ namespace Containers
 	}
 
 	template< typename T, size_t Dimensions >
-	T & Vector< T, Dimensions >::operator []( const size_t Index ) MAX_DOES_NOT_THROW
+	T & Vector< T, Dimensions >::operator []( const size_t Index ) noexcept
 	{
 		return Elements[ Index ];
 	}
 
 	template< typename T, size_t Dimensions >
-	const T & Vector< T, Dimensions >::operator []( const size_t Index ) const MAX_DOES_NOT_THROW
+	const T & Vector< T, Dimensions >::operator []( const size_t Index ) const noexcept
 	{
 		return Elements[ Index ];
 	}
 
 	template< typename T, size_t Dimensions >
-	const T * Vector< T, Dimensions >::data() const MAX_DOES_NOT_THROW
+	const T * Vector< T, Dimensions >::data() const noexcept
 	{
 		return Elements.data();
 	}

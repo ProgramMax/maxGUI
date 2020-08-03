@@ -8,24 +8,24 @@
 
 namespace maxGUI {
 
-	Win32String::Win32String(LPTSTR text, size_t char_count) MAX_DOES_NOT_THROW
+	Win32String::Win32String(LPTSTR text, size_t char_count) noexcept
 		: text_(std::move(text))
 		, char_count_(std::move(char_count))
 	{}
 
-	Win32String::Win32String(Win32String&& other) MAX_DOES_NOT_THROW
+	Win32String::Win32String(Win32String&& other) noexcept
 		: text_(std::move(other.text_))
 		, char_count_(std::move(other.char_count_))
 	{
 		other.text_ = nullptr;
 	}
 
-	Win32String::~Win32String() MAX_DOES_NOT_THROW
+	Win32String::~Win32String() noexcept
 	{
 		delete[] text_;
 	}
 
-	Win32String& Win32String::operator =(Win32String&& other) MAX_DOES_NOT_THROW {
+	Win32String& Win32String::operator =(Win32String&& other) noexcept {
 		delete[] text_;
 
 		text_ = std::move(other.text_);
@@ -36,7 +36,7 @@ namespace maxGUI {
 		return *this;
 	}
 
-	Win32String Utf8ToWin32String(std::string text) MAX_DOES_NOT_THROW {
+	Win32String Utf8ToWin32String(std::string text) noexcept {
 		#if defined(UNICODE)
 			int wide_char_count = MultiByteToWideChar(CP_UTF8, 0, text.c_str(), -1, nullptr, 0);
 			wchar_t* wide_string = new wchar_t[wide_char_count];
@@ -48,7 +48,7 @@ namespace maxGUI {
 		#endif
 	}
 
-	std::string Win32StringToUtf8(Win32String text) MAX_DOES_NOT_THROW {
+	std::string Win32StringToUtf8(Win32String text) noexcept {
 		#if defined(UNICODE)
 		// TODO: Make sure we don't overflow the int cast.
 		int utf8_char_count = WideCharToMultiByte(CP_UTF8, 0, text.text_, static_cast<int>(text.char_count_), nullptr, 0, nullptr, nullptr);

@@ -7,7 +7,6 @@
 
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 #include <max/Compiling/AliasingOptimizations.hpp>
-#include <max/Compiling/ThrowSpecification.hpp>
 
 namespace max
 {
@@ -18,7 +17,7 @@ namespace max
 			namespace Polyfills
 			{
 
-				MAX_PURE_DECLARATION( constexpr inline bool polyfill_is_constant_evaluated() MAX_DOES_NOT_THROW );
+				MAX_PURE_DECLARATION( constexpr inline bool polyfill_is_constant_evaluated() noexcept );
 
 			} // namespace Polyfills
 		} // namespace Algorithms

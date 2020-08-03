@@ -8,31 +8,31 @@ namespace Algorithms
 {
 
 	template< typename FunctorType >
-	ScopedFunctor< FunctorType > MakeScopedFunctor( const FunctorType & Functor ) MAX_DOES_NOT_THROW
+	ScopedFunctor< FunctorType > MakeScopedFunctor( const FunctorType & Functor ) noexcept
 	{
 		return ScopedFunctor< FunctorType >( Functor );
 	}
 
 	template< typename FunctorType >
-	ScopedFunctor< FunctorType > MakeScopedFunctor( FunctorType && Functor ) MAX_DOES_NOT_THROW
+	ScopedFunctor< FunctorType > MakeScopedFunctor( FunctorType && Functor ) noexcept
 	{
 		return ScopedFunctor< FunctorType >( std::move( Functor ) );
 	}
 
 	template< typename FunctorType >
-	ScopedFunctor< FunctorType >::ScopedFunctor( const FunctorType & Functor ) MAX_DOES_NOT_THROW
+	ScopedFunctor< FunctorType >::ScopedFunctor( const FunctorType & Functor ) noexcept
 		: Functor( Functor )
 	{
 	}
 
 	template< typename FunctorType >
-	ScopedFunctor< FunctorType >::ScopedFunctor( FunctorType && Functor ) MAX_DOES_NOT_THROW
+	ScopedFunctor< FunctorType >::ScopedFunctor( FunctorType && Functor ) noexcept
 		: Functor( std::move( Functor ) )
 	{
 	}
 
 	template< typename FunctorType >
-	ScopedFunctor< FunctorType >::~ScopedFunctor() MAX_DOES_NOT_THROW
+	ScopedFunctor< FunctorType >::~ScopedFunctor() noexcept
 	{
 		Functor();
 	}

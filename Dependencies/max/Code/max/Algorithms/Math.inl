@@ -10,7 +10,7 @@ namespace Algorithms
 {
 
 	template< typename T >
-	MAX_PURE_DEFINITION( constexpr inline T TwoToThePowerOf( const T Exponent ) MAX_DOES_NOT_THROW )
+	MAX_PURE_DEFINITION( constexpr inline T TwoToThePowerOf( const T Exponent ) noexcept )
 	{
 		return 1u << Exponent;
 	}

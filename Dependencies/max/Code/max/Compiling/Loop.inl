@@ -8,14 +8,14 @@ namespace Compiling
 {
 	
 	template< typename LoopBody, typename FinalIterationBody, size_t IterationsLeft >
-	MAX_SEMI_PURE_DEFINITION( void Loop::Run() MAX_DOES_NOT_THROW )
+	MAX_SEMI_PURE_DEFINITION( void Loop::Run() noexcept )
 	{
 		LoopBody();
 		Loop< LoopBody, FinalIterationBody, IterationsLeft - 1 >::Run();
 	}
 
 	template< typename LoopBody, typename FinalIterationBody >
-	MAX_SEMI_PURE_DEFINITION( void Loop< LoopBody, FinalIterationBody, 0 >::Run() MAX_DOES_NOT_THROW )
+	MAX_SEMI_PURE_DEFINITION( void Loop< LoopBody, FinalIterationBody, 0 >::Run() noexcept )
 	{
 		FinalIterationBody();
 	}

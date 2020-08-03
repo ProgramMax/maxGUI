@@ -5,7 +5,6 @@
 #ifndef MAXGUI_FORM_HPP
 #define MAXGUI_FORM_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Control.hpp>
 #include <memory>
 #include <string>
@@ -22,15 +21,18 @@ namespace maxGUI
 	class Form {
 	public:
 
-		explicit Form(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit Form(HWND window_handle) noexcept;
 
-		virtual ~Form() MAX_DOES_NOT_THROW = default;
+		virtual ~Form() noexcept = default;
 
-		virtual void OnCreated() MAX_DOES_NOT_THROW;
-		virtual void OnResized(int new_height, int new_width) MAX_DOES_NOT_THROW;
-		virtual void OnClosed() MAX_DOES_NOT_THROW;
+		virtual void OnCreated() noexcept;
+		virtual void OnResized(int new_height, int new_width) noexcept;
+		virtual void OnClosed() noexcept;
 
-		Control* AddControl(const ControlFactory* control_factory) MAX_DOES_NOT_THROW;
+		
+		virtual LRESULT OnWindowMessage(UINT message, WPARAM wparam, LPARAM lparam) noexcept;
+
+		Control* AddControl(const ControlFactory* control_factory) noexcept;
 
 		HWND window_handle_;
 		std::vector<std::unique_ptr<Control>> controls_;
@@ -40,10 +42,10 @@ namespace maxGUI
 	class FormContainer {
 	public:
 
-		explicit FormContainer(HINSTANCE instance_handle) MAX_DOES_NOT_THROW;
+		explicit FormContainer(HINSTANCE instance_handle) noexcept;
 
 		template <typename FormFactoryType>
-		bool CreateForm(FormFactoryType& form_factory, int height, int width, std::string title) MAX_DOES_NOT_THROW {
+		bool CreateForm(FormFactoryType& form_factory, int height, int width, std::string title) noexcept {
 			form_factory.form_container_ = this;
 			return form_factory.CreateForm(instance_handle_, std::move(height), std::move(width), std::move(title));
 		}
@@ -56,9 +58,9 @@ namespace maxGUI
 	class FormFactoryImplementationDetails {
 	public:
 
-		bool CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) MAX_DOES_NOT_THROW;
+		bool CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) noexcept;
 
-		virtual std::unique_ptr<Form> AllocateForm(HWND window_handle) MAX_DOES_NOT_THROW = 0;
+		virtual std::unique_ptr<Form> AllocateForm(HWND window_handle) noexcept = 0;
 
 		// This is set by FormContainer::CreateForm() and needs to remain set until WM_CREATE is received
 		FormContainer* form_container_ = nullptr;
@@ -69,9 +71,9 @@ namespace maxGUI
 	class FormFactory : public FormFactoryImplementationDetails {
 	public:
 
-		virtual ~FormFactory() MAX_DOES_NOT_THROW = default;
+		virtual ~FormFactory() noexcept = default;
 
-		std::unique_ptr<Form> AllocateForm(HWND window_handle) MAX_DOES_NOT_THROW override {
+		std::unique_ptr<Form> AllocateForm(HWND window_handle) noexcept override {
 			// TODO: Use allocator
 			return std::make_unique<FormType>(window_handle);
 		}

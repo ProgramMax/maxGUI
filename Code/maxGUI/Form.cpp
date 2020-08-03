@@ -24,7 +24,7 @@ namespace {
 		return form;
 	}
 
-	LRESULT CALLBACK BaseWindowProcedure(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam) MAX_DOES_NOT_THROW {
+	LRESULT CALLBACK BaseWindowProcedure(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam) noexcept {
 		switch (message)
 		{
 		case WM_NCCREATE:
@@ -39,7 +39,7 @@ namespace {
 					}
 				}
 			}
-			return TRUE;
+			return DefWindowProc(window_handle, message, wparam, lparam);
 		case WM_CREATE:
 			{
 				maxGUI::Form* form = nullptr;
@@ -60,7 +60,8 @@ namespace {
 				}
 				form->OnCreated();
 			}
-			return 0;
+			//return 0;
+			return DefWindowProc(window_handle, message, wparam, lparam);
 		case WM_SIZE:
 			{
 				auto form = GetFormFromHWND(window_handle);
@@ -70,6 +71,7 @@ namespace {
 				form->OnResized(height, width);
 			}
 			return TRUE;
+		// TODO: This should be WM_CLOSE
 		case WM_DESTROY:
 			{
 				auto form = GetFormFromHWND(window_handle);
@@ -100,6 +102,11 @@ namespace {
 			return 0;
 		}
 
+		auto form = GetFormFromHWND(window_handle);
+		if (form) {
+			return form->OnWindowMessage(message, wparam, lparam);
+		}
+
 		return DefWindowProc(window_handle, message, wparam, lparam);
 	}
 
@@ -107,32 +114,36 @@ namespace {
 
 namespace maxGUI {
 
-	Form::Form(HWND window_handle) MAX_DOES_NOT_THROW
+	Form::Form(HWND window_handle) noexcept
 		: window_handle_(window_handle)
 	{}
 
-	void Form::OnCreated() MAX_DOES_NOT_THROW {
+	void Form::OnCreated() noexcept {
 	}
 
-	void Form::OnResized(int /*new_width*/, int /*new_height*/) MAX_DOES_NOT_THROW {
+	void Form::OnResized(int /*new_width*/, int /*new_height*/) noexcept {
 	}
 
-	void Form::OnClosed() MAX_DOES_NOT_THROW {
+	void Form::OnClosed() noexcept {
 		PostExitMessage(0);
 	}
 
-	Control* Form::AddControl(const ControlFactory* control_factory) MAX_DOES_NOT_THROW {
+	LRESULT Form::OnWindowMessage(UINT message, WPARAM wparam, LPARAM lparam) noexcept {
+		return DefWindowProc(window_handle_, message, wparam, lparam);
+	}
+
+	Control* Form::AddControl(const ControlFactory* control_factory) noexcept {
 		std::unique_ptr<Control> control_ptr = control_factory->CreateControl(window_handle_);
 		Control* raw_control_ptr = control_ptr.get();
 		controls_.push_back(std::move(control_ptr));
 		return raw_control_ptr;
 	}
 
-	FormContainer::FormContainer(HINSTANCE instance_handle) MAX_DOES_NOT_THROW
+	FormContainer::FormContainer(HINSTANCE instance_handle) noexcept
 		: instance_handle_(instance_handle)
 	{}
 
-	bool FormFactoryImplementationDetails::CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) MAX_DOES_NOT_THROW {
+	bool FormFactoryImplementationDetails::CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) noexcept {
 		WNDCLASSEX wcx = {0};
 		wcx.cbSize = sizeof(wcx);
 		wcx.style = 0;
@@ -140,15 +151,18 @@ namespace maxGUI {
 		wcx.cbClsExtra = 0;
 		wcx.cbWndExtra = 0;
 		wcx.hInstance = instance_handle;
-		wcx.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+		//wcx.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 		wcx.hCursor = LoadCursor(NULL, IDC_ARROW);
 		//wcx.hbrBackground = (HBRUSH)(COLOR_3DFACE + 1);
-		wcx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+		//wcx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+		wcx.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_BTNFACE + 1);
 		wcx.lpszMenuName = NULL;
 		wcx.lpszClassName = maxgui_window_class_name;
-		wcx.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+		//wcx.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+		wcx.hIcon = reinterpret_cast< HICON >( LoadImageW( instance_handle, IDI_APPLICATION, IMAGE_ICON, 32, 32, LR_CREATEDIBSECTION ) );
+		wcx.hIconSm = reinterpret_cast< HICON >( LoadImageW( instance_handle, IDI_APPLICATION, IMAGE_ICON, 16, 16, LR_CREATEDIBSECTION ) );
 
-		ATOM atom = RegisterClassEx(&wcx);
+		/*ATOM atom = */RegisterClassEx(&wcx);
 
 		int virtual_top = CW_USEDEFAULT;
 		int virtual_left = CW_USEDEFAULT;
@@ -159,9 +173,14 @@ namespace maxGUI {
 		area.bottom = height;
 		area.right = width;
 
-		DWORD style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
+		//DWORD style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
 		//DWORD extra_style = NULL;
-		DWORD extra_style = WS_EX_CLIENTEDGE;
+		//DWORD extra_style = WS_EX_CLIENTEDGE;
+
+		DWORD style = WS_BORDER | WS_CAPTION /*| WS_MINIMIZEBOX*/ | WS_SYSMENU | WS_POPUP | WS_OVERLAPPEDWINDOW;// | WS_CLIPCHILDREN;
+		DWORD extra_style = WS_EX_CONTROLPARENT | WS_EX_CLIENTEDGE; //WS_EX_WINDOWEDGE;
+
+		//DWORD ExtraStyle = WS_EX_CONTROLPARENT /* has controls which should participate in dialog stuff */ | WS_EX_WINDOWEDGE;
 
 		AdjustWindowRectEx(&area, style, FALSE, extra_style);
 		DWORD total_height = 0;
@@ -187,9 +206,8 @@ namespace maxGUI {
 			total_width = area.right - area.left;
 		}
 
-		// TODO: Allow specific window title
 		Win32String win32_title = Utf8ToWin32String(title);
-		HWND window_handle = CreateWindowEx(extra_style, reinterpret_cast<LPCWSTR>(atom), /*win32_title.text_*/TEXT("yay"), style, area.left, area.top, total_width, total_height, 0, 0, instance_handle, static_cast<LPVOID>(this));
+		HWND window_handle = CreateWindowEx(extra_style, /*reinterpret_cast<LPCWSTR>(atom)*/maxgui_window_class_name, win32_title.text_, style, area.left, area.top, total_width, total_height, 0, 0, instance_handle, static_cast<LPVOID>(this));
 		if (window_handle == NULL) {
 			return false;
 		}

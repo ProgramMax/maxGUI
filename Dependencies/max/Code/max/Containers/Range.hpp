@@ -9,7 +9,6 @@
 
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 #include <max/Compiling/AliasingOptimizations.hpp>
-#include <max/Compiling/ThrowSpecification.hpp>
 
 namespace max
 {
@@ -24,7 +23,7 @@ namespace Containers
 	public:
 
 		// Documentation: Range_ctor.md
-		MAX_SEMI_PURE_DECLARATION( constexpr Range( const T Minimum, const T Maximum ) MAX_DOES_NOT_THROW );
+		MAX_SEMI_PURE_DECLARATION( constexpr Range( const T Minimum, const T Maximum ) noexcept );
 
 		T Minimum;
 		T Maximum;
@@ -33,7 +32,7 @@ namespace Containers
 
 	// Documentation: MakeRange.md
 	template< typename T >
-	MAX_PURE_DECLARATION( Range< T > MakeRange( const T Value1, const T Value2 ) MAX_DOES_NOT_THROW );
+	MAX_PURE_DECLARATION( Range< T > MakeRange( const T Value1, const T Value2 ) noexcept );
 
 } // namespace Containers
 } // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )

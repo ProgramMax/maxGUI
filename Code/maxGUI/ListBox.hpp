@@ -5,7 +5,6 @@
 #ifndef MAXGUI_LISTBOX_HPP
 #define MAXGUI_LISTBOX_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Control.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
@@ -19,9 +18,9 @@ namespace maxGUI
 	{
 	public:
 
-		explicit ListBox(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit ListBox(HWND window_handle) noexcept;
 
-		~ListBox() MAX_DOES_NOT_THROW override = default;
+		~ListBox() noexcept override = default;
 
 	};
 
@@ -29,7 +28,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateListBox(Rectangle rectangle, std::vector<std::string> list, HWND parent_window_handle) MAX_DOES_NOT_THROW;
+		static HWND CreateListBox(Rectangle rectangle, std::vector<std::string> list, HWND parent_window_handle) noexcept;
 
 	};
 	
@@ -38,14 +37,14 @@ namespace maxGUI
 	{
 	public:
 
-		ListBoxFactory(Rectangle rectangle, std::vector<std::string> list) MAX_DOES_NOT_THROW
+		ListBoxFactory(Rectangle rectangle, std::vector<std::string> list) noexcept
 			: ControlFactory(std::move(rectangle))
 			, list_(std::move(list))
 		{}
 
-		~ListBoxFactory() MAX_DOES_NOT_THROW override = default;
+		~ListBoxFactory() noexcept override = default;
 
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override {
+		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = ListBoxFactoryImplementationDetails::CreateListBox(rectangle_, list_, std::move(parent_window_handle));
 			return std::make_unique<ListBoxType>(std::move(window_handle));
 		}

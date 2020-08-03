@@ -5,7 +5,6 @@
 #ifndef MAXGUI_WIN32STRING_HPP
 #define MAXGUI_WIN32STRING_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <string>
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
@@ -18,21 +17,21 @@ namespace maxGUI {
 	class Win32String {
 	public:
 
-		Win32String(LPTSTR text, size_t char_count) MAX_DOES_NOT_THROW;
+		Win32String(LPTSTR text, size_t char_count) noexcept;
 		Win32String(const Win32String&) = default;
-		Win32String(Win32String&& other) MAX_DOES_NOT_THROW;
-		~Win32String() MAX_DOES_NOT_THROW;
+		Win32String(Win32String&& other) noexcept;
+		~Win32String() noexcept;
 
 		Win32String& operator =(const Win32String&) = default;
-		Win32String& operator =(Win32String&& other) MAX_DOES_NOT_THROW;
+		Win32String& operator =(Win32String&& other) noexcept;
 
 		LPTSTR text_;
 		size_t char_count_;
 
 	};
 
-	Win32String Utf8ToWin32String(std::string text) MAX_DOES_NOT_THROW;
-	std::string Win32StringToUtf8(Win32String text) MAX_DOES_NOT_THROW;
+	Win32String Utf8ToWin32String(std::string text) noexcept;
+	std::string Win32StringToUtf8(Win32String text) noexcept;
 
 } // namespace maxGUI
 

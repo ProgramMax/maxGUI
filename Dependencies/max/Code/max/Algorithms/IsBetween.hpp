@@ -9,7 +9,6 @@
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 #include <max/Compiling/AliasingOptimizations.hpp>
 #include <max/Containers/Range.hpp>
-#include <max/Compiling/ThrowSpecification.hpp>
 
 namespace max
 {	
@@ -20,7 +19,7 @@ namespace Algorithms
 
 	// Documentation: IsBetween.md
 	template< typename T >
-	MAX_PURE_DECLARATION( constexpr bool IsBetween( const T Value, const max::Containers::Range< T > & Range ) MAX_DOES_NOT_THROW );
+	MAX_PURE_DECLARATION( constexpr bool IsBetween( const T Value, const max::Containers::Range< T > & Range ) noexcept );
 
 } // namespace Algorithms
 } // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )

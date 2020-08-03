@@ -10,11 +10,11 @@
 namespace maxGUI
 {
 	
-	MultilineTextBox::MultilineTextBox(HWND window_handle) MAX_DOES_NOT_THROW
+	MultilineTextBox::MultilineTextBox(HWND window_handle) noexcept
 		: ControlWithText(std::move(window_handle))
 	{}
 
-	HWND MultilineTextBoxFactoryImplementationDetails::CreateMultilineTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW {
+	HWND MultilineTextBoxFactoryImplementationDetails::CreateMultilineTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
 		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), win32_text.text_, WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | ES_MULTILINE | ES_WANTRETURN | ES_AUTOVSCROLL | ES_AUTOHSCROLL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}

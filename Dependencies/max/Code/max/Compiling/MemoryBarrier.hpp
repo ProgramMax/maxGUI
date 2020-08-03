@@ -5,9 +5,6 @@
 #ifndef MAX_COMPILING_MEMORYBARRIER_HPP
 #define MAX_COMPILING_MEMORYBARRIER_HPP
 
-
-#include <max/Compiling/Configuration/Compiling.hpp>
-
 #ifdef MAX_COMPILER_VC
 	#include <intrin.h>
 	
