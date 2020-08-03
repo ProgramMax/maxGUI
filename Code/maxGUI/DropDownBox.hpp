@@ -5,8 +5,7 @@
 #ifndef MAXGUI_DROPDOWNBOX_HPP
 #define MAXGUI_DROPDOWNBOX_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
-#include <maxGUI/Control.hpp>
+#include <maxGUI/ControlWithList.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
@@ -15,13 +14,17 @@
 namespace maxGUI
 {
 
-	class DropDownBox : public Control
+	class DropDownBox : public ControlWithList
 	{
 	public:
 
-		explicit DropDownBox(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit DropDownBox(HWND window_handle) noexcept;
 
-		~DropDownBox() MAX_DOES_NOT_THROW override = default;
+		~DropDownBox() noexcept override = default;
+
+	//protected:
+
+		void OnCommand(WORD notification) noexcept override;
 
 	};
 	
@@ -29,30 +32,25 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateDropDownBox(Rectangle rectangle, std::vector<std::string> list, HWND parent_window_handle) MAX_DOES_NOT_THROW;
+		static HWND CreateDropDownBox(Rectangle rectangle, std::vector<std::string> list, HWND parent_window_handle) noexcept;
 
 	};
 
 	template <typename DropDownBoxType = DropDownBox>
-	class DropDownBoxFactory : public ControlFactory
+	class DropDownBoxFactory : public ControlWithListFactory
 	{
 	public:
 
-		DropDownBoxFactory(Rectangle rectangle, std::vector<std::string> list) MAX_DOES_NOT_THROW
-			: ControlFactory(std::move(rectangle))
-			, list_(std::move(list))
+		DropDownBoxFactory(Rectangle rectangle, std::vector<std::string> list) noexcept
+			: ControlWithListFactory(std::move(rectangle), std::move(list))
 		{}
 
-		~DropDownBoxFactory() MAX_DOES_NOT_THROW override = default;
+		~DropDownBoxFactory() noexcept override = default;
 
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override {
+		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = DropDownBoxFactoryImplementationDetails::CreateDropDownBox(rectangle_, list_, std::move(parent_window_handle));
 			return std::make_unique<DropDownBoxType>(std::move(window_handle));
 		}
-
-	//private:
-
-		std::vector<std::string> list_;
 
 	};
 
