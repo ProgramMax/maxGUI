@@ -10,8 +10,16 @@ namespace maxGUI
 {
 	
 	DropDownBox::DropDownBox(HWND window_handle) noexcept
-		: Control(std::move(window_handle))
+		: ControlWithList(std::move(window_handle))
 	{}
+
+	void DropDownBox::OnCommand(WORD notification) noexcept {
+		if (notification == CBN_SELCHANGE)
+		{
+			int index = static_cast<int>(SendMessage(window_handle_, CB_GETCURSEL, 0, 0));
+			OnSelectionChanged(index);
+		}
+	}
 	
 	HWND DropDownBoxFactoryImplementationDetails::CreateDropDownBox(Rectangle rectangle, std::vector<std::string> list, HWND parent_window_handle) noexcept {
 		HWND window_handle = CreateWindowEx(0, TEXT("COMBOBOX"), TEXT(""), WS_CHILD | WS_VISIBLE | WS_TABSTOP | CBS_DROPDOWN | CBS_HASSTRINGS /*| CBS_DROPDOWNLIST*/, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);

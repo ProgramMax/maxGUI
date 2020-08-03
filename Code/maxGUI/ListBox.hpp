@@ -5,7 +5,7 @@
 #ifndef MAXGUI_LISTBOX_HPP
 #define MAXGUI_LISTBOX_HPP
 
-#include <maxGUI/Control.hpp>
+#include <maxGUI/ControlWithList.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
@@ -14,13 +14,17 @@
 namespace maxGUI
 {
 
-	class ListBox : public Control
+	class ListBox : public ControlWithList
 	{
 	public:
 
 		explicit ListBox(HWND window_handle) noexcept;
 
 		~ListBox() noexcept override = default;
+
+	//protected:
+
+		void OnCommand(WORD notification) noexcept override;
 
 	};
 
@@ -33,13 +37,12 @@ namespace maxGUI
 	};
 	
 	template <typename ListBoxType = ListBox>
-	class ListBoxFactory : public ControlFactory
+	class ListBoxFactory : public ControlWithListFactory
 	{
 	public:
 
 		ListBoxFactory(Rectangle rectangle, std::vector<std::string> list) noexcept
-			: ControlFactory(std::move(rectangle))
-			, list_(std::move(list))
+			: ControlWithListFactory(std::move(rectangle), std::move(list))
 		{}
 
 		~ListBoxFactory() noexcept override = default;
@@ -48,10 +51,6 @@ namespace maxGUI
 			HWND window_handle = ListBoxFactoryImplementationDetails::CreateListBox(rectangle_, list_, std::move(parent_window_handle));
 			return std::make_unique<ListBoxType>(std::move(window_handle));
 		}
-
-	//private:
-
-		std::vector<std::string> list_;
 
 	};
 
