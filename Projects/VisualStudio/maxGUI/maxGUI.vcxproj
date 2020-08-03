@@ -35,7 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Code\maxGUI\Button.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\CheckBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ControlWithList.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\DropDownBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp" />
@@ -52,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\CheckBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Control.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ControlWithList.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithText.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\DropDownBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp" />

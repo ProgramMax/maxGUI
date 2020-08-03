@@ -4,6 +4,7 @@
 
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Button.hpp>
+#include <maxGUI/CheckBox.hpp>
 #include <maxGUI/DropDownBox.hpp>
 #include <maxGUI/EntryPoint.hpp>
 #include <maxGUI/Form.hpp>
@@ -70,13 +71,16 @@ public:
 		maxGUI::ProgressBarFactory<> progressbar_factory(maxGUI::Rectangle(625, 25, 25, 300));
 		AddControl(&progressbar_factory);
 
-		maxGUI::RadioButtonFactory<> radiobutton_factory(maxGUI::Rectangle(675, 25, 25, 300), "Option 1");
+		maxGUI::CheckBoxFactory<> checkbox_factory(maxGUI::Rectangle(675, 25, 25, 300), "Check 1");
+		AddControl(&checkbox_factory);
+
+		maxGUI::RadioButtonFactory<> radiobutton_factory(maxGUI::Rectangle(725, 25, 25, 300), "Option 1");
 		AddControl(&radiobutton_factory);
 
-		maxGUI::RadioButtonFactory<> radiobutton_factory2(maxGUI::Rectangle(700, 25, 25, 300), "Option 2");
+		maxGUI::RadioButtonFactory<> radiobutton_factory2(maxGUI::Rectangle(750, 25, 25, 300), "Option 2");
 		AddControl(&radiobutton_factory2);
 
-		maxGUI::TextBoxFactory<> textbox_factory(maxGUI::Rectangle(750, 25, 25, 300), "Textbox");
+		maxGUI::TextBoxFactory<> textbox_factory(maxGUI::Rectangle(800, 25, 25, 300), "Textbox");
 		AddControl(&textbox_factory);
 	}
 
@@ -84,7 +88,7 @@ public:
 
 int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) MAX_DOES_NOT_THROW {
 	maxGUI::FormFactory<ControlGalleryForm> control_gallery_form_factory;
-	if (!form_container.CreateForm(control_gallery_form_factory, 775, 350, "Control gallery")) {
+	if (!form_container.CreateForm(control_gallery_form_factory, 825, 350, "Control gallery")) {
 		return -1;
 	}
 
