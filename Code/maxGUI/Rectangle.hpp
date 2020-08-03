@@ -5,13 +5,11 @@
 #ifndef MAXGUI_RECTANGLE_HPP
 #define MAXGUI_RECTANGLE_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
-
 namespace maxGUI {
 
 	struct Rectangle {
 
-		Rectangle(int top, int left, int height, int width) MAX_DOES_NOT_THROW;
+		Rectangle(int top, int left, int height, int width) noexcept;
 
 		int top_;
 		int left_;

@@ -9,18 +9,18 @@
 namespace maxGUI
 {
 
-	Control::Control(HWND window_handle) MAX_DOES_NOT_THROW
+	Control::Control(HWND window_handle) noexcept
 		: window_handle_(std::move(window_handle))
 	{}
 
-	void Control::Move(Rectangle rectangle) MAX_DOES_NOT_THROW {
+	void Control::Move(Rectangle rectangle) noexcept {
 		SetWindowPos(window_handle_, NULL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, SWP_NOZORDER);
 	}
 
-	void Control::OnCommand(WORD /*notification*/) MAX_DOES_NOT_THROW
+	void Control::OnCommand(WORD /*notification*/) noexcept
 	{}
 
-	ControlFactory::ControlFactory(Rectangle rectangle) MAX_DOES_NOT_THROW
+	ControlFactory::ControlFactory(Rectangle rectangle) noexcept
 		: rectangle_(std::move(rectangle))
 	{}
 

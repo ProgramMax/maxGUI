@@ -9,11 +9,11 @@
 namespace maxGUI
 {
 	
-	CheckBox::CheckBox(HWND window_handle) MAX_DOES_NOT_THROW
+	CheckBox::CheckBox(HWND window_handle) noexcept
 		: ControlWithText(std::move(window_handle))
 	{}
 
-	void CheckBox::OnPressed() MAX_DOES_NOT_THROW {
+	void CheckBox::OnPressed() noexcept {
 		if (IsChecked()) {
 			Uncheck();
 		} else {
@@ -21,30 +21,28 @@ namespace maxGUI
 		}
 	}
 
-	void CheckBox::OnCommand(WORD notification) MAX_DOES_NOT_THROW {
+	void CheckBox::OnCommand(WORD notification) noexcept {
 		if (notification == BN_CLICKED)
 		{
 			OnPressed();
 		}
 	}
 
-	bool CheckBox::IsChecked() const MAX_DOES_NOT_THROW {
+	bool CheckBox::IsChecked() const noexcept {
 		return SendMessage(window_handle_, BM_GETCHECK, 0, 0);
 	}
 
-	void CheckBox::Check() MAX_DOES_NOT_THROW {
+	void CheckBox::Check() noexcept {
 		SendMessage(window_handle_, BM_SETCHECK, BST_CHECKED, 0);
 	}
 
-	void CheckBox::Uncheck() MAX_DOES_NOT_THROW {
+	void CheckBox::Uncheck() noexcept {
 		SendMessage(window_handle_, BM_SETCHECK, BST_UNCHECKED, 0);
 	}
 
-	HWND CheckBoxFactoryImplementationDetails::CreateCheckBox(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW {
+	HWND CheckBoxFactoryImplementationDetails::CreateCheckBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
 		// BS_DEFPUSHBUTTON
 		// BS_FLAT
-
-
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
 		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_CHECKBOX, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}

@@ -20,7 +20,7 @@ Range< T > MakeRange(
 	const T Value1,
 	const T Value2
 
-) MAX_DOES_NOT_THROW
+) noexcept
 );
 ```
 

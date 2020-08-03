@@ -9,18 +9,18 @@
 namespace maxGUI
 {
 	
-	Button::Button(HWND window_handle) MAX_DOES_NOT_THROW
+	Button::Button(HWND window_handle) noexcept
 		: ControlWithText(std::move(window_handle))
 	{}
 
-	void Button::OnCommand(WORD notification) MAX_DOES_NOT_THROW {
+	void Button::OnCommand(WORD notification) noexcept {
 		if (notification == BN_CLICKED)
 		{
 			OnPressed();
 		}
 	}
 
-	HWND ButtonFactoryImplementationDetails::CreateButton(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW {
+	HWND ButtonFactoryImplementationDetails::CreateButton(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
 		// BS_DEFPUSHBUTTON
 		// BS_FLAT
 		Win32String win32_text = Utf8ToWin32String(std::move(text));

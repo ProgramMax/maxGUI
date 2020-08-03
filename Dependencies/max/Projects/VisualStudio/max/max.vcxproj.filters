@@ -275,12 +275,6 @@
     <ClInclude Include="..\..\..\Code\max\Compiling\NoDefault.hpp">
       <Filter>Code\max\Compiling</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Code\max\Compiling\StaticAssert.hpp">
-      <Filter>Code\max\Compiling</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Code\max\Compiling\ThrowSpecification.hpp">
-      <Filter>Code\max\Compiling</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Code\max\Compiling\UnreferencedValue.hpp">
       <Filter>Code\max\Compiling</Filter>
     </ClInclude>

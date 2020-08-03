@@ -47,6 +47,10 @@
 
 #define MAX_INTRINSICS_ALLOWED_INSIDE_CONSTEXPR
 
+#if MAX_COMPILER_VERSION_AT_LEAST( 3, 1, 0 )
+	#define MAX_CONSTEXPR_SUPPORTED
+#endif
+
 #if ( MAX_COMPILER_VERSION_AT_LEAST( 9, 0, 0 ) && __cplusplus > 201703L ) || __cpp_lib_is_constant_evaluated
 	#define MAX_IS_CONSTANT_EVALUATED_SUPPORTED
 #endif

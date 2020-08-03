@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/Button.hpp>
 #include <maxGUI/CheckBox.hpp>
 #include <maxGUI/DropDownBox.hpp>
@@ -26,13 +25,13 @@ class CustomButton : public maxGUI::Button
 public:
 
 	// TODO: Can we not need to know about HWND somehow?
-	explicit CustomButton(HWND window_handle) MAX_DOES_NOT_THROW
+	explicit CustomButton(HWND window_handle) noexcept
 		: maxGUI::Button(window_handle)
 	{}
 
-	~CustomButton() MAX_DOES_NOT_THROW override = default;
+	~CustomButton() noexcept override = default;
 
-	void OnPressed() MAX_DOES_NOT_THROW override {
+	void OnPressed() noexcept override {
 		maxGUI::PostExitMessage(0);
 	}
 
@@ -42,11 +41,11 @@ class ControlGalleryForm : public maxGUI::Form {
 public:
 
 	// TODO: Can we not need to know about HWND somehow?
-	explicit ControlGalleryForm(HWND window_handle) MAX_DOES_NOT_THROW
+	explicit ControlGalleryForm(HWND window_handle) noexcept
 		: maxGUI::Form(window_handle)
 	{}
 
-	void OnCreated() MAX_DOES_NOT_THROW override {
+	void OnCreated() noexcept override {
 		maxGUI::ButtonFactory<CustomButton> custom_button_factory(maxGUI::Rectangle(25, 25, 50, 150), "Custom Button");
 		AddControl(&custom_button_factory);
 
@@ -68,7 +67,7 @@ public:
 		maxGUI::MultilineTextBoxFactory<> multilinetextbox_factory(maxGUI::Rectangle(450, 25, 150, 300), "Multiline\r\ntextbox");
 		AddControl(&multilinetextbox_factory);
 
-		maxGUI::ProgressBarFactory<> progressbar_factory(maxGUI::Rectangle(625, 25, 25, 300));
+		maxGUI::ProgressBarFactory<> progressbar_factory(maxGUI::Rectangle(625, 25, 25, 300), 0, 100, 50);
 		AddControl(&progressbar_factory);
 
 		maxGUI::CheckBoxFactory<> checkbox_factory(maxGUI::Rectangle(675, 25, 25, 300), "Check 1");
@@ -86,7 +85,7 @@ public:
 
 };
 
-int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) MAX_DOES_NOT_THROW {
+int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) noexcept {
 	maxGUI::FormFactory<ControlGalleryForm> control_gallery_form_factory;
 	if (!form_container.CreateForm(control_gallery_form_factory, 825, 350, "Control gallery")) {
 		return -1;

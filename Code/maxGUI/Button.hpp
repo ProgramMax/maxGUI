@@ -5,7 +5,6 @@
 #ifndef MAXGUI_BUTTON_HPP
 #define MAXGUI_BUTTON_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
@@ -18,15 +17,15 @@ namespace maxGUI
 	{
 	public:
 
-		explicit Button(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit Button(HWND window_handle) noexcept;
 
-		~Button() MAX_DOES_NOT_THROW override = default;
+		~Button() noexcept override = default;
 
-		virtual void OnPressed() MAX_DOES_NOT_THROW = 0;
+		virtual void OnPressed() noexcept = 0;
 
 	//protected:
 
-		void OnCommand(WORD notification) MAX_DOES_NOT_THROW override;
+		void OnCommand(WORD notification) noexcept override;
 
 	};
 	
@@ -34,7 +33,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateButton(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW;
+		static HWND CreateButton(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
 
 	};
 
@@ -43,13 +42,13 @@ namespace maxGUI
 	{
 	public:
 
-		ButtonFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
+		ButtonFactory(Rectangle rectangle, std::string text) noexcept
 			: ControlWithTextFactory(std::move(rectangle), std::move(text))
 		{}
 
-		~ButtonFactory() MAX_DOES_NOT_THROW override = default;
+		~ButtonFactory() noexcept override = default;
 
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override {
+		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = ButtonFactoryImplementationDetails::CreateButton(text_, rectangle_, std::move(parent_window_handle));
 			return std::make_unique<ButtonType>(std::move(window_handle));
 		}

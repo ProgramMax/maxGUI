@@ -7,7 +7,6 @@
 
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 #include <max/Compiling/AliasingOptimizations.hpp>
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <initializer_list>
 #include <array>
 
@@ -23,29 +22,29 @@ namespace Containers
 	{
 	public:
 
-		Vector() MAX_DOES_NOT_THROW = default;
-		Vector( const std::initializer_list< T > & rhs ) MAX_DOES_NOT_THROW;
-		Vector( const Vector< T, Dimensions > & rhs ) MAX_DOES_NOT_THROW = default;
-		Vector( Vector< T, Dimensions > && rhs ) MAX_DOES_NOT_THROW = default;
-		~Vector() MAX_DOES_NOT_THROW = default;
+		Vector() noexcept = default;
+		Vector( const std::initializer_list< T > & rhs ) noexcept;
+		Vector( const Vector< T, Dimensions > & rhs ) noexcept = default;
+		Vector( Vector< T, Dimensions > && rhs ) noexcept = default;
+		~Vector() noexcept = default;
 
-		Vector< T, Dimensions > & operator =( const Vector< T, Dimensions > & rhs ) MAX_DOES_NOT_THROW = default;
-		Vector< T, Dimensions > & operator =( Vector< T, Dimensions > && rhs ) MAX_DOES_NOT_THROW = default;
+		Vector< T, Dimensions > & operator =( const Vector< T, Dimensions > & rhs ) noexcept = default;
+		Vector< T, Dimensions > & operator =( Vector< T, Dimensions > && rhs ) noexcept = default;
 
-		Vector< T, Dimensions > operator +( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW;
-		Vector< T, Dimensions > operator -( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW;
-		Vector< T, Dimensions > Cross     ( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW;
-		T                       Dot       ( const Vector< T, Dimensions > & rhs ) const MAX_DOES_NOT_THROW;
-		Vector< T, Dimensions > operator *( const T rhs ) const MAX_DOES_NOT_THROW;
-		Vector< T, Dimensions > operator /( const T rhs ) const MAX_DOES_NOT_THROW;
+		Vector< T, Dimensions > operator +( const Vector< T, Dimensions > & rhs ) const noexcept;
+		Vector< T, Dimensions > operator -( const Vector< T, Dimensions > & rhs ) const noexcept;
+		Vector< T, Dimensions > Cross     ( const Vector< T, Dimensions > & rhs ) const noexcept;
+		T                       Dot       ( const Vector< T, Dimensions > & rhs ) const noexcept;
+		Vector< T, Dimensions > operator *( const T rhs ) const noexcept;
+		Vector< T, Dimensions > operator /( const T rhs ) const noexcept;
 
-		T                       Length()    const MAX_DOES_NOT_THROW;
-		Vector< T, Dimensions > Normalize() const MAX_DOES_NOT_THROW;
+		T                       Length()    const noexcept;
+		Vector< T, Dimensions > Normalize() const noexcept;
 
-		T &       operator []( const size_t Index ) MAX_DOES_NOT_THROW;
-		const T & operator []( const size_t Index ) const MAX_DOES_NOT_THROW;
+		T &       operator []( const size_t Index ) noexcept;
+		const T & operator []( const size_t Index ) const noexcept;
 
-		const T *  data() const MAX_DOES_NOT_THROW;
+		const T *  data() const noexcept;
 
 	private:
 

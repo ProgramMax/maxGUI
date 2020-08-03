@@ -5,7 +5,6 @@
 #ifndef MAXGUI_MULTILINETEXTBOX_HPP
 #define MAXGUI_MULTILINETEXTBOX_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <memory>
@@ -18,9 +17,9 @@ namespace maxGUI
 	{
 	public:
 
-		explicit MultilineTextBox(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit MultilineTextBox(HWND window_handle) noexcept;
 
-		~MultilineTextBox() MAX_DOES_NOT_THROW override = default;
+		~MultilineTextBox() noexcept override = default;
 
 	};
 
@@ -28,7 +27,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateMultilineTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW;
+		static HWND CreateMultilineTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
 
 	};
 	
@@ -37,13 +36,13 @@ namespace maxGUI
 	{
 	public:
 
-		MultilineTextBoxFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
+		MultilineTextBoxFactory(Rectangle rectangle, std::string text) noexcept
 			: ControlWithTextFactory(std::move(rectangle), std::move(text))
 		{}
 
-		~MultilineTextBoxFactory() MAX_DOES_NOT_THROW override = default;
+		~MultilineTextBoxFactory() noexcept override = default;
 
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override {
+		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = MultilineTextBoxFactoryImplementationDetails::CreateMultilineTextBox(text_, rectangle_, parent_window_handle);
 			return std::make_unique<MultilineTextBoxType>(std::move(window_handle));
 		}

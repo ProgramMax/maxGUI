@@ -42,22 +42,21 @@ MAX_COMPILER_MESSAGE("test");
 	#define MAX_EXCEPTIONS_SUPPORTED
 #endif
 
-// noexcept supported in GCC 4.6+
-#if MAX_COMPILER_VERSION_AT_LEAST( 4, 6, 0 ) && defined( __GXX_EXPERIMENTAL_CXX0X__ )
-	#define MAX_NOEXCEPT_SUPPORTED
-#endif
-
-// inline namespaces are supported in GCC 4.4+
 #if MAX_COMPILER_VERSION_AT_LEAST( 4, 4, 0 ) && defined( __GXX_EXPERIMENTAL_CXX0X__ )
 	#define MAX_INLINE_NAMESPACES_SUPPORTED
 #endif
 
+#if MAX_COMPILER_VERSION_AT_LEAST( 4, 6, 0 )
+	#define MAX_CONSTEXPR_SUPPORTED
+	#if defined( __GXX_EXPERIMENTAL_CXX0X__ )
+		#define MAX_NOEXCEPT_SUPPORTED
+	#endif
+#endif
+
 #define MAX_INTRINSICS_ALLOWED_INSIDE_CONSTEXPR
 
-// std::is_constant_evaluated() supported in GCC 9.0+
 #if ( MAX_COMPILER_VERSION_AT_LEAST( 9, 0, 0 ) && defined( MAX_CPP_20 ) ) || __cpp_lib_is_constant_evaluated
 	#define MAX_IS_CONSTANT_EVALUATED_SUPPORTED
 #endif
-
 
 #endif // #ifndef MAX_COMPILING_CONFIGURATION_COMPILER_GCC_HPP

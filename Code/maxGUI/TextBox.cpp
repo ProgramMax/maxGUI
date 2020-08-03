@@ -10,11 +10,11 @@
 namespace maxGUI
 {
 	
-	TextBox::TextBox(HWND window_handle) MAX_DOES_NOT_THROW
+	TextBox::TextBox(HWND window_handle) noexcept
 		: ControlWithText(std::move(window_handle))
 	{}
 	
-	HWND TextBoxFactoryImplementationDetails::CreateTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW {
+	HWND TextBoxFactoryImplementationDetails::CreateTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
 		//ES_PASSWORD
 		//ES_READONLY
 

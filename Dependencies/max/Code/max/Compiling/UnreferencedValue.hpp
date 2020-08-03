@@ -5,15 +5,13 @@
 #ifndef MAX_COMPILING_UNREFERENCEDVALUE_HPP
 #define MAX_COMPILING_UNREFERENCEDVALUE_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
-
 namespace max
 {
 namespace Compiling
 {
 
 	template< typename T >
-	void UnreferencedValue( const T & Value ) MAX_DOES_NOT_THROW;
+	void UnreferencedValue( const T & Value ) noexcept;
 
 } // namespace Compiling
 } // namespace max

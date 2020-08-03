@@ -8,7 +8,7 @@ namespace Compiling
 {
 
 	template< typename T >
-	void UnreferencedValue( const T & Value ) MAX_DOES_NOT_THROW
+	void UnreferencedValue( const T & Value ) noexcept
 	{
 		(void)Value; // This should get optimized out
 	}

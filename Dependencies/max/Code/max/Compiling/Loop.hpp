@@ -5,8 +5,6 @@
 #ifndef MAX_COMPILING_LOOP_HPP
 #define MAX_COMPILING_LOOP_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
-
 namespace max
 {
 namespace Compiling
@@ -17,7 +15,7 @@ namespace Compiling
 	{
 	public:
 
-		MAX_SEMI_PURE_DECLARATION( static constexpr void Run() MAX_DOES_NOT_THROW );
+		MAX_SEMI_PURE_DECLARATION( static constexpr void Run() noexcept );
 
 	}; // class Loop
 
@@ -26,7 +24,7 @@ namespace Compiling
 	{
 	public:
 
-		MAX_SEMI_PURE_DECLARATION( static constexpr void Run() MAX_DOES_NOT_THROW );
+		MAX_SEMI_PURE_DECLARATION( static constexpr void Run() noexcept );
 
 	};
 

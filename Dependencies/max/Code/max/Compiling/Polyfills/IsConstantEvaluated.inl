@@ -17,7 +17,7 @@ namespace max
 			namespace Polyfills
 			{
 
-				MAX_PURE_DEFINITION( constexpr inline bool IsConstantEvaluated() MAX_DOES_NOT_THROW )
+				MAX_PURE_DEFINITION( constexpr inline bool IsConstantEvaluated() noexcept )
 				{
 					#if defined( MAX_IS_CONSTANT_EVALUATED_SUPPORTED )
 						return std::is_constant_evaluated();

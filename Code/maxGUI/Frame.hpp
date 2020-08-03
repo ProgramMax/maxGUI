@@ -5,7 +5,6 @@
 #ifndef MAXGUI_FRAME_HPP
 #define MAXGUI_FRAME_HPP
 
-#include <max/Compiling/ThrowSpecification.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
@@ -18,9 +17,9 @@ namespace maxGUI
 	{
 	public:
 
-		explicit Frame(HWND window_handle) MAX_DOES_NOT_THROW;
+		explicit Frame(HWND window_handle) noexcept;
 
-		~Frame() MAX_DOES_NOT_THROW override = default;
+		~Frame() noexcept override = default;
 
 	};
 
@@ -28,7 +27,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateFrame(std::string text, Rectangle rectangle, HWND parent_window_handle) MAX_DOES_NOT_THROW;
+		static HWND CreateFrame(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
 
 	};
 	
@@ -37,13 +36,13 @@ namespace maxGUI
 	{
 	public:
 
-		FrameFactory(Rectangle rectangle, std::string text) MAX_DOES_NOT_THROW
+		FrameFactory(Rectangle rectangle, std::string text) noexcept
 			: ControlWithTextFactory(std::move(rectangle), std::move(text))
 		{}
 
-		~FrameFactory() MAX_DOES_NOT_THROW override = default;
+		~FrameFactory() noexcept override = default;
 
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const MAX_DOES_NOT_THROW override {
+		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = FrameFactoryImplementationDetails::CreateFrame(text_, rectangle_, std::move(parent_window_handle));
 			return std::make_unique<FrameType>(std::move(window_handle));
 		}

@@ -118,8 +118,6 @@
     <ClInclude Include="..\..\..\Code\max\Compiling\MemoryBarrier.hpp" />
     <ClInclude Include="..\..\..\Code\max\Compiling\NoDefault.hpp" />
     <ClInclude Include="..\..\..\Code\max\Compiling\Polyfills\IsConstantEvaluated.hpp" />
-    <ClInclude Include="..\..\..\Code\max\Compiling\StaticAssert.hpp" />
-    <ClInclude Include="..\..\..\Code\max\Compiling\ThrowSpecification.hpp" />
     <ClInclude Include="..\..\..\Code\max\Compiling\UnreferencedValue.hpp" />
     <ClInclude Include="..\..\..\Code\max\Compiling\VirtualFunctionSpecification.hpp" />
     <ClInclude Include="..\..\..\Code\max\Containers\Range.hpp" />

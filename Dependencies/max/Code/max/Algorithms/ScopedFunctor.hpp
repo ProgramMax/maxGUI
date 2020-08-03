@@ -6,7 +6,6 @@
 #define MAX_ALGORITHMS_SCOPEDFUNCTOR_HPP
 
 #include <functional>
-#include <max/Compiling/ThrowSpecification.hpp>
 
 namespace max
 {
@@ -17,19 +16,19 @@ namespace Algorithms
 	class ScopedFunctor;
 
 	template< typename FunctorType >
-	ScopedFunctor< FunctorType > MakeScopedFunctor( const FunctorType & Functor ) MAX_DOES_NOT_THROW;
+	ScopedFunctor< FunctorType > MakeScopedFunctor( const FunctorType & Functor ) noexcept;
 
 	template< typename FunctorType >
-	ScopedFunctor< FunctorType > MakeScopedFunctor( FunctorType && Functor ) MAX_DOES_NOT_THROW;
+	ScopedFunctor< FunctorType > MakeScopedFunctor( FunctorType && Functor ) noexcept;
 
 	template< typename FunctorType >
 	class ScopedFunctor
 	{
 	public:
 
-		explicit ScopedFunctor( const FunctorType & Functor ) MAX_DOES_NOT_THROW;
-		explicit ScopedFunctor( FunctorType && Functor ) MAX_DOES_NOT_THROW;
-		~ScopedFunctor() MAX_DOES_NOT_THROW;
+		explicit ScopedFunctor( const FunctorType & Functor ) noexcept;
+		explicit ScopedFunctor( FunctorType && Functor ) noexcept;
+		~ScopedFunctor() noexcept;
 
 	private:
 

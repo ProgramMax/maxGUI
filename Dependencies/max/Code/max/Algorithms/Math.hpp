@@ -9,7 +9,6 @@
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 #include <max/Compiling/AliasingOptimizations.hpp>
 #include <max/Containers/Range.hpp>
-#include <max/Compiling/ThrowSpecification.hpp>
 
 namespace max
 {	
@@ -19,7 +18,7 @@ namespace Algorithms
 {
 
 	template< typename T >
-	MAX_PURE_DECLARATION( constexpr T TwoToThePowerOf( const T Exponent ) MAX_DOES_NOT_THROW );
+	MAX_PURE_DECLARATION( constexpr T TwoToThePowerOf( const T Exponent ) noexcept );
 
 } // namespace Algorithms
 } // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )

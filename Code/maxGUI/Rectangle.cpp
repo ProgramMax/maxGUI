@@ -8,7 +8,7 @@
 
 namespace maxGUI {
 
-	Rectangle::Rectangle(int top, int left, int height, int width) MAX_DOES_NOT_THROW
+	Rectangle::Rectangle(int top, int left, int height, int width) noexcept
 		: top_(std::move(top))
 		, left_(std::move(left))
 		, height_(std::move(height))
