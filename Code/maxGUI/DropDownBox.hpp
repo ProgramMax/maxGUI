@@ -5,7 +5,7 @@
 #ifndef MAXGUI_DROPDOWNBOX_HPP
 #define MAXGUI_DROPDOWNBOX_HPP
 
-#include <maxGUI/Control.hpp>
+#include <maxGUI/ControlWithList.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
@@ -14,13 +14,17 @@
 namespace maxGUI
 {
 
-	class DropDownBox : public Control
+	class DropDownBox : public ControlWithList
 	{
 	public:
 
 		explicit DropDownBox(HWND window_handle) noexcept;
 
 		~DropDownBox() noexcept override = default;
+
+	//protected:
+
+		void OnCommand(WORD notification) noexcept override;
 
 	};
 	
@@ -33,13 +37,12 @@ namespace maxGUI
 	};
 
 	template <typename DropDownBoxType = DropDownBox>
-	class DropDownBoxFactory : public ControlFactory
+	class DropDownBoxFactory : public ControlWithListFactory
 	{
 	public:
 
 		DropDownBoxFactory(Rectangle rectangle, std::vector<std::string> list) noexcept
-			: ControlFactory(std::move(rectangle))
-			, list_(std::move(list))
+			: ControlWithListFactory(std::move(rectangle), std::move(list))
 		{}
 
 		~DropDownBoxFactory() noexcept override = default;
@@ -48,10 +51,6 @@ namespace maxGUI
 			HWND window_handle = DropDownBoxFactoryImplementationDetails::CreateDropDownBox(rectangle_, list_, std::move(parent_window_handle));
 			return std::make_unique<DropDownBoxType>(std::move(window_handle));
 		}
-
-	//private:
-
-		std::vector<std::string> list_;
 
 	};
 
