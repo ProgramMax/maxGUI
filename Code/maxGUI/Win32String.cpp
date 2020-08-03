@@ -50,9 +50,11 @@ namespace maxGUI {
 
 	std::string Win32StringToUtf8(Win32String text) MAX_DOES_NOT_THROW {
 		#if defined(UNICODE)
-		int utf8_char_count = WideCharToMultiByte(CP_UTF8, 0, text.text_, text.char_count_, nullptr, 0, nullptr, nullptr);
+		// TODO: Make sure we don't overflow the int cast.
+		int utf8_char_count = WideCharToMultiByte(CP_UTF8, 0, text.text_, static_cast<int>(text.char_count_), nullptr, 0, nullptr, nullptr);
 		std::string utf8_string(utf8_char_count, '\0');
-		WideCharToMultiByte(CP_UTF8, 0, text.text_, text.char_count_, &utf8_string[0], utf8_char_count, nullptr, nullptr);
+		// TODO: Make sure we don't overflow the int cast.
+		WideCharToMultiByte(CP_UTF8, 0, text.text_, static_cast<int>(text.char_count_), &utf8_string[0], utf8_char_count, nullptr, nullptr);
 		return utf8_string;
 		#else
 			#error "TODO: Implement non-wide version"
