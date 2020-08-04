@@ -26,7 +26,6 @@
 #if __cplusplus > 201709L
 	MAX_COMPILER_MESSAGE( "Compiling with a newer version of C++ than max recognizes. Using last known version." );
 #elif __cplusplus >= 201709L
-MAX_COMPILER_MESSAGE("test");
 	#define MAX_CPP_20
 #elif __cplusplus >= 201703L
 	#define MAX_CPP_17
