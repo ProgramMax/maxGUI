@@ -5,17 +5,22 @@
 #ifndef MAX_COMPILING_CONFIGURATION_COMPILER_VC_HPP
 #define MAX_COMPILING_CONFIGURATION_COMPILER_VC_HPP
 
-
-#include <version>
-
 #include <max/Compiling/Macros.hpp>
 
 #define MAX_COMPILER_VC
 
 #define MAX_COMPILER_MESSAGE( Message ) __pragma( message( Message ) )
 
-#if _MSC_VER > 1926
+#if _MSC_VER > 1928
 	MAX_COMPILER_MESSAGE( "Compiling with a newer version of MSVC than max recognizes. Using last known version." );
+#elif _MSC_VER >= 1928
+	// MSVC++ 14.28 (Visual Studio 2019 / version 16.8)
+	#define MAX_COMPILER_VERSION_MAJOR 16
+	#define MAX_COMPILER_VERSION_MINOR 8
+#elif _MSC_VER >= 1927
+	// MSVC++ 14.27 (Visual Studio 2019 / versoin 16.7)
+	#define MAX_COMPILER_VERSION_MAJOR 16
+	#define MAX_COMPILER_VERSION_MINOR 7
 #elif _MSC_VER >= 1926
 	// MSVC++ 14.26 (Visual Studio 2019 / version 16.6)
 	#define MAX_COMPILER_VERSION_MAJOR 16
@@ -226,8 +231,15 @@
 	#define MAX_CONSTEXPR_SUPPORTED
 #endif
 
-#if ( MAX_COMPILER_VERSION_AT_LEAST( 16, 5, 0 ) && defined ( _MSVC_LANG ) && _MSVC_LANG >= 201704L ) || __cpp_lib_is_constant_evaluated
-	#define MAX_IS_CONSTANT_EVALUATED_SUPPORTED
+#if MAX_COMPILER_VERSION_AT_LEAST( 15, 3, 0 )
+	#define MAX_HAS_INCLUDE_SUPPORTED
+#endif
+
+#if MAX_COMPILER_VERSION_AT_LEAST( 16, 2, 0 )
+	#include <version>
+	#if ( MAX_COMPILER_VERSION_AT_LEAST( 16, 5, 0 ) && defined ( _MSVC_LANG ) && _MSVC_LANG >= 201704L ) || __cpp_lib_is_constant_evaluated
+		#define MAX_IS_CONSTANT_EVALUATED_SUPPORTED
+	#endif
 #endif
 
 #endif // #ifndef MAX_COMPILING_CONFIGURATION_COMPILER_VC_HPP

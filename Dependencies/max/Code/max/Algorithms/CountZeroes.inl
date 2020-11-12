@@ -427,7 +427,7 @@ namespace max
 					#elif defined( MAX_COMPILER_VC ) && defined( MAX_X86_64 )
 						unsigned long Position = 0;
 						_BitScanReverse64( &Position, Value );
-						return Position;
+						return 63 - Position;
 					#else
 						return ImplementationDetails::CheckLeadingBit63( Value );
 					#endif
@@ -499,7 +499,7 @@ namespace max
 					#elif defined( MAX_COMPILER_VC ) && defined( MAX_X86_64 )
 						unsigned long Position = 0;
 						_BitScanReverse64( &Position, static_cast< uint64_t >( Value ) );
-						return Position;
+						return 63 - Position;
 					#else
 						return ImplementationDetails::CheckLeadingBit63( static_cast< const uint64_t >( Value ) );
 					#endif
