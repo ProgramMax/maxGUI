@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ControlGalleryExample", "Co
 		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CustomPaintingExample", "CustomPaintingExample\CustomPaintingExample.vcxproj", "{4DA98E98-E98F-4473-85FD-31698746CAE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -60,6 +62,14 @@ Global
 		{5085246A-5C05-4257-8E5C-129E139500EF}.Release|Win32.Build.0 = Release|Win32
 		{5085246A-5C05-4257-8E5C-129E139500EF}.Release|x64.ActiveCfg = Release|x64
 		{5085246A-5C05-4257-8E5C-129E139500EF}.Release|x64.Build.0 = Release|x64
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|Win32.Build.0 = Debug|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|x64.ActiveCfg = Debug|x64
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|x64.Build.0 = Debug|x64
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|Win32.ActiveCfg = Release|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|Win32.Build.0 = Release|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|x64.ActiveCfg = Release|x64
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
