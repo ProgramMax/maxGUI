@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <utility>
 #include <array>
+#include <iterator>
 #include <memory>
 #include <cstring>
 #include <max/Hardware/CPU/TLB.hpp>
