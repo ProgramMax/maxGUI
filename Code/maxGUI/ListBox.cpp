@@ -22,10 +22,15 @@ namespace maxGUI
 		}
 	}
 
-	HWND ListBoxFactoryImplementationDetails::CreateListBox(Rectangle rectangle, std::vector<std::string> list, HWND parent_window_handle) noexcept {
-		// LBS_MULTIPLESEL
-		// LBS_EXTENDEDSEL
-		HWND window_handle = CreateWindowEx(0, TEXT("LISTBOX"), TEXT(""), WS_CHILD | WS_VISIBLE | WS_TABSTOP | LBS_STANDARD, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+	HWND ListBoxFactoryImplementationDetails::CreateListBox(Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles, HWND parent_window_handle) noexcept {
+		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | LBS_STANDARD;
+		if ((styles & ListBoxStyles::SingleClickMultipleSelection) == ListBoxStyles::SingleClickMultipleSelection) {
+			win32_styles |= LBS_MULTIPLESEL;
+		}
+		if ((styles & ListBoxStyles::KeyboardAndClickMultipleSelection) == ListBoxStyles::KeyboardAndClickMultipleSelection) {
+			win32_styles |= LBS_EXTENDEDSEL;
+		}
+		HWND window_handle = CreateWindowEx(0, TEXT("LISTBOX"), TEXT(""), win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 
 		for (const auto& text : list) {
 			Win32String win32_text = Utf8ToWin32String(text);

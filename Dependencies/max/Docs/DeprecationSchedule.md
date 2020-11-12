@@ -31,8 +31,7 @@
 |GCC 6.2    |Aug 22, 2016|        Dec 21, 2021|                                                |
 |GCC 6.1    |Apr 27, 2016|        Aug 22, 2021|                                                |
 |GCC 5.3    |Dec  4, 2015|        Apr 27, 2021|                                                |
-|GCC 5.2    |Jul 16, 2015|        Dec  4, 2020|                                                |
-|GCC 5.1    |Apr 22, 2015|          Deprecated|                                                |
+|GCC 5.2    |Jul 16, 2015|          Deprecated|                                                |
 
 |MSVC version      |Release date|max deprecation date|Adds support for           |
 |------------------|-----------:|-------------------:|---------------------------|

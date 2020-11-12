@@ -5,6 +5,7 @@
 #ifndef MAXGUI_FORM_HPP
 #define MAXGUI_FORM_HPP
 
+#include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/Control.hpp>
 #include <memory>
 #include <string>
@@ -14,6 +15,19 @@
 #define WIN32_LEAN_AND_MEAN
 #endif
 #include <Windows.h>
+
+namespace maxGUI
+{
+
+	enum class FormStyles {
+		None = 0,
+		DialogBox = 1,
+		FixedSize = 2,
+	};
+
+} // namespace maxGUI
+
+MAX_BITMASKABLE_ENUM_CLASS(maxGUI::FormStyles);
 
 namespace maxGUI
 {
@@ -32,6 +46,7 @@ namespace maxGUI
 		
 		virtual LRESULT OnWindowMessage(UINT message, WPARAM wparam, LPARAM lparam) noexcept;
 
+		// TODO: Can this be templated so the factories don't need to be templated?
 		Control* AddControl(const ControlFactory* control_factory) noexcept;
 
 		HWND window_handle_;
@@ -46,8 +61,13 @@ namespace maxGUI
 
 		template <typename FormFactoryType>
 		bool CreateForm(FormFactoryType& form_factory, int height, int width, std::string title) noexcept {
+			return CreateForm(form_factory, std::move(height), std::move(width), std::move(title), FormStyles::None);
+		}
+
+		template <typename FormFactoryType>
+		bool CreateForm(FormFactoryType& form_factory, int height, int width, std::string title, FormStyles styles) noexcept {
 			form_factory.form_container_ = this;
-			return form_factory.CreateForm(instance_handle_, std::move(height), std::move(width), std::move(title));
+			return form_factory.CreateForm(instance_handle_, std::move(height), std::move(width), std::move(title), std::move(styles));
 		}
 
 		std::vector<std::unique_ptr<Form>> forms_;
@@ -58,7 +78,7 @@ namespace maxGUI
 	class FormFactoryImplementationDetails {
 	public:
 
-		bool CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) noexcept;
+		bool CreateForm(HINSTANCE instance_handle, int height, int width, std::string title, FormStyles styles) noexcept;
 
 		virtual std::unique_ptr<Form> AllocateForm(HWND window_handle) noexcept = 0;
 

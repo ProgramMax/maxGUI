@@ -5,18 +5,24 @@
 #include <maxGUI/TextBox.hpp>
 
 #include <maxGUI/Win32String.hpp>
+#include <type_traits>
 #include <utility>
 
 namespace maxGUI
 {
-	
+
 	TextBox::TextBox(HWND window_handle) noexcept
 		: ControlWithText(std::move(window_handle))
 	{}
 	
-	HWND TextBoxFactoryImplementationDetails::CreateTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
-		//ES_PASSWORD
-		//ES_READONLY
+	HWND TextBoxFactoryImplementationDetails::CreateTextBox(std::string text, Rectangle rectangle, TextBoxStyles styles, HWND parent_window_handle) noexcept {
+		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL;
+		if ((styles & TextBoxStyles::Password) == TextBoxStyles::Password) {
+			win32_styles |= ES_PASSWORD;
+		}
+		if ((styles & TextBoxStyles::ReadOnly) == TextBoxStyles::ReadOnly) {
+			win32_styles |= ES_READONLY;
+		}
 
 		//EM_GETSEL - Gets the starting (low-order word) and ending (first nonselected char, high-order word) character positions of the current selection.
 		//EM_LIMITTEXT - wParam holds max number of chars. If this is zero, the text length is set to the maximum number of bytes possible.
@@ -34,7 +40,7 @@ namespace maxGUI
 		//EN_UPDATE - text changed
 
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
-		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), win32_text.text_, WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 
 } //  namespace maxGUI

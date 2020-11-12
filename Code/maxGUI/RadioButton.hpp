@@ -5,10 +5,24 @@
 #ifndef MAXGUI_RADIOBUTTON_HPP
 #define MAXGUI_RADIOBUTTON_HPP
 
+#include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
+
+namespace maxGUI
+{
+
+	enum class RadioButtonStyles {
+		None = 0,
+		FirstInGroup = 1,
+		Flat = 2,
+	};
+
+} // namespace maxGUI
+
+MAX_BITMASKABLE_ENUM_CLASS(maxGUI::RadioButtonStyles);
 
 namespace maxGUI
 {
@@ -33,7 +47,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateRadioButton(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
+		static HWND CreateRadioButton(std::string text, Rectangle rectangle, RadioButtonStyles styles, HWND parent_window_handle) noexcept;
 
 	};
 	
@@ -43,15 +57,24 @@ namespace maxGUI
 	public:
 
 		RadioButtonFactory(Rectangle rectangle, std::string text) noexcept
+			: RadioButtonFactory(std::move(rectangle), std::move(text), RadioButtonStyles::None)
+		{}
+
+		RadioButtonFactory(Rectangle rectangle, std::string text, RadioButtonStyles styles) noexcept
 			: ControlWithTextFactory(std::move(rectangle), std::move(text))
+			, styles_(std::move(styles))
 		{}
 
 		~RadioButtonFactory() noexcept override = default;
 
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = RadioButtonFactoryImplementationDetails::CreateRadioButton(text_, rectangle_, std::move(parent_window_handle));
+			HWND window_handle = RadioButtonFactoryImplementationDetails::CreateRadioButton(text_, rectangle_, styles_, std::move(parent_window_handle));
 			return std::make_unique<RadioButtonType>(std::move(window_handle));
 		}
+
+	private:
+
+		RadioButtonStyles styles_;
 
 	};
 

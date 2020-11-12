@@ -15,7 +15,17 @@
 // maxGUI calls this when the program begins.
 int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) noexcept;
 
-int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow );
+int
+#if !defined(_MAC)
+#if defined(_M_CEE_PURE)
+__clrcall
+#else
+WINAPI
+#endif
+#else
+CALLBACK
+#endif
+WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd);
 
 namespace maxGUI {
 

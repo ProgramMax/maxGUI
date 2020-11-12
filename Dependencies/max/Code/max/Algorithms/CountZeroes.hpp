@@ -23,6 +23,16 @@ namespace max
 				#define MAX_BITSCAN_CONSTEXPR
 			#endif
 
+			#if defined( MAX_CONSTEVAL_SUPPORTED )
+				#define MAX_BITSCAN_CONSTEVAL consteval
+			#else
+				// consteval means the expression should only be evaluated at compile-time.
+				// constexpr means it can either be compile-time or run-time.
+				// constexpr is not what we actually want. But if consteval isn't supported, it is the only way to
+				// evaluate something at compile-time.
+				#define MAX_BITSCAN_CONSTEVAL constexpr
+			#endif
+
 			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEXPR inline uint64_t CountTrailingZeroes( const uint64_t Value ) noexcept );
 			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEXPR inline uint32_t CountTrailingZeroes( const uint32_t Value ) noexcept );
 			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEXPR inline uint16_t CountTrailingZeroes( const uint16_t Value ) noexcept );
@@ -41,23 +51,23 @@ namespace max
 			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEXPR inline int16_t  CountLeadingZeroes( const int16_t  Value ) noexcept );
 			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEXPR inline int8_t   CountLeadingZeroes( const int8_t   Value ) noexcept );
 
-			MAX_PURE_DECLARATION( constexpr inline uint64_t CountTrailingZeroesConstexpr( const uint64_t Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline uint32_t CountTrailingZeroesConstexpr( const uint32_t Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline uint16_t CountTrailingZeroesConstexpr( const uint16_t Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline uint8_t  CountTrailingZeroesConstexpr( const uint8_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int64_t  CountTrailingZeroesConstexpr( const int64_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int32_t  CountTrailingZeroesConstexpr( const int32_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int16_t  CountTrailingZeroesConstexpr( const int16_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int8_t   CountTrailingZeroesConstexpr( const int8_t   Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint64_t CountTrailingZeroesCompileTime( const uint64_t Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint32_t CountTrailingZeroesCompileTime( const uint32_t Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint16_t CountTrailingZeroesCompileTime( const uint16_t Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint8_t  CountTrailingZeroesCompileTime( const uint8_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int64_t  CountTrailingZeroesCompileTime( const int64_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int32_t  CountTrailingZeroesCompileTime( const int32_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int16_t  CountTrailingZeroesCompileTime( const int16_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int8_t   CountTrailingZeroesCompileTime( const int8_t   Value ) noexcept );
 
-			MAX_PURE_DECLARATION( constexpr inline uint64_t CountLeadingZeroesConstexpr( const uint64_t Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline uint32_t CountLeadingZeroesConstexpr( const uint32_t Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline uint16_t CountLeadingZeroesConstexpr( const uint16_t Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline uint8_t  CountLeadingZeroesConstexpr( const uint8_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int64_t  CountLeadingZeroesConstexpr( const int64_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int32_t  CountLeadingZeroesConstexpr( const int32_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int16_t  CountLeadingZeroesConstexpr( const int16_t  Value ) noexcept );
-			MAX_PURE_DECLARATION( constexpr inline int8_t   CountLeadingZeroesConstexpr( const int8_t   Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint64_t CountLeadingZeroesCompileTime( const uint64_t Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint32_t CountLeadingZeroesCompileTime( const uint32_t Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint16_t CountLeadingZeroesCompileTime( const uint16_t Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline uint8_t  CountLeadingZeroesCompileTime( const uint8_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int64_t  CountLeadingZeroesCompileTime( const int64_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int32_t  CountLeadingZeroesCompileTime( const int32_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int16_t  CountLeadingZeroesCompileTime( const int16_t  Value ) noexcept );
+			MAX_PURE_DECLARATION( MAX_BITSCAN_CONSTEVAL inline int8_t   CountLeadingZeroesCompileTime( const int8_t   Value ) noexcept );
 
 		} // namespace Algorithms
 	} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )

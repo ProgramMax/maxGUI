@@ -20,11 +20,16 @@ namespace maxGUI
 		}
 	}
 
-	HWND ButtonFactoryImplementationDetails::CreateButton(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
-		// BS_DEFPUSHBUTTON
-		// BS_FLAT
+	HWND ButtonFactoryImplementationDetails::CreateButton(std::string text, Rectangle rectangle, ButtonStyles styles, HWND parent_window_handle) noexcept {
+		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP;
+		if ((styles & ButtonStyles::Default) == ButtonStyles::Default) {
+			win32_styles |= BS_DEFPUSHBUTTON;
+		}
+		if ((styles & ButtonStyles::Flat) == ButtonStyles::Flat) {
+			win32_styles |= BS_FLAT;
+		}
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
-		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("BUTTON"), win32_text.text_, WS_CHILD | WS_VISIBLE | WS_TABSTOP, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 
 } //  namespace maxGUI
