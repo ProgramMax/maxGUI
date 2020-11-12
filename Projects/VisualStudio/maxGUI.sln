@@ -20,10 +20,20 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ControlGalleryExample", "Co
 		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
 	EndProjectSection
 EndProject
+<<<<<<< HEAD
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StylingExample", "StylingExample\StylingExample.vcxproj", "{D6501A01-B7E4-4FAD-BE1C-9044216735E0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
 	EndProjectSection
+=======
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CustomPaintingExample", "CustomPaintingExample\CustomPaintingExample.vcxproj", "{4DA98E98-E98F-4473-85FD-31698746CAE2}"
+<<<<<<< HEAD
+>>>>>>> 212d2a6 (Add custom painting example)
+=======
+	ProjectSection(ProjectDependencies) = postProject
+		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
+	EndProjectSection
+>>>>>>> 93cdab5 (Add custom painting example)
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +75,7 @@ Global
 		{5085246A-5C05-4257-8E5C-129E139500EF}.Release|Win32.Build.0 = Release|Win32
 		{5085246A-5C05-4257-8E5C-129E139500EF}.Release|x64.ActiveCfg = Release|x64
 		{5085246A-5C05-4257-8E5C-129E139500EF}.Release|x64.Build.0 = Release|x64
+<<<<<<< HEAD
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Debug|Win32.ActiveCfg = Debug|Win32
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Debug|Win32.Build.0 = Debug|Win32
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Debug|x64.ActiveCfg = Debug|x64
@@ -73,6 +84,16 @@ Global
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Release|Win32.Build.0 = Release|Win32
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Release|x64.ActiveCfg = Release|x64
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Release|x64.Build.0 = Release|x64
+=======
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|Win32.Build.0 = Debug|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|x64.ActiveCfg = Debug|x64
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Debug|x64.Build.0 = Debug|x64
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|Win32.ActiveCfg = Release|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|Win32.Build.0 = Release|Win32
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|x64.ActiveCfg = Release|x64
+		{4DA98E98-E98F-4473-85FD-31698746CAE2}.Release|x64.Build.0 = Release|x64
+>>>>>>> 212d2a6 (Add custom painting example)
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
