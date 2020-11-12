@@ -143,7 +143,7 @@ namespace maxGUI {
 		: instance_handle_(instance_handle)
 	{}
 
-	bool FormFactoryImplementationDetails::CreateForm(HINSTANCE instance_handle, int height, int width, std::string title) noexcept {
+	bool FormFactoryImplementationDetails::CreateForm(HINSTANCE instance_handle, int height, int width, std::string title, FormStyles styles) noexcept {
 		WNDCLASSEX wcx = {0};
 		wcx.cbSize = sizeof(wcx);
 		wcx.style = 0;
@@ -167,22 +167,24 @@ namespace maxGUI {
 		int virtual_top = CW_USEDEFAULT;
 		int virtual_left = CW_USEDEFAULT;
 
-		RECT area;
+		RECT area = {0};
 		area.top = 0;
 		area.left = 0;
 		area.bottom = height;
 		area.right = width;
 
-		//DWORD style = WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN;
-		//DWORD extra_style = NULL;
-		//DWORD extra_style = WS_EX_CLIENTEDGE;
-
-		DWORD style = WS_BORDER | WS_CAPTION /*| WS_MINIMIZEBOX*/ | WS_SYSMENU | WS_POPUP | WS_OVERLAPPEDWINDOW;// | WS_CLIPCHILDREN;
+		DWORD win32_styles = 0;
+		if ((styles & FormStyles::FixedSize) == FormStyles::FixedSize) {
+			win32_styles |= WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;// | WS_CLIPCHILDREN;
+		} else {
+			win32_styles |= WS_OVERLAPPEDWINDOW;
+		}
+		if ((styles & FormStyles::DialogBox) == FormStyles::DialogBox) {
+			win32_styles |= WS_DLGFRAME;
+		}
 		DWORD extra_style = WS_EX_CONTROLPARENT | WS_EX_CLIENTEDGE; //WS_EX_WINDOWEDGE;
 
-		//DWORD ExtraStyle = WS_EX_CONTROLPARENT /* has controls which should participate in dialog stuff */ | WS_EX_WINDOWEDGE;
-
-		AdjustWindowRectEx(&area, style, FALSE, extra_style);
+		AdjustWindowRectEx(&area, win32_styles, FALSE, extra_style);
 		DWORD total_height = 0;
 		DWORD total_width = 0;
 		if (virtual_top == CW_USEDEFAULT)
@@ -207,7 +209,7 @@ namespace maxGUI {
 		}
 
 		Win32String win32_title = Utf8ToWin32String(title);
-		HWND window_handle = CreateWindowEx(extra_style, /*reinterpret_cast<LPCWSTR>(atom)*/maxgui_window_class_name, win32_title.text_, style, area.left, area.top, total_width, total_height, 0, 0, instance_handle, static_cast<LPVOID>(this));
+		HWND window_handle = CreateWindowEx(extra_style, /*reinterpret_cast<LPCWSTR>(atom)*/maxgui_window_class_name, win32_title.text_, win32_styles, area.left, area.top, total_width, total_height, 0, 0, instance_handle, static_cast<LPVOID>(this));
 		if (window_handle == NULL) {
 			return false;
 		}

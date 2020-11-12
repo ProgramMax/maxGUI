@@ -73,7 +73,8 @@ public:
 		maxGUI::CheckBoxFactory<> checkbox_factory(maxGUI::Rectangle(675, 25, 25, 300), "Check 1");
 		AddControl(&checkbox_factory);
 
-		maxGUI::RadioButtonFactory<> radiobutton_factory(maxGUI::Rectangle(725, 25, 25, 300), "Option 1");
+		// When using multiple RadioButtons that belong to one group, be sure to add the FirstInGroup style to the first option.
+		maxGUI::RadioButtonFactory<> radiobutton_factory(maxGUI::Rectangle(725, 25, 25, 300), "Option 1", maxGUI::RadioButtonStyles::FirstInGroup);
 		AddControl(&radiobutton_factory);
 
 		maxGUI::RadioButtonFactory<> radiobutton_factory2(maxGUI::Rectangle(750, 25, 25, 300), "Option 2");
@@ -87,7 +88,7 @@ public:
 
 int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) noexcept {
 	maxGUI::FormFactory<ControlGalleryForm> control_gallery_form_factory;
-	if (!form_container.CreateForm(control_gallery_form_factory, 825, 350, "Control gallery")) {
+	if (!form_container.CreateForm(control_gallery_form_factory, 825, 350, "Control gallery", maxGUI::FormStyles::FixedSize)) {
 		return -1;
 	}
 

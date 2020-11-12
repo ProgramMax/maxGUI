@@ -22,19 +22,16 @@ namespace maxGUI
 		}
 	}
 
-	HWND RadioButtonFactoryImplementationDetails::CreateRadioButton(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
-		// WS_GROUP should go on the first control in a group.
-		// For example, if there are 3 radio buttons, the first one should get WS_GROUP
-
-		// TODO: This is a disgusting hack to allow one set of radio buttons. Make a proper grouping.
-		static bool first = true;
-		Win32String win32_text = Utf8ToWin32String(std::move(text));
-		if (first) {
-			first = false;
-			return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, WS_CHILD | WS_VISIBLE | WS_GROUP | WS_TABSTOP | BS_AUTORADIOBUTTON, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
-		} else {
-			return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, WS_CHILD | WS_VISIBLE | /*WS_GROUP |*/ WS_TABSTOP | BS_AUTORADIOBUTTON, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+	HWND RadioButtonFactoryImplementationDetails::CreateRadioButton(std::string text, Rectangle rectangle, RadioButtonStyles style, HWND parent_window_handle) noexcept {
+		DWORD win32_styles = WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON;
+		if ((style & RadioButtonStyles::FirstInGroup) == RadioButtonStyles::FirstInGroup) {
+			win32_styles |= WS_GROUP | WS_TABSTOP;
 		}
+		if ((style & RadioButtonStyles::Flat) == RadioButtonStyles::Flat) {
+			win32_styles |= BS_FLAT;
+		}
+		Win32String win32_text = Utf8ToWin32String(std::move(text));
+		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 
 } //  namespace maxGUI

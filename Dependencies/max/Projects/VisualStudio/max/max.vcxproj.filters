@@ -369,6 +369,9 @@
     <ClInclude Include="..\..\..\Code\max\Algorithms\CountZeroes.hpp">
       <Filter>Code\max\Algorithms</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Code\max\Compiling\Bitmask.hpp">
+      <Filter>Code\max\Compiling</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Code\max\Algorithms\IsBetweenTest.cpp">

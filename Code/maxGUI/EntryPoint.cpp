@@ -4,9 +4,19 @@
 
 #include <maxGUI/EntryPoint.hpp>
 
-int WINAPI WinMain(HINSTANCE instance_handle, HINSTANCE /*previous_instance_handle*/, LPSTR /*command_line*/, int /*command_show*/)
+int
+#if !defined(_MAC)
+#if defined(_M_CEE_PURE)
+__clrcall
+#else
+WINAPI
+#endif
+#else
+CALLBACK
+#endif
+WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE /*hPrevInstance*/, _In_ LPSTR /*lpCmdLine*/, _In_ int /*nShowCmd*/)
 {
-	return maxGUIEntryPoint(maxGUI::FormContainer(instance_handle));
+	return maxGUIEntryPoint(maxGUI::FormContainer(hInstance));
 }
 
 namespace maxGUI {

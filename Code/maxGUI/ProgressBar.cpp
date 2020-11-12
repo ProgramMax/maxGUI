@@ -18,7 +18,7 @@ namespace maxGUI
 	}
 
 	void ProgressBar::GetRange(int& min, int& max) noexcept {
-		PBRANGE range;
+		PBRANGE range = {0};
 		SendMessage(window_handle_, PBM_GETRANGE, TRUE, reinterpret_cast<LPARAM>(&range));
 		min = range.iLow;
 		max = range.iHigh;
@@ -32,10 +32,15 @@ namespace maxGUI
 		return static_cast<int>(SendMessage(window_handle_, PBM_GETPOS, 0, 0));
 	}
 
-	HWND ProgressBarFactoryImplementationDetails::CreateProgressBar(Rectangle rectangle, int min, int max, int value, HWND parent_window_handle) noexcept {
-		// PBS_VERTICAL
-		// PBS_SMOOTH
-		HWND window_handle = CreateWindowEx(0, PROGRESS_CLASS, TEXT(""), WS_CHILD | WS_VISIBLE, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+	HWND ProgressBarFactoryImplementationDetails::CreateProgressBar(Rectangle rectangle, int min, int max, int value, ProgressBarStyles styles, HWND parent_window_handle) noexcept {
+		DWORD win32_styles = WS_CHILD | WS_VISIBLE;
+		if ((styles & ProgressBarStyles::Vertical) == ProgressBarStyles::Vertical) {
+			win32_styles |= PBS_VERTICAL;
+		}
+		if ((styles & ProgressBarStyles::Smooth) == ProgressBarStyles::Smooth) {
+			win32_styles |= PBS_SMOOTH;
+		}
+		HWND window_handle = CreateWindowEx(0, PROGRESS_CLASS, TEXT(""), win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 
 		SendMessage(window_handle, PBM_SETRANGE32, min, max);
 		SendMessage(window_handle, PBM_SETPOS, value, 0);

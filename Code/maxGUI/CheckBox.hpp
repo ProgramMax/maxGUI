@@ -5,10 +5,23 @@
 #ifndef MAXGUI_CHECKBOX_HPP
 #define MAXGUI_CHECKBOX_HPP
 
+#include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
+
+namespace maxGUI
+{
+
+	enum class CheckBoxStyles {
+		None = 0,
+		Flat = 1,
+	};
+
+} // namespace maxGUI
+
+MAX_BITMASKABLE_ENUM_CLASS(maxGUI::CheckBoxStyles);
 
 namespace maxGUI
 {
@@ -37,7 +50,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateCheckBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
+		static HWND CreateCheckBox(std::string text, Rectangle rectangle, CheckBoxStyles styles, HWND parent_window_handle) noexcept;
 
 	};
 
@@ -47,15 +60,24 @@ namespace maxGUI
 	public:
 
 		CheckBoxFactory(Rectangle rectangle, std::string text) noexcept
+			: CheckBoxFactory(std::move(rectangle), std::move(text), CheckBoxStyles::None)
+		{}
+
+		CheckBoxFactory(Rectangle rectangle, std::string text, CheckBoxStyles styles) noexcept
 			: ControlWithTextFactory(std::move(rectangle), std::move(text))
+			, styles_(std::move(styles))
 		{}
 
 		~CheckBoxFactory() noexcept override = default;
 
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = CheckBoxFactoryImplementationDetails::CreateCheckBox(text_, rectangle_, std::move(parent_window_handle));
+			HWND window_handle = CheckBoxFactoryImplementationDetails::CreateCheckBox(text_, rectangle_, styles_, std::move(parent_window_handle));
 			return std::make_unique<CheckBoxType>(std::move(window_handle));
 		}
+
+	private:
+
+		CheckBoxStyles styles_;
 
 	};
 
