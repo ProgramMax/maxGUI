@@ -21,6 +21,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ControlGalleryExample", "Co
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CustomPaintingExample", "CustomPaintingExample\CustomPaintingExample.vcxproj", "{4DA98E98-E98F-4473-85FD-31698746CAE2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
