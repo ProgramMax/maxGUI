@@ -2,8 +2,7 @@
 
 maxGUI allows for easy, light-weight, and cross-platform* GUI coding.
 
-<!-- [![Travis CI status][travis-shield]][travis-link] -->
-[![AppVeyor CI status][appveyor-shield]][appveyor-link]
+[![MSBuild](https://github.com/ProgramMax/maxGUI/actions/workflows/msbuild.yml/badge.svg)](https://github.com/ProgramMax/maxGUI/actions/workflows/msbuild.yml)
 
 maxGUI is VERY new and deliberately missing features to focus on the core. If you need a feature, submit a [feature request](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=feature_request.md&title=).
 
@@ -52,8 +51,3 @@ You can find some parts of max under [Dependencies/max](https://github.com/Progr
 * **Community:** We have a welcoming community which follows the [Code of Conduct](https://github.com/ProgramMax/maxGUI/blob/master/Docs/code_of_conduct.md).
 * **Contribute:** We accept pull requests. Take a look at some [good first tasks](https://github.com/ProgramMax/maxGUI/issues?q=is%3Aissue+is%3Aopen+label%3A"good+first+issue").
 * **Support:** You can [report bugs](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=bug_report.md&title=) and [request changes](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=feature_request.md&title=) using GitHub issues.
-
-[travis-shield]: https://travis-ci.org/ProgramMax/maxGUI.svg?branch=tip-of-tree
-[travis-link]: https://travis-ci.org/ProgramMax/maxGUI/builds
-[appveyor-shield]: https://ci.appveyor.com/api/projects/status/l9hx76k72iayghrv/branch/tip-of-tree?svg=true
-[appveyor-link]: https://ci.appveyor.com/project/ProgramMax/maxGUI
