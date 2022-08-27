@@ -48,6 +48,9 @@
     <None Include="..\..\..\Docs\DeprecationSchedule.md">
       <Filter>Docs</Filter>
     </None>
+    <None Include="..\..\..\Code\maxGUI\Form.inl">
+      <Filter>Code</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml">
@@ -56,9 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\Form.cpp">
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\Button.cpp">
@@ -110,6 +110,9 @@
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithList.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\Form.cpp">
       <Filter>Code</Filter>
     </ClCompile>
   </ItemGroup>

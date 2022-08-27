@@ -9,36 +9,34 @@
 #include <maxGUI/Rectangle.hpp>
 
 // Create a custom form that implements the behavior you want.
-class CustomForm : public maxGUI::Form {
+class CustomForm {
 public:
 
-	// TODO: Can we not need to know about HWND somehow?
-	explicit CustomForm(HWND window_handle) noexcept
-		: maxGUI::Form(window_handle)
-	{}
-
-	void OnCreated() noexcept override {
+	void OnCreated(maxGUI::FormConcept* form) noexcept {
 		// Add controls inside the Form's OnCreated().
 		maxGUI::MultilineTextBoxFactory<> multiline_textbox_factory(maxGUI::Rectangle(0, 0, 100, 100), "Multi-line\r\ntest");
-		multiline_textbox_ = AddControl(&multiline_textbox_factory);
+		multiline_textbox_ = form->AddControl(&multiline_textbox_factory);
 	}
 
-	void OnResized(int new_height, int new_width) noexcept override {
+	void OnResized(maxGUI::FormConcept* /*form*/, int new_height, int new_width) noexcept {
 		// In this example, make the multiline textbox take the entire area.
 		multiline_textbox_->Move(maxGUI::Rectangle(0, 0, new_height, new_width));
 	}
 
-	// The default OnClosed() function will call PostExitMessage(0) to exit the message pump.
+	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
+		maxGUI::PostExitMessage(0);
+	}
 
 	maxGUI::Control* multiline_textbox_ = nullptr;
-
 };
 
-// Name your function EXACTLY this, keep it in the global namespace, and make sure it has MAX_DOES_NOT_THROW
+// Name your function EXACTLY this, keep it in the global namespace, and make sure it has noexcept.
 // If you get a linker error of an unresolved external symbol for maxGUIEntryPoint(), you did this wrong.
-int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) noexcept {
+int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
 	// Create the form
-	maxGUI::FormFactory<CustomForm> custom_form_factory;
+	maxGUI::FormFactory custom_form_factory(maxGUI::GetDefaultFormAllocator<CustomForm>());
+	// TODO: It is weird that the FormContainer has the CreateForm function instead of the FormFactory.
+	// Controls are similar. form.AddControl(factory). Maybe that is okay since it is "add" not "create"?
 	if (!form_container.CreateForm(custom_form_factory, 400, 600, "Simple Example")) {
 		return -1;
 	}
