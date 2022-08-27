@@ -14,7 +14,7 @@
 namespace maxGUI
 {
 
-	enum class ButtonStyles {
+	enum class ButtonStyles : uint8_t {
 		None = 1,
 		Default = 2,
 		Flat = 4,

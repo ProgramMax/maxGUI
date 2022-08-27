@@ -68,7 +68,7 @@ public:
 				}
 
 
-				BITMAPINFO bitmap_info = {0};
+				BITMAPINFO bitmap_info = {{0}, {{0}}};
 				bitmap_info.bmiHeader.biSize = sizeof(bitmap_info);
 				bitmap_info.bmiHeader.biWidth = width;
 				bitmap_info.bmiHeader.biHeight = -height;
@@ -77,7 +77,7 @@ public:
 				bitmap_info.bmiHeader.biCompression = BI_RGB;
 				bitmap_info.bmiHeader.biSizeImage = buffer_size_in_bytes;
 				HDC memory_dc = CreateCompatibleDC(device_context);
-				SetDIBits(memory_dc, bitmap_handle, 0, height, buffer.get(), &bitmap_info, DIB_RGB_COLORS);
+				SetDIBits(memory_dc, bitmap_handle, 0, static_cast<UINT>(height), buffer.get(), &bitmap_info, DIB_RGB_COLORS);
 				HGDIOBJ old_bitmap_handle = SelectObject(memory_dc, bitmap_handle);
 				BitBlt(device_context, paint_info.rcPaint.left, paint_info.rcPaint.top, width, height, memory_dc, 0, 0, SRCCOPY);
 				SelectObject(device_context, old_bitmap_handle);

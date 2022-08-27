@@ -14,7 +14,7 @@
 namespace maxGUI
 {
 
-	enum class TextBoxStyles {
+	enum class TextBoxStyles : uint8_t {
 		None = 0,
 		Password = 1,
 		ReadOnly = 2,

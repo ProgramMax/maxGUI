@@ -14,7 +14,7 @@ namespace maxGUI
 	{}
 
 	void ProgressBar::SetRange(int min, int max) noexcept {
-		SendMessage(window_handle_, PBM_SETRANGE32, min, max);
+		SendMessage(window_handle_, PBM_SETRANGE32, static_cast<WPARAM>(min), static_cast<LPARAM>(max));
 	}
 
 	void ProgressBar::GetRange(int& min, int& max) noexcept {
@@ -25,7 +25,7 @@ namespace maxGUI
 	}
 
 	void ProgressBar::SetValue(int value) noexcept {
-		SendMessage(window_handle_, PBM_SETPOS, value, 0);
+		SendMessage(window_handle_, PBM_SETPOS, static_cast<WPARAM>(value), 0);
 	}
 
 	int ProgressBar::GetValue() noexcept {
@@ -42,8 +42,8 @@ namespace maxGUI
 		}
 		HWND window_handle = CreateWindowEx(0, PROGRESS_CLASS, TEXT(""), win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 
-		SendMessage(window_handle, PBM_SETRANGE32, min, max);
-		SendMessage(window_handle, PBM_SETPOS, value, 0);
+		SendMessage(window_handle, PBM_SETRANGE32, static_cast<WPARAM>(min), static_cast<LPARAM>(max));
+		SendMessage(window_handle, PBM_SETPOS, static_cast<WPARAM>(value), 0);
 		
 		return window_handle;
 	}

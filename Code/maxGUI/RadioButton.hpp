@@ -14,7 +14,7 @@
 namespace maxGUI
 {
 
-	enum class RadioButtonStyles {
+	enum class RadioButtonStyles : uint8_t {
 		None = 0,
 		FirstInGroup = 1,
 		Flat = 2,
