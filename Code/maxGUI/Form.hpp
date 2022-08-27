@@ -110,6 +110,9 @@ namespace maxGUI
 	public:
 
 		explicit FormFactory(std::unique_ptr<FormAllocatorConcept> form_allocator) noexcept;
+		// Explicitly delete these to silence /Wall on MSVC
+		FormFactory(const FormFactory& rhs) = delete;
+		FormFactory& operator =(const FormFactory& rhs) = delete;
 
 		bool CreateForm(HINSTANCE instance_handle, int height, int width, std::string title, FormStyles styles) noexcept;
 

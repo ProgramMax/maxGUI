@@ -15,7 +15,7 @@ namespace maxGUI
 	{}
 
 	std::string ControlWithText::GetText() const noexcept {
-		LRESULT length_in_chars = SendMessage(window_handle_, WM_GETTEXTLENGTH, 0, 0);
+		size_t length_in_chars = static_cast<size_t>(SendMessage(window_handle_, WM_GETTEXTLENGTH, 0, 0));
 		TCHAR* buffer = new wchar_t[length_in_chars];
 		SendMessage(window_handle_, WM_GETTEXT, length_in_chars, reinterpret_cast<LPARAM>(buffer));
 		Win32String win32_string(std::move(buffer), std::move(length_in_chars));

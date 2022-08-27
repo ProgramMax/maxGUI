@@ -178,8 +178,8 @@ namespace maxGUI {
 		DWORD extra_style = WS_EX_CONTROLPARENT | WS_EX_CLIENTEDGE; //WS_EX_WINDOWEDGE;
 
 		AdjustWindowRectEx(&area, win32_styles, FALSE, extra_style);
-		DWORD total_height = 0;
-		DWORD total_width = 0;
+		LONG total_height = 0;
+		LONG total_width = 0;
 		if (virtual_top == CW_USEDEFAULT)
 		{
 			area.bottom -= area.top;

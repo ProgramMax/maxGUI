@@ -29,7 +29,7 @@ namespace maxGUI
 	}
 
 	bool CheckBox::IsChecked() const noexcept {
-		return SendMessage(window_handle_, BM_GETCHECK, 0, 0);
+		return SendMessage(window_handle_, BM_GETCHECK, 0, 0) == BST_CHECKED;
 	}
 
 	void CheckBox::Check() noexcept {

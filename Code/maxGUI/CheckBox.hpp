@@ -14,7 +14,7 @@
 namespace maxGUI
 {
 
-	enum class CheckBoxStyles {
+	enum class CheckBoxStyles : uint8_t {
 		None = 0,
 		Flat = 1,
 	};

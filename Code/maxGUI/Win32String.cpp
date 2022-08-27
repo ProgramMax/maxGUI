@@ -39,10 +39,10 @@ namespace maxGUI {
 	Win32String Utf8ToWin32String(std::string text) noexcept {
 		#if defined(UNICODE)
 			int wide_char_count = MultiByteToWideChar(CP_UTF8, 0, text.c_str(), -1, nullptr, 0);
-			wchar_t* wide_string = new wchar_t[wide_char_count];
+			wchar_t* wide_string = new wchar_t[static_cast<size_t>(wide_char_count)];
 			MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, text.c_str(), -1, wide_string, wide_char_count);
 
-			return Win32String(wide_string, wide_char_count);
+			return Win32String(wide_string, static_cast<size_t>(wide_char_count));
 		#else
 			#error "TODO: Implement non-wide version"
 		#endif
@@ -52,7 +52,7 @@ namespace maxGUI {
 		#if defined(UNICODE)
 		// TODO: Make sure we don't overflow the int cast.
 		int utf8_char_count = WideCharToMultiByte(CP_UTF8, 0, text.text_, static_cast<int>(text.char_count_), nullptr, 0, nullptr, nullptr);
-		std::string utf8_string(utf8_char_count, '\0');
+		std::string utf8_string(static_cast<size_t>(utf8_char_count), '\0');
 		// TODO: Make sure we don't overflow the int cast.
 		WideCharToMultiByte(CP_UTF8, 0, text.text_, static_cast<int>(text.char_count_), &utf8_string[0], utf8_char_count, nullptr, nullptr);
 		return utf8_string;

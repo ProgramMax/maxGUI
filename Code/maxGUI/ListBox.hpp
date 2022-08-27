@@ -15,7 +15,7 @@
 namespace maxGUI
 {
 
-	enum class ListBoxStyles {
+	enum class ListBoxStyles : uint8_t {
 		None = 0,
 		SingleClickMultipleSelection = 1,
 		KeyboardAndClickMultipleSelection = 2,
