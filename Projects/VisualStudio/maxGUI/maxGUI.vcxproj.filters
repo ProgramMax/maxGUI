@@ -27,7 +27,6 @@
     <None Include="..\..\..\Docs\README.md">
       <Filter>Docs</Filter>
     </None>
-    <None Include="..\..\..\.travis.yml" />
     <None Include="..\..\..\AUTHORS" />
     <None Include="..\..\..\LICENSE" />
     <None Include="..\..\..\Tooling\AppVeyor\AppVeyor.yml">
