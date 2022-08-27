@@ -13,7 +13,7 @@
 
 // The user should implement this function.
 // maxGUI calls this when the program begins.
-int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) noexcept;
+int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept;
 
 int
 #if !defined(_MAC)

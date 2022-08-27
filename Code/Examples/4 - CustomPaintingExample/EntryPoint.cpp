@@ -11,25 +11,20 @@
 
 #include <memory>
 
-class CustomPaintingForm : public maxGUI::Form {
+class CustomPaintingForm {
 public:
-
-	// TODO: Can we not need to know about HWND somehow?
-	explicit CustomPaintingForm(HWND window_handle) noexcept
-		: maxGUI::Form(window_handle)
-	{}
 
 	// An escape hatch is provided so a user is not limited by the library.
 	// A user can implement whatever custom behavior they desire by interacting directly with the underlying API.
 	// Here, we override the window's message handler in Win32 to impelement custom painting.
-	LRESULT OnWindowMessage(UINT message, WPARAM wparam, LPARAM lparam) noexcept override {
+	LRESULT OnWindowMessage(maxGUI::FormConcept* form, UINT message, WPARAM wparam, LPARAM lparam) noexcept {
 		switch (message) {
 		case WM_ERASEBKGND:
 			return 1; // defer erasing to WM_PAINT
 		case WM_PAINT:
 			{
 				PAINTSTRUCT paint_info;
-				HDC device_context = BeginPaint(window_handle_, &paint_info);
+				HDC device_context = BeginPaint(form->window_handle_, &paint_info);
 				
 				int width = paint_info.rcPaint.right - paint_info.rcPaint.left;
 				int height = paint_info.rcPaint.bottom - paint_info.rcPaint.top;
@@ -89,19 +84,22 @@ public:
 				DeleteObject(bitmap_handle);
 				DeleteObject(memory_dc);
 
-				EndPaint(window_handle_, &paint_info);
+				EndPaint(form->window_handle_, &paint_info);
 			}
 			return 0;
 		}
 
-		// If we didn't specialize the message handling, pass it on to the library's handling.
-		return maxGUI::Form::OnWindowMessage(message, wparam, lparam);
+		return DefWindowProc(form->window_handle_, message, wparam, lparam);
+	}
+
+	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
+		maxGUI::PostExitMessage(0);
 	}
 
 };
 
-int maxGUIEntryPoint(maxGUI::FormContainer&& form_container) noexcept {
-	maxGUI::FormFactory<CustomPaintingForm> custom_painting_form_factory;
+int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
+	maxGUI::FormFactory custom_painting_form_factory(maxGUI::GetDefaultFormAllocator<CustomPaintingForm>());
 	if (!form_container.CreateForm(custom_painting_form_factory, 200, 350, "Custom painting")) {
 		return -1;
 	}
