@@ -2,9 +2,9 @@ name: "Build and test"
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [ "tip-of-tree" ]
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ "tip-of-tree" ]
 
 env:
   # Path to the solution file relative to the root of the project.
