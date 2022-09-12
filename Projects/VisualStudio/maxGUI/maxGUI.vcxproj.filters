@@ -22,6 +22,9 @@
     <Filter Include="Code">
       <UniqueIdentifier>{cca7a791-9622-4787-b948-a144413985af}</UniqueIdentifier>
     </Filter>
+    <Filter Include=".github\workflows">
+      <UniqueIdentifier>{4a95ba6b-452e-4cbb-9bf6-fec00cbad97a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Docs\README.md">
@@ -49,6 +52,9 @@
     </None>
     <None Include="..\..\..\Code\maxGUI\Form.inl">
       <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\.github\workflows\build-and-test.yaml">
+      <Filter>.github\workflows</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
