@@ -33,4 +33,4 @@ jobs:
       run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
 
     - name: Test
-      run: ${{ github.workspace }}\Projects\VisualStudio\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
+      run: ${{ github.workspace }}\Projects\VisualStudio\maxGUIAutomatedTests\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
