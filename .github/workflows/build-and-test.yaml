@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  build-and-test:
     strategy:
       matrix:
         platform: [Win32, x64]
@@ -33,5 +33,4 @@ jobs:
       run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
 
     - name: Test
-      working-directory: ${{github.workspace}}
-      run: .\Projects\VisualStudio\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
+      run: ${{ github.workspace }}\Projects\VisualStudio\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
