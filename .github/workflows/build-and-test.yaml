@@ -15,10 +15,10 @@ permissions:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        platform: [Win32, x64]
-        configuation: [Debug, Release]
+    #strategy:
+    #  matrix:
+    #    platform: [Win32, x64]
+    #    configuation: [Debug, Release]
     runs-on: windows-latest
 
     steps:
@@ -30,7 +30,8 @@ jobs:
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
+      #run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
+			run: msbuild /m /p:Configuration=Debug /p:Platform=Win32 ${{env.SOLUTION_FILE_PATH}}
 
     #- name: Test
     #  working-directory: ${{github.workspace}}
