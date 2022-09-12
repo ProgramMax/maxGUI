@@ -2,7 +2,7 @@
 
 maxGUI allows for easy, light-weight, and cross-platform* GUI coding.
 
-[![MSBuild](https://github.com/ProgramMax/maxGUI/actions/workflows/msbuild.yml/badge.svg)](https://github.com/ProgramMax/maxGUI/actions/workflows/msbuild.yml)
+[![Build and test](https://github.com/ProgramMax/maxGUI/actions/workflows/build-and-test.yaml/badge.svg)](https://github.com/ProgramMax/maxGUI/actions/workflows/build-and-test.yaml)
 
 maxGUI is VERY new and deliberately missing features to focus on the core. If you need a feature, submit a [feature request](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=feature_request.md&title=).
 
