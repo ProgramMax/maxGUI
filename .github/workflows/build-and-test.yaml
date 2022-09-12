@@ -15,13 +15,14 @@ permissions:
 
 jobs:
   build-and-test:
-	  matrix:
-		  platform: [Win32, x64]
-			configuation: [Debug, Release]
+    strategy:
+      matrix:
+        platform: [Win32, x64]
+        configuation: [Debug, Release]
     runs-on: windows-latest
 
     steps:
-		- name: Checkout
+    - name: Checkout
       uses: actions/checkout@v3
 
     - name: Add MSBuild to PATH
@@ -31,6 +32,6 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
 
-		- name: Test
-		  working-directory: ${{github.workspace}}
-			run: .\Projects\VisualStudio\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
+    - name: Test
+      working-directory: ${{github.workspace}}
+      run: .\Projects\VisualStudio\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
