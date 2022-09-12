@@ -5,6 +5,7 @@
 #ifndef MAXGUI_DROPDOWNBOX_HPP
 #define MAXGUI_DROPDOWNBOX_HPP
 
+#include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/ControlWithList.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
@@ -14,6 +15,17 @@
 namespace maxGUI
 {
 
+	enum class DropDownBoxStyles : uint8_t {
+		None = 0,
+		Disabled = 1,
+	};
+
+} // namespace maxGUI
+
+MAX_BITMASKABLE_ENUM_CLASS(maxGUI::DropDownBoxStyles);
+
+namespace maxGUI
+{
 	class DropDownBox : public ControlWithList
 	{
 	public:
@@ -32,7 +44,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateDropDownBox(Rectangle rectangle, std::vector<std::string> list, HWND parent_window_handle) noexcept;
+		static HWND CreateDropDownBox(Rectangle rectangle, std::vector<std::string> list, DropDownBoxStyles styles, HWND parent_window_handle) noexcept;
 
 	};
 
@@ -42,15 +54,24 @@ namespace maxGUI
 	public:
 
 		DropDownBoxFactory(Rectangle rectangle, std::vector<std::string> list) noexcept
+			: DropDownBoxFactory(std::move(rectangle), std::move(list), DropDownBoxStyles::None)
+		{}
+
+		DropDownBoxFactory(Rectangle rectangle, std::vector<std::string> list, DropDownBoxStyles styles) noexcept
 			: ControlWithListFactory(std::move(rectangle), std::move(list))
+			, styles_(std::move(styles))
 		{}
 
 		~DropDownBoxFactory() noexcept override = default;
 
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = DropDownBoxFactoryImplementationDetails::CreateDropDownBox(rectangle_, list_, std::move(parent_window_handle));
+			HWND window_handle = DropDownBoxFactoryImplementationDetails::CreateDropDownBox(rectangle_, list_, styles_, std::move(parent_window_handle));
 			return std::make_unique<DropDownBoxType>(std::move(window_handle));
 		}
+
+	private:
+
+		DropDownBoxStyles styles_;
 
 	};
 

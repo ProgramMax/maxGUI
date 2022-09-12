@@ -17,12 +17,21 @@ namespace maxGUI
 	
 	HWND TextBoxFactoryImplementationDetails::CreateTextBox(std::string text, Rectangle rectangle, TextBoxStyles styles, HWND parent_window_handle) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL;
+		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
+		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
+		// See https://developercommunity.visualstudio.com/t/C26813-incompatible-with-enum-class/10145182
+		#pragma warning(push)
+		#pragma warning(disable: 26813)
+		if ((styles & TextBoxStyles::Disabled) == TextBoxStyles::Disabled) {
+			win32_styles |= WS_DISABLED;
+		}
 		if ((styles & TextBoxStyles::Password) == TextBoxStyles::Password) {
 			win32_styles |= ES_PASSWORD;
 		}
 		if ((styles & TextBoxStyles::ReadOnly) == TextBoxStyles::ReadOnly) {
 			win32_styles |= ES_READONLY;
 		}
+		#pragma warning(pop)
 
 		//EM_GETSEL - Gets the starting (low-order word) and ending (first nonselected char, high-order word) character positions of the current selection.
 		//EM_LIMITTEXT - wParam holds max number of chars. If this is zero, the text length is set to the maximum number of bytes possible.

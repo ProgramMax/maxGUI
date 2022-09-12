@@ -27,6 +27,9 @@ namespace maxGUI
 		// See https://developercommunity.visualstudio.com/t/C26813-incompatible-with-enum-class/10145182
 		#pragma warning(push)
 		#pragma warning(disable: 26813)
+		if ((styles & ButtonStyles::Disabled) == ButtonStyles::Disabled) {
+			win32_styles |= WS_DISABLED;
+		}
 		if ((styles & ButtonStyles::Default) == ButtonStyles::Default) {
 			win32_styles |= BS_DEFPUSHBUTTON;
 		}
