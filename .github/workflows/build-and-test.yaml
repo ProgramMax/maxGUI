@@ -32,6 +32,6 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
 
-    - name: Test
-      working-directory: ${{github.workspace}}
-      run: .\Projects\VisualStudio\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
+    #- name: Test
+    #  working-directory: ${{github.workspace}}
+    #  run: .\Projects\VisualStudio\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
