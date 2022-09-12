@@ -5,10 +5,23 @@
 #ifndef MAXGUI_MULTILINETEXTBOX_HPP
 #define MAXGUI_MULTILINETEXTBOX_HPP
 
+#include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <memory>
 #include <string>
+
+namespace maxGUI
+{
+
+	enum class MultilineTextBoxStyles : uint8_t {
+		None = 0,
+		Disabled = 1,
+	};
+
+} // namespace maxGUI
+
+MAX_BITMASKABLE_ENUM_CLASS(maxGUI::MultilineTextBoxStyles);
 
 namespace maxGUI
 {
@@ -27,7 +40,7 @@ namespace maxGUI
 	{
 	public:
 
-		static HWND CreateMultilineTextBox(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
+		static HWND CreateMultilineTextBox(std::string text, Rectangle rectangle, MultilineTextBoxStyles styles, HWND parent_window_handle) noexcept;
 
 	};
 	
@@ -37,15 +50,24 @@ namespace maxGUI
 	public:
 
 		MultilineTextBoxFactory(Rectangle rectangle, std::string text) noexcept
+			: MultilineTextBoxFactory(std::move(rectangle), std::move(text), MultilineTextBoxStyles::None)
+		{}
+
+		MultilineTextBoxFactory(Rectangle rectangle, std::string text, MultilineTextBoxStyles styles) noexcept
 			: ControlWithTextFactory(std::move(rectangle), std::move(text))
+			, styles_(std::move(styles))
 		{}
 
 		~MultilineTextBoxFactory() noexcept override = default;
 
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = MultilineTextBoxFactoryImplementationDetails::CreateMultilineTextBox(text_, rectangle_, parent_window_handle);
+			HWND window_handle = MultilineTextBoxFactoryImplementationDetails::CreateMultilineTextBox(text_, rectangle_, styles_, parent_window_handle);
 			return std::make_unique<MultilineTextBoxType>(std::move(window_handle));
 		}
+
+	private:
+
+		MultilineTextBoxStyles styles_;
 
 	};
 

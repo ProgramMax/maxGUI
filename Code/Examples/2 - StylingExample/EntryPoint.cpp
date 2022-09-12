@@ -11,6 +11,9 @@
 #include <memory>
 #include <utility>
 
+// TODO: Add text changed handlers to the username and password fields.
+// Enable the login button if they are both not empty.
+
 class LoginButton : public maxGUI::Button
 {
 public:
@@ -45,7 +48,7 @@ public:
 		password_textbox_ = form->AddControl(&password_textbox_factory);
 
 		// A Button can have the Default style, which allows the user to press Enter at any time to press the button.
-		maxGUI::ButtonFactory<LoginButton> login_button_factory(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default);
+		maxGUI::ButtonFactory<LoginButton> login_button_factory(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
 		form->AddControl(&login_button_factory);
 	}
 
