@@ -1,0 +1,36 @@
+name: "Build and test"
+
+on:
+  push:
+    branches: [ "tip-of-tree" ]
+  pull_request:
+    branches: [ "tip-of-tree" ]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: .\Projects\VisualStudio
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    strategy:
+      matrix:
+        platform: [Win32, x64]
+        configuration: [Debug, Release]
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Build
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
+
+    - name: Test
+      run: ${{ github.workspace }}\Projects\VisualStudio\maxGUIAutomatedTests\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
