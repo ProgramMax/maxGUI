@@ -11,6 +11,12 @@
 #endif
 #include <Windows.h>
 
+// This instructs Microsoft Visual C++ 2005 and later to use ComCtl32.dll version 6.
+// That gives the modern visual styles.
+#pragma comment(linker,"\"/manifestdependency:type='win32' \
+name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
+processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+
 // The user should implement this function.
 // maxGUI calls this when the program begins.
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept;
