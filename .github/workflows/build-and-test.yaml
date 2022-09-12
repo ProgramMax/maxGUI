@@ -6,15 +6,11 @@ on:
   pull_request:
     branches: [ "tip-of-tree" ]
 
-env:
-  # Path to the solution file relative to the root of the project.
-  SOLUTION_FILE_PATH: .\Projects\VisualStudio
-
 permissions:
   contents: read
 
 jobs:
-  build-and-test:
+  Build-and-test-Windows:
     strategy:
       matrix:
         platform: [Win32, x64]
@@ -30,7 +26,25 @@ jobs:
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
+      run: msbuild /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} .\Projects\VisualStudio
 
     - name: Test
       run: ${{ github.workspace }}\Projects\VisualStudio\maxGUIAutomatedTests\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
+
+  #Build-and-test-Linux:
+  #  strategy:
+  #    matrix:
+  #      platform: [X86, X86-64]
+  #      compiler: [Clang, GCC]
+  #  runs-on: ubuntu-latest
+
+  #  steps:
+  #  - name: Checkout
+  #    uses: actions/checkout@v3
+
+  #  - name: Build
+  #    working-directory: ${{env.GITHUB_WORKSPACE}}/Projects/${{ matrix.compiler }} ${{ matrix.platform }} Make
+  #    run: make
+
+  #  - name: Test
+  #    run: ${{ github.workspace }}\Projects\
