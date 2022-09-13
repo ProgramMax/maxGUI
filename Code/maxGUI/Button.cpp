@@ -50,9 +50,5 @@ namespace maxGUI
 		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 #endif
-#if defined(MAX_PLATFORM_LINUX)
-	void ButtonFactoryImplementationDetails::CreateButton(std::string text, Rectangle rectangle, ButtonStyles styles) noexcept {
-	}
-#endif
 
 } //  namespace maxGUI

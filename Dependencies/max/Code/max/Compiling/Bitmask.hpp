@@ -24,8 +24,8 @@ namespace Compiling
 	template<>                                                   \
 	struct max::Compiling::BitmaskableEnumClass< EnumClassType > \
 	{                                                            \
-		static const bool Bitmaskable = true;                    \
-	};                                                          
+		static const bool Bitmaskable = true;                      \
+	}
 
 } // namespace Compiling
 } // namespace max
