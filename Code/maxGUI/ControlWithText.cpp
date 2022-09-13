@@ -37,6 +37,9 @@ namespace maxGUI
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
 		SendMessage(window_handle_, WM_SETTEXT, 0, reinterpret_cast<LPARAM>(win32_text.text_));
 #endif
+#if defined(MAX_PLATFORM_LINUX)
+		(void)text;
+#endif
 	}
 
 	ControlWithTextFactory::ControlWithTextFactory(Rectangle rectangle, std::string text) noexcept
