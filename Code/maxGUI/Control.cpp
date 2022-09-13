@@ -9,16 +9,23 @@
 namespace maxGUI
 {
 
+
+#if defined(MAX_PLATFORM_WINDOWS)
 	Control::Control(HWND window_handle) noexcept
 		: window_handle_(std::move(window_handle))
 	{}
+#endif
 
 	void Control::Move(Rectangle rectangle) noexcept {
+#if defined(MAX_PLATFORM_WINDOWS)
 		SetWindowPos(window_handle_, NULL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, SWP_NOZORDER);
+#endif
 	}
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	void Control::OnCommand(WORD /*notification*/) noexcept
 	{}
+#endif
 
 	ControlFactory::ControlFactory(Rectangle rectangle) noexcept
 		: rectangle_(std::move(rectangle))

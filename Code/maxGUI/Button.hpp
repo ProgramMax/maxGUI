@@ -5,6 +5,7 @@
 #ifndef MAXGUI_BUTTON_HPP
 #define MAXGUI_BUTTON_HPP
 
+#include <max/Compiling/Configuration.hpp>
 #include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
@@ -32,7 +33,9 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit Button(HWND window_handle) noexcept;
+#endif
 
 		~Button() noexcept override = default;
 
@@ -40,7 +43,9 @@ namespace maxGUI
 
 	//protected:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		void OnCommand(WORD notification) noexcept override;
+#endif
 
 	};
 	

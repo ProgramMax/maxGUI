@@ -5,13 +5,17 @@
 #ifndef MAXGUI_CONTROLWITHTEXT_HPP
 #define MAXGUI_CONTROLWITHTEXT_HPP
 
+#include <max/Compiling/Configuration.hpp>
 #include <maxGUI/Control.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+	#endif
+	#include <Windows.h>
 #endif
-#include <Windows.h>
 
 namespace maxGUI
 {
@@ -19,7 +23,9 @@ namespace maxGUI
 	class ControlWithText : public Control {
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit ControlWithText(HWND window_handle) noexcept;
+#endif
 
 		~ControlWithText() noexcept override = default;
 

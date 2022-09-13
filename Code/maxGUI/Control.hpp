@@ -5,12 +5,16 @@
 #ifndef MAXGUI_CONTROL_HPP
 #define MAXGUI_CONTROL_HPP
 
+#include <max/Compiling/Configuration.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <memory>
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+	#endif
+	#include <Windows.h>
 #endif
-#include <Windows.h>
 
 namespace maxGUI
 {
@@ -18,17 +22,24 @@ namespace maxGUI
 	class Control {
 	public:
 
+
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit Control(HWND window_handle) noexcept;
+#endif
 
 		virtual ~Control() noexcept = default;
 
 		void Move(Rectangle rectangle) noexcept;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		HWND window_handle_;
+#endif
 
 	//protected:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		virtual void OnCommand(WORD notification) noexcept;
+#endif
 
 	};
 
@@ -39,7 +50,10 @@ namespace maxGUI
 
 		virtual ~ControlFactory() noexcept = default;
 
+
+#if defined(MAX_PLATFORM_WINDOWS)
 		virtual std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept = 0;
+#endif
 
 		Rectangle rectangle_;
 
