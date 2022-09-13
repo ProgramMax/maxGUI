@@ -17,12 +17,14 @@ namespace maxGUI
 	{}
 #endif
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	void Button::OnCommand(WORD notification) noexcept {
 		if (notification == BN_CLICKED)
 		{
 			OnPressed();
 		}
 	}
+#endif
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	HWND ButtonFactoryImplementationDetails::CreateButton(std::string text, Rectangle rectangle, ButtonStyles styles, HWND parent_window_handle) noexcept {
