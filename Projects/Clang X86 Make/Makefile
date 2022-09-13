@@ -20,7 +20,7 @@ CXX_OBJS = $(CXX_SRCS:.cpp=.o)
 
 INCLUDE_PATHS = \
 	../../Code \
-	../../Dependencies/Code
+	../../Dependencies/max/Code
 INCLUDE_PATHS_FLAGS = $(foreach d, $(INCLUDE_PATHS), -I$d)
 
 LIBRARY_PATHS = \
