@@ -10,12 +10,13 @@ permissions:
   contents: read
 
 jobs:
-  Build-and-test-Windows:
+  Windows:
     strategy:
       matrix:
         platform: [Win32, x64]
         configuration: [Debug, Release]
-    runs-on: windows-latest
+        runner: [windows-2022] # TODO: Add windows-2019, which errors on Platform Toolset = 'v143' missing.
+    runs-on: ${{ matrix.runner }}
 
     steps:
     - name: Checkout
@@ -31,20 +32,28 @@ jobs:
     - name: Test
       run: ${{ github.workspace }}\Projects\VisualStudio\maxGUIAutomatedTests\${{ matrix.platform }}\${{ matrix.configuration }}\maxGUIAutomatedTests.exe
 
-  #Build-and-test-Linux:
-  #  strategy:
-  #    matrix:
-  #      platform: [X86, X86-64]
-  #      compiler: [Clang, GCC]
-  #  runs-on: ubuntu-latest
+  Linux:
+    strategy:
+      matrix:
+        platform: [X86-64] # TODO: Add X86, AArch32, and AArch64 platforms
+        compiler: [Clang, GCC]
+        runner: [ubuntu-22.04, ubuntu-20.04]
+    runs-on: ${{ matrix.runner }}
 
-  #  steps:
-  #  - name: Checkout
-  #    uses: actions/checkout@v3
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
 
-  #  - name: Build
-  #    working-directory: ${{env.GITHUB_WORKSPACE}}/Projects/${{ matrix.compiler }} ${{ matrix.platform }} Make
-  #    run: make
+    #- name: Install Compilers
+    #  run: |
+    #       sudo apt update
+    #       sudo apt install g++-9 g++-10 llvm-10 clang-10
 
-  #  - name: Test
-  #    run: ${{ github.workspace }}\Projects\
+    - name: Build
+      #env:
+      #  CXX: g++-10
+      working-directory: ${{ github.workspace }}/Projects/${{ matrix.compiler }} ${{ matrix.platform }} Make
+      run: make
+
+    - name: Test
+      run: ${{ github.workspace }}/Projects/${{ matrix.compiler }}\ ${{ matrix.platform }}\ Make/maxGUIAutomatedTests

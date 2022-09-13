@@ -17,15 +17,15 @@ Start with the [simple example](https://github.com/ProgramMax/maxGUI/blob/master
 ## Support
 
 * Compilers:
-    * GCC*
-    * Clang*
+    * GCC
+    * Clang
     * Visual C++
 * OSes:
     * Windows
+    * Some Linux compositors (can't test them all)
     * MacOS*
     * Android*
     * iOS*
-	* Some Linux compositors*
 
 *coming soon
 
