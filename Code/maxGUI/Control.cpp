@@ -20,6 +20,9 @@ namespace maxGUI
 #if defined(MAX_PLATFORM_WINDOWS)
 		SetWindowPos(window_handle_, NULL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, SWP_NOZORDER);
 #endif
+#if defined(MAX_PLATFORM_LINUX)
+		(void)rectangle;
+#endif
 	}
 
 #if defined(MAX_PLATFORM_WINDOWS)
