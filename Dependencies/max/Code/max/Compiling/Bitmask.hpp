@@ -18,7 +18,7 @@ namespace Compiling
 	};
 
 	template< typename EnumClassType >
-	constexpr bool bitmaskable_enum_class_v = BitmaskableEnumClass< EnumClassType >:Bitmaskable;
+	constexpr bool bitmaskable_enum_class_v = BitmaskableEnumClass< EnumClassType >::Bitmaskable;
 
 	#define MAX_BITMASKABLE_ENUM_CLASS( EnumClassType )          \
 	template<>                                                   \

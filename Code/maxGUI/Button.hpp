@@ -29,6 +29,19 @@ MAX_BITMASKABLE_ENUM_CLASS(maxGUI::ButtonStyles);
 namespace maxGUI
 {
 
+	class ButtonConcept
+	{
+	public:
+
+#if defined(MAX_PLATFORM_WINDOWS)
+		explicit ButtonConcept(HWND window_handle) noexcept;
+#endif
+		virtual ~ButtonConcept() noexcept;
+
+		virtual void OnPressed(ButtonConcept* button) noexcept = 0;
+
+	};
+
 	class Button : public ControlWithText
 	{
 	public:
@@ -53,7 +66,9 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		static HWND CreateButton(std::string text, Rectangle rectangle, ButtonStyles styles, HWND parent_window_handle) noexcept;
+#endif
 
 	};
 
@@ -73,10 +88,12 @@ namespace maxGUI
 
 		~ButtonFactory() noexcept override = default;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = ButtonFactoryImplementationDetails::CreateButton(text_, rectangle_, styles_, std::move(parent_window_handle));
 			return std::make_unique<ButtonType>(std::move(window_handle));
 		}
+#endif
 
 		ButtonStyles styles_;
 
