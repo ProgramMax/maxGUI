@@ -49,6 +49,11 @@ jobs:
     #       sudo apt update
     #       sudo apt install g++-9 g++-10 llvm-10 clang-10
 
+    - name: Install Qt 5
+      run: |
+           sudo apt update
+           sudo apt install libqt5-headers
+
     - name: Build
       #env:
       #  CXX: g++-10
