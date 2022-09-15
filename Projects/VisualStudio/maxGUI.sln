@@ -11,12 +11,24 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maxGUIAutomatedTests", "max
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ControlGalleryExample", "ControlGalleryExample\ControlGalleryExample.vcxproj", "{5085246A-5C05-4257-8E5C-129E139500EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CustomPaintingExample", "CustomPaintingExample\CustomPaintingExample.vcxproj", "{4DA98E98-E98F-4473-85FD-31698746CAE2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleExample", "SimpleExample\SimpleExample.vcxproj", "{9ED630F4-C410-42C7-96A2-8F26BC44ED2D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StylingExample", "StylingExample\StylingExample.vcxproj", "{D6501A01-B7E4-4FAD-BE1C-9044216735E0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
