@@ -49,6 +49,15 @@ jobs:
     #       sudo apt update
     #       sudo apt install g++-9 g++-10 llvm-10 clang-10
 
+    - name: Install Qt 5
+      run: |
+           sudo apt update
+           sudo apt install qtbase5-dev
+
+    - name: Find Qt
+      run: |
+           find /usr/include -name QWidget
+
     - name: Build
       #env:
       #  CXX: g++-10
