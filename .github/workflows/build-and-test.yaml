@@ -52,7 +52,7 @@ jobs:
     - name: Install Qt 5
       run: |
            sudo apt update
-           sudo apt install libqt5-headers
+           sudo apt install qt5-default
 
     - name: Build
       #env:
