@@ -37,7 +37,7 @@ namespace maxGUI
 	}
 
 	void ProgressBar::SetValue(int value) noexcept {
-#if defined(MAX_PALTFORM_WINDOWS)
+#if defined(MAX_PLATFORM_WINDOWS)
 		SendMessage(window_handle_, PBM_SETPOS, static_cast<WPARAM>(value), 0);
 #endif
 	}
