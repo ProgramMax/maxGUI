@@ -56,7 +56,6 @@ jobs:
 
     - name: Find Qt
       run: |
-           find /opt/Qt -name QWidget
            find /usr/include -name QWidget
 
     - name: Build
