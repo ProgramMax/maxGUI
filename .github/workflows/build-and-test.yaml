@@ -54,6 +54,11 @@ jobs:
            sudo apt update
            sudo apt install qtbase5-dev
 
+    - name: Find Qt
+      run: |
+           find /opt/Qt -name QWidget
+           find /usr/include -name QWidget
+
     - name: Build
       #env:
       #  CXX: g++-10
