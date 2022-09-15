@@ -4,7 +4,11 @@
 
 #include <maxGUI/Form.hpp>
 #include <maxGUI/EntryPoint.hpp>
-#include <maxGUI/Win32String.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#include <maxGUI/Win32String.hpp>
+#endif
+
 #include <utility>
 
 namespace {
@@ -61,11 +65,19 @@ namespace {
 
 namespace maxGUI {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	template<typename T>
 	FormModel<T>::FormModel(std::unique_ptr<T> form, HWND window_handle) noexcept
 		: FormConcept(std::move(window_handle))
 		, form_(std::move(form))
 	{}
+#elif defined(MAX_PLATFORM_LINUX)
+	template<typename T>
+	FormModel<T>::FormModel(std::unique_ptr<T> form, int height, int width, std::string title, FormStyles styles) noexcept
+		: FormConcept(std::move(height), std::move(width), std::move(title), std::move(styles))
+		, form_(std::move(form))
+	{}
+#endif
 
 	template<typename T>
 	void FormModel<T>::OnResized(FormConcept* form, int height, int width) noexcept {
@@ -91,6 +103,7 @@ namespace maxGUI {
 		}
 	}
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	template<typename T>
 	LRESULT FormModel<T>::OnWindowMessage(FormConcept* form, UINT message, WPARAM wparam, LPARAM lparam) noexcept {
 		//if (HasOnWindowMessage<T>::value) {
@@ -100,6 +113,7 @@ namespace maxGUI {
 			return DefWindowProc(window_handle_, message, wparam, lparam);
 		}
 	}
+#endif
 
 	template <typename FormFactoryType>
 	bool FormContainer::CreateForm(FormFactoryType& form_factory, int height, int width, std::string title) noexcept {
@@ -109,14 +123,26 @@ namespace maxGUI {
 	template <typename FormFactoryType>
 	bool FormContainer::CreateForm(FormFactoryType& form_factory, int height, int width, std::string title, FormStyles styles) noexcept {
 		form_factory.form_container_ = this;
+#if defined(MAX_PLATFORM_WINDOWS)
 		return form_factory.CreateForm(instance_handle_, std::move(height), std::move(width), std::move(title), std::move(styles));
+#elif defined(MAX_PLATFORM_LINUX)
+		return form_factory.CreateForm(std::move(height), std::move(width), std::move(title), std::move(styles));
+#endif
 	}
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	template<typename T>
 	std::unique_ptr<FormConcept> FormAllocatorModel<T>::AllocateForm(HWND window_handle) noexcept {
 		auto form = std::make_unique<T>();
 		return std::make_unique<FormModel<T>>(std::move(form), window_handle);
 	}
+#elif defined(MAX_PLATFORM_LINUX)
+	template<typename T>
+	std::unique_ptr<FormConcept> FormAllocatorModel<T>::AllocateForm(int height, int width, std::string title, FormStyles styles) noexcept {
+		auto form = std::make_unique<T>();
+		return std::make_unique<FormModel<T>>(std::move(form), std::move(height), std::move(width), std::move(title), std::move(styles));
+	}
+#endif
 
 	template<typename T>
 	std::unique_ptr<FormAllocatorConcept> GetDefaultFormAllocator() noexcept {

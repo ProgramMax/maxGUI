@@ -5,10 +5,15 @@
 #ifndef MAXGUI_PROGRESSBAR_HPP
 #define MAXGUI_PROGRESSBAR_HPP
 
+#include <max/Compiling/Configuration.hpp>
 #include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/Control.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <utility>
+
+#if defined(MAX_PLATFORM_LINUX)
+	#include <QProgressBar>
+#endif
 
 namespace maxGUI
 {
@@ -30,7 +35,11 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit ProgressBar(HWND window_handle) noexcept;
+#elif defined(MAX_PLATFORM_LINUX)
+		explicit ProgressBar(QProgressBar* widget) noexcept;
+#endif
 
 		~ProgressBar() noexcept override = default;
 
@@ -45,7 +54,11 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		static HWND CreateProgressBar(Rectangle rectangle, int min, int max, int value, ProgressBarStyles styles, HWND parent_window_handle) noexcept;
+#elif defiend(MAX_PLATFORM_LINUX)
+		static QProgressBar* CreateProgressBar(Rectangle rectangle, int min, int max, int value, ProgressBarStyles styles, QWidget* parent_window) noexcept;
+#endif
 
 	};
 
@@ -68,10 +81,17 @@ namespace maxGUI
 
 		~ProgressBarFactory() noexcept override = default;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
 			HWND window_handle = ProgressBarFactoryImplementationDetails::CreateProgressBar(rectangle_, min_, max_, value_, styles_, std::move(parent_window_handle));
 			return std::make_unique<ProgressBarType>(std::move(window_handle));
 		}
+#elif defined(MAX_PLATFORM_LINUX)
+		std::unique_ptr<Control> CreateControl(QWidget* parent_window) const noexcept override {
+			QProgressBar* progress_bar = ProgressBarFactoryImplementationDetails::CreateProgressBar(rectangle_, min_, max_, value_, styles_, std::move(parent_window));
+			return std::make_unique<ProgressBarType>(std::move(progress_bar));
+		}
+#endif
 
 		int min_;
 		int max_;

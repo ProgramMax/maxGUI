@@ -14,6 +14,8 @@
 	#define WIN32_LEAN_AND_MEAN
 	#endif
 	#include <Windows.h>
+#elif defined(MAX_PLATFORM_LINUX)
+	#include <QWidget>
 #endif
 
 namespace maxGUI
@@ -53,6 +55,8 @@ namespace maxGUI
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		virtual std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept = 0;
+#elif defined(MAX_PLATFORM_LINUX)
+		virtual std::unique_ptr<Control> CreateControl(QWidget* parent_window) const noexcept = 0;
 #endif
 
 		Rectangle rectangle_;

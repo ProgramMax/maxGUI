@@ -4,9 +4,14 @@
 
 #include <maxGUI/Form.hpp>
 #include <maxGUI/EntryPoint.hpp>
-#include <maxGUI/Win32String.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#include <maxGUI/Win32String.hpp>
+#endif
+
 #include <utility>
 
+#if defined(MAX_PLATFORM_WINDOWS)
 namespace {
 
 	static LPCTSTR maxgui_window_class_name = TEXT("maxGUI Window Class");
@@ -114,28 +119,59 @@ namespace {
 	}
 
 } // anonymous namespace
+#endif
 
 namespace maxGUI {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	FormConcept::FormConcept(HWND window_handle) noexcept
 		: window_handle_(std::move(window_handle))
 	{}
+#elif defined(MAX_PLATFORM_LINUX)
+	FormConcept::FormConcept(int height, int width, std::string title, FormStyles styles) noexcept
+		: window_()
+	{
+		window_.setFixedSize(width, height);
+
+		// TODO: Set the title & styles
+		(void)title;
+		(void)styles;
+
+		// TODO: Ideally, once all controls are added the form will be shown.
+		//window_.show();
+	}
+#endif
 
 	Control* FormConcept::AddControl(const ControlFactory* control_factory) noexcept {
+#if defined(MAX_PLATFORM_WINDOWS)
 		std::unique_ptr<Control> control_ptr = control_factory->CreateControl(window_handle_);
+#elif defined(MAX_PLATFORM_LINUX)
+		std::unique_ptr<Control> control_ptr = control_factory->CreateControl(&window_);
+#endif
 		Control* raw_control_ptr = control_ptr.get();
 		controls_.push_back(std::move(control_ptr));
+#if defined(MAX_PLATFORM_LINUX)
+		// TODO: We should only show after all controls are added.
+		window_.show();
+#endif
 		return raw_control_ptr;
 	}
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	FormContainer::FormContainer(HINSTANCE instance_handle) noexcept
 		: instance_handle_(instance_handle)
 	{}
+#elif defined(MAX_PLATFORM_LINUX)
+	FormContainer::FormContainer(QApplication* app) noexcept
+		: app_(std::move(app))
+	{}
+#endif
 
 	FormFactory::FormFactory(std::unique_ptr<FormAllocatorConcept> form_allocator) noexcept
 		: form_allocator_(std::move(form_allocator))
 	{}
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	bool FormFactory::CreateForm(HINSTANCE instance_handle, int height, int width, std::string title, FormStyles styles) noexcept {
 		WNDCLASSEX wcx = {0};
 		wcx.cbSize = sizeof(wcx);
@@ -212,5 +248,14 @@ namespace maxGUI {
 
 		return true;
 	}
+#elif defined(MAX_PLATFORM_LINUX)
+	bool FormFactory::CreateForm(int height, int width, std::string title, FormStyles styles) noexcept {
+		std::unique_ptr<FormConcept> created_form = form_allocator_->AllocateForm(std::move(height), std::move(width), std::move(title), std::move(styles));
+		FormConcept* form = created_form.get();
+		form_container_->forms_.push_back(std::move(created_form));
+		form->OnCreated(form);
+		return true;
+	}
+#endif
 
 } // namespace maxGUI

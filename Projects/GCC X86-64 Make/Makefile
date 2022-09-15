@@ -2,25 +2,29 @@ PROGRAM_NAME = maxGUI
 CXX_SRCS = \
 	../../Code/maxGUI/Button.cpp \
 	../../Code/maxGUI/Control.cpp \
-	../../Code/maxGUI/ControlWithText.cpp
+	../../Code/maxGUI/ControlWithText.cpp \
+	../../Code/maxGUI/EntryPoint.cpp \
+	../../Code/maxGUI/Form.cpp \
+	../../Code/maxGUI/MultilineTextBox.cpp \
+	../../Code/maxGUI/Rectangle.cpp
 	#../../Code/maxGUI/CheckBox.cpp \
 	#../../Code/maxGUI/ControlWithList.cpp \
 	#../../Code/maxGUI/DropDownBox.cpp \
-	#../../Code/maxGUI/EntryPoint.cpp \
-	#../../Code/maxGUI/Form.cpp \
 	#../../Code/maxGUI/Frame.cpp \
 	#../../Code/maxGUI/Label.cpp \
 	#../../Code/maxGUI/ListBox.cpp \
-	#../../Code/maxGUI/MultilineTextBox.cpp \
 	#../../Code/maxGUI/ProgressBar.cpp \
 	#../../Code/maxGUI/RadioButton.cpp \
-	#../../Code/maxGUI/Rectangle.cpp \
 	#../../Code/maxGUI/TextBox.cpp
 CXX_OBJS = $(CXX_SRCS:.cpp=.o)
 
 INCLUDE_PATHS = \
 	../../Code \
-	../../Dependencies/max/Code
+	../../Dependencies/max/Code \
+	/usr/include/qt/QtWidgets \
+	/usr/include/qt \
+	/usr/include/qt/QtCore \
+	/usr/include/qt/QtGui
 INCLUDE_PATHS_FLAGS = $(foreach d, $(INCLUDE_PATHS), -I$d)
 
 LIBRARY_PATHS = \
@@ -31,8 +35,8 @@ AUTOMATED_TEST_CXX_SRCS = \
 	../../Code/maxGUI/TestingEntryPoint.cpp
 AUTOMATED_TEST_CXX_OBJS = $(AUTOMATED_TEST_CXX_SRCS:.cpp=.o)
 
-CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -std=c++14 -Werror -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion
-LINKER_FLAGS += $(LIBRARY_PATHS_FLAGS)
+CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -std=c++20
+LINKER_FLAGS += $(LIBRARY_PATHS_FLAGS) -lQt5Widgets -lQt5Gui -lQt5Core
 
 
 
@@ -45,6 +49,9 @@ lib$(PROGRAM_NAME).a: $(PCH_OBJS) $(CXX_OBJS)
 maxGUIAutomatedTests: $(AUTOMATED_TEST_CXX_OBJS)
 	g++ -g $(AUTOMATED_TEST_CXX_OBJS) $(LINKER_FLAGS) -l$(PROGRAM_NAME) -o maxGUIAutomatedTests
 
+example1: $(EXAMPLE1_CXX_OBJS)
+	clang++ -g $(EXAMPLE1_CXX_OBJS) $(LINKER_FLAGS) -l$(PROGRAM_NAME) -o example1
+
 .cpp.o:
 	g++ -g $(CPPFLAGS) -c $< -o $@
 
@@ -53,5 +60,7 @@ clean:
 	@- $(RM) $(CXX_OBJS)
 	@- $(RM) maxAutomatedTests
 	@- $(RM) $(AUTOMATED_TEST_CXX_OBJS)
+	@- $(RM) example1
+	@- $(RM) $(EXAMPLE1_CXX_OBJS)
 
 distclean: clean
