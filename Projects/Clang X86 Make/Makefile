@@ -44,7 +44,7 @@ EXAMPLE1_CXX_SRCS = \
 	../../Code/Examples/1-SimpleExample/EntryPoint.cpp
 EXAMPLE1_CXX_OBJS = $(EXAMPLE1_CXX_SRCS:.cpp=.o)
 
-CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -std=c++20 -Werror -Wall -Wextra -Wpedantic -Wconversion -Wsign-conversion
+CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -std=c++20 -fPIC
 LINKER_FLAGS += $(LIBRARY_PATHS_FLAGS) -lQt5Widgets -lQt5Gui -lQt5Core
 
 

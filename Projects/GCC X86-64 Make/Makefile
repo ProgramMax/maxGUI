@@ -41,7 +41,7 @@ AUTOMATED_TEST_CXX_SRCS = \
 AUTOMATED_TEST_CXX_OBJS = $(AUTOMATED_TEST_CXX_SRCS:.cpp=.o)
 
 # TODO: Ubuntu 20.04 (one of our test machines) has a version of GCC which recognizes c++2a, not c++20
-CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -std=c++2a
+CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -std=c++2a -fPIC
 LINKER_FLAGS += $(LIBRARY_PATHS_FLAGS) -lQt5Widgets -lQt5Gui -lQt5Core
 
 
