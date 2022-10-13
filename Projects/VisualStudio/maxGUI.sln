@@ -30,6 +30,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StylingExample", "StylingEx
 		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLExample", "OpenGLExample\OpenGLExample.vcxproj", "{FE15C227-3F67-43E7-BC9A-124C166ACE2F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A9E3E87-9F00-4240-8E5D-489DC37C73DA} = {3A9E3E87-9F00-4240-8E5D-489DC37C73DA}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -86,6 +91,14 @@ Global
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Release|Win32.Build.0 = Release|Win32
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Release|x64.ActiveCfg = Release|x64
 		{D6501A01-B7E4-4FAD-BE1C-9044216735E0}.Release|x64.Build.0 = Release|x64
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Debug|Win32.Build.0 = Debug|Win32
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Debug|x64.ActiveCfg = Debug|x64
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Debug|x64.Build.0 = Debug|x64
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Release|Win32.ActiveCfg = Release|Win32
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Release|Win32.Build.0 = Release|Win32
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Release|x64.ActiveCfg = Release|x64
+		{FE15C227-3F67-43E7-BC9A-124C166ACE2F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
