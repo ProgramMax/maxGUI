@@ -56,6 +56,7 @@ public:
 			case VK_ESCAPE:
 				// TODO: Implement this
 				//form->Close();
+				break;
 			}
 			return 0;
 
