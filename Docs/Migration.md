@@ -6,15 +6,19 @@ If your project already has GUI code, here are some tips to make migration painl
 
 * Extract maxGUI events from the window procedure's message handlers. If you don't do this, you will likely find the message handler is no longer triggered. For example:
 
-```case WM_CLOSE:
+```
+case WM_CLOSE:
 	PostQuitMessage(0);
-	return 0;```
+	return 0;
+```
 
 should become
 
-```void MyForm::OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
+```
+void MyForm::OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
 	maxGUI::PostExitMessage(0);
-}```
+}
+```
 
 Here is a table of Win32 message types and their respective maxGUI events:
 
