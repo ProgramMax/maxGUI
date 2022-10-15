@@ -9,57 +9,50 @@
 	#include <maxGUI/Win32String.hpp>
 #endif
 
+#include <type_traits>
 #include <utility>
 
 namespace {
 
-	// TODO: These don't work the way I expect.
-	// Currently, I'm using 'requires' instead. But that's more modern. And I want to support older compilers, too.
-	/*
 	template< typename T >
 	struct HasOnCreated {
-		typedef char yes;
-		struct no { char _[2]; };
-		template< typename U, void(U::*)() = &U::OnCreated>
-		static yes impl(U*);
-		static no impl(...);
+		typedef char yes[1];
+		typedef char no[2];
 
-		enum { value = sizeof( impl( static_cast<T*>(0) ) ) == sizeof(yes) };
+		template <typename U> static yes& test(typename std::enable_if<std::is_member_function_pointer<decltype(&U::OnCreated)>::value, bool>::type = 0);
+		template <typename U> static no& test(...);
+		static bool const value = sizeof(test<typename std::remove_cv<T>::type>(0)) == sizeof(yes&);
 	};
 
 	template< typename T >
 	struct HasOnResized {
-		typedef char yes;
-		struct no { char _[2]; };
-		template< typename U, void(U::*)() = &U::OnResized>
-		static yes impl(U*);
-		static no impl(...);
+		typedef char yes[1];
+		typedef char no[2];
 
-		enum { value = sizeof( impl( static_cast<T*>(0) ) ) == sizeof(yes) };
+		template <typename U> static yes& test(typename std::enable_if<std::is_member_function_pointer<decltype(&U::OnResized)>::value, bool>::type = 0);
+		template <typename U> static no& test(...);
+		static bool const value = sizeof(test<typename std::remove_cv<T>::type>(0)) == sizeof(yes&);
 	};
 
 	template< typename T >
 	struct HasOnClosed {
-		typedef char yes;
-		struct no { char _[2]; };
-		template< typename U, void(U::*)() = &U::OnClosed>
-		static yes impl(U*);
-		static no impl(...);
+		typedef char yes[1];
+		typedef char no[2];
 
-		enum { value = sizeof( impl( static_cast<T*>(0) ) ) == sizeof(yes) };
+		template <typename U> static yes& test(typename std::enable_if<std::is_member_function_pointer<decltype(&U::OnClosed)>::value, bool>::type = 0);
+		template <typename U> static no& test(...);
+		static bool const value = sizeof(test<typename std::remove_cv<T>::type>(0)) == sizeof(yes&);
 	};
 
 	template< typename T >
 	struct HasOnWindowMessage {
-		typedef char yes;
-		struct no { char _[2]; };
-		template< typename U, void(U::*)() = &U::OnWindowMessage>
-		static yes impl(U*);
-		static no impl(...);
+		typedef char yes[1];
+		typedef char no[2];
 
-		enum { value = sizeof( impl( static_cast<T*>(0) ) ) == sizeof(yes) };
+		template <typename U> static yes& test(typename std::enable_if<std::is_member_function_pointer<decltype(&U::OnWindowMessage)>::value, bool>::type = 0);
+		template <typename U> static no& test(...);
+		static bool const value = sizeof(test<typename std::remove_cv<T>::type>(0)) == sizeof(yes&);
 	};
-	*/
 
 } // anonymous namespace
 
@@ -81,24 +74,21 @@ namespace maxGUI {
 
 	template<typename T>
 	void FormModel<T>::OnResized(FormConcept* form, int height, int width) noexcept {
-		//if (HasOnResized<T>::value) {
-		if constexpr (requires { form_->OnResized(std::move(form), std::move(height), std::move(width)); }) {
+		if constexpr (HasOnResized<T>::value) {
 			form_->OnResized(std::move(form), std::move(height), std::move(width));
 		}
 	}
 
 	template<typename T>
 	void FormModel<T>::OnClosed(FormConcept* form) noexcept {
-		//if (HasOnClosed<T>::value) {
-		if constexpr (requires { form_->OnClosed(std::move(form)); }) {
+		if constexpr (HasOnClosed<T>::value) {
 			form_->OnClosed(std::move(form));
 		}
 	}
 
 	template<typename T>
 	void FormModel<T>::OnCreated(FormConcept* form) noexcept {
-		//if (HasOnCreated<T>::value) {
-		if constexpr (requires { form_->OnCreated(std::move(form)); }) {
+		if constexpr (HasOnCreated<T>::value) {
 			form_->OnCreated(std::move(form));
 		}
 	}
@@ -106,8 +96,7 @@ namespace maxGUI {
 #if defined(MAX_PLATFORM_WINDOWS)
 	template<typename T>
 	LRESULT FormModel<T>::OnWindowMessage(FormConcept* form, UINT message, WPARAM wparam, LPARAM lparam) noexcept {
-		//if (HasOnWindowMessage<T>::value) {
-		if constexpr (requires { form_->OnWindowMessage(std::move(form), std::move(message), std::move(wparam), std::move(lparam)); }) {
+		if constexpr (HasOnWindowMessage<T>::value) {
 			return form_->OnWindowMessage(std::move(form), std::move(message), std::move(wparam), std::move(lparam));
 		} else {
 			return DefWindowProc(window_handle_, message, wparam, lparam);
