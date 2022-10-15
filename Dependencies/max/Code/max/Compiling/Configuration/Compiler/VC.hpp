@@ -11,10 +11,33 @@
 
 #define MAX_COMPILER_MESSAGE( Message ) __pragma( message( Message ) )
 
-#if _MSC_VER > 1928
+#if _MSC_VER > 1933
 	MAX_COMPILER_MESSAGE( "Compiling with a newer version of MSVC than max recognizes. Using last known version." );
+#elif _MSC_VER >= 1933
+	// MSVC++ (Visual Studio 2022 / version 17.3)
+	#define MAX_COMPILER_VERSION_MAJOR 17
+	#define MAX_COMPILER_VERSION_MINOR 3
+#elif _MSC_VER >= 1932
+	// MSVC++ (Visual Studio 2022 / version 17.2)
+	#define MAX_COMPILER_VERSION_MAJOR 17
+	#define MAX_COMPILER_VERSION_MINOR 2
+#elif _MSC_VER >= 1931
+	// MSVC++ (Visual Studio 2022 / version 17.1)
+	#define MAX_COMPILER_VERSION_MAJOR 17
+	#define MAX_COMPILER_VERSION_MINOR 1
+#elif _MSC_VER >= 1930
+	// MSVC++ (Visual Studio 2022 Preview 3.0 & 4.0 / version 17.0)
+	#define MAX_COMPILER_VERSION_MAJOR 17
+	#define MAX_COMPILER_VERSION_MINOR 0
+#elif _MSC_VER >= 1929
+	// MSVC++ 14.30 (Visual Studio 2019 / version 16.10)
+	// Note, 16.11 also shares this same _MSC_VER.
+	// Note, Visual Studio 2022 Preview 1.0 (and possibly 2.0?) / version 17.0 also shares this same _MSC_VER.
+	#define MAX_COMPILER_VERSION_MAJOR 16
+	#define MAX_COMPILER_VERSION_MINOR 10
 #elif _MSC_VER >= 1928
 	// MSVC++ 14.28 (Visual Studio 2019 / version 16.8)
+	// Note, 16.9 also shares this same _MSC_VER.
 	#define MAX_COMPILER_VERSION_MAJOR 16
 	#define MAX_COMPILER_VERSION_MINOR 8
 #elif _MSC_VER >= 1927
@@ -195,15 +218,16 @@
 #endif
 #define MAX_COMPILER_VERSION_PATCH 0
 
-
 #if _MSC_FULL_VER >= 190024210 // MSVC++ 14.3 (Visual Studio 2015 Update 3)
 	// Visual Studio 2015 Update 3 introduced the _MSVC_LANG pre-defined macro
-	#if _MSVC_LANG > 201705L
-		MAX_COMPILER_MESSAGE( "Compiling with a newer version of C++ than max recognizes. Using last known version." );
-	#elif _MSVC_LANG >= 201705L
-		#define MAX_CPP_2A
-	#elif _MSVC_LANG >= 201704L
+	#if _MSVC_LANG > 202004L
+		#MAX_COMPILER_MESSAGE( "Compiling with a newer version of C++ than max recognizes. Using last known version.");
+	#elif _MSVC_LANG >= 202004L
 		#define MAX_CPP_20
+	#elif _MSVC_LANG >= 201705L
+		#define MAX_CPP_17
+	#elif _MSVC_LANG >= 201704L
+		#define MAX_CPP_17
 	#elif _MSVC_LANG >= 201703L
 		#define MAX_CPP_17
 	#elif _MSVC_LANG >= 201402L
