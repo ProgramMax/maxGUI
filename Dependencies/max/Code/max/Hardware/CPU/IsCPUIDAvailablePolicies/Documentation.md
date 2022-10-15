@@ -1,1 +1,0 @@
-The CPUID instruction is available if bit 21 (0x200000) of the EFLAGS register (the ID bit) can be set and cleared.

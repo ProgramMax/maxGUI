@@ -17,15 +17,20 @@
 #define MAX_COMPILER_VERSION_MINOR __clang_minor__
 #define MAX_COMPILER_VERSION_PATCH __clang_patchlevel__
 
-#if __cplusplus > 202002L
+#if __cplusplus > 202101L
 	MAX_COMPILER_MESSAGE( "Compiling with a newer version of C++ than max recognizes. Using last known version." );
+#elif __cplusplus >= 202101L
+	#define MAX_CPP_2B
+	#define MAX_CPP_20
 #elif __cplusplus >= 202002L
+	#define MAX_CPP_2A
 	#define MAX_CPP_20
 #elif __cplusplus >= 201703L
 	#define MAX_CPP_2A
-#elif __cplusplus >= 201703L
+	#define MAX_CPP_1Z
 	#define MAX_CPP_17
 #elif __cplusplus >= 201402L
+	#define MAX_CPP_1Z
 	#define MAX_CPP_14
 #elif __cplusplus >= 201103L
 	#define MAX_CPP_11

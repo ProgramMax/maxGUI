@@ -9,25 +9,25 @@
 
 namespace max
 {
-namespace Compiling
-{
-	template< typename EnumClassType >
-	struct BitmaskableEnumClass
+	namespace Compiling
 	{
-		static const bool Bitmaskable = false;
-	};
+		template< typename EnumClassType >
+		struct BitmaskableEnumClass
+		{
+			static const bool Bitmaskable = false;
+		};
 
-	template< typename EnumClassType >
-	constexpr bool bitmaskable_enum_class_v = BitmaskableEnumClass< EnumClassType >::Bitmaskable;
+		template< typename EnumClassType >
+		constexpr bool bitmaskable_enum_class_v = BitmaskableEnumClass< EnumClassType >::Bitmaskable;
 
-	#define MAX_BITMASKABLE_ENUM_CLASS( EnumClassType )          \
+#define MAX_BITMASKABLE_ENUM_CLASS( EnumClassType )          \
 	template<>                                                   \
 	struct max::Compiling::BitmaskableEnumClass< EnumClassType > \
 	{                                                            \
 		static const bool Bitmaskable = true;                      \
 	}
 
-} // namespace Compiling
+	} // namespace Compiling
 } // namespace max
 
 template< typename EnumClassType >
@@ -37,9 +37,9 @@ operator |( EnumClassType lhs, EnumClassType rhs )
 	using UnderlyingType = typename std::underlying_type< EnumClassType >::type;
 
 	return static_cast< EnumClassType > (
-	    static_cast< UnderlyingType >( lhs ) |
-	    static_cast< UnderlyingType >( rhs )
-	);
+		static_cast< UnderlyingType >( lhs ) |
+		static_cast< UnderlyingType >( rhs )
+		);
 }
 
 template< typename EnumClassType >
@@ -49,9 +49,9 @@ operator &( EnumClassType lhs, EnumClassType rhs )
 	using UnderlyingType = typename std::underlying_type< EnumClassType >::type;
 
 	return static_cast< EnumClassType > (
-	    static_cast< UnderlyingType >( lhs ) &
-	    static_cast< UnderlyingType >( rhs )
-	);
+		static_cast< UnderlyingType >( lhs ) &
+		static_cast< UnderlyingType >( rhs )
+		);
 }
 
 template< typename EnumClassType >
@@ -61,9 +61,9 @@ operator ^( EnumClassType lhs, EnumClassType rhs )
 	using UnderlyingType = typename std::underlying_type< EnumClassType >::type;
 
 	return static_cast< EnumClassType > (
-	    static_cast< UnderlyingType >( lhs ) ^
-	    static_cast< UnderlyingType >( rhs )
-	);
+		static_cast< UnderlyingType >( lhs ) ^
+		static_cast< UnderlyingType >( rhs )
+		);
 }
 
 template< typename EnumClassType >
@@ -82,9 +82,9 @@ operator |=( EnumClassType & lhs, EnumClassType rhs )
 	using UnderlyingType = typename std::underlying_type< EnumClassType >::type;
 
 	lhs = static_cast< EnumClassType > (
-	    static_cast< UnderlyingType >( lhs ) |
-	    static_cast< UnderlyingType >( rhs )
-	);
+		static_cast< UnderlyingType >( lhs ) |
+		static_cast< UnderlyingType >( rhs )
+		);
 
 	return lhs;
 }
@@ -96,9 +96,9 @@ operator &=( EnumClassType & lhs, EnumClassType rhs )
 	using UnderlyingType = typename std::underlying_type< EnumClassType >::type;
 
 	lhs = static_cast< EnumClassType > (
-	    static_cast< UnderlyingType >( lhs ) &
-	    static_cast< UnderlyingType >( rhs )
-	);
+		static_cast< UnderlyingType >( lhs ) &
+		static_cast< UnderlyingType >( rhs )
+		);
 
 	return lhs;
 }
@@ -110,9 +110,9 @@ operator ^=( EnumClassType & lhs, EnumClassType rhs )
 	using UnderlyingType = typename std::underlying_type< EnumClassType >::type;
 
 	lhs = static_cast< EnumClassType > (
-	    static_cast< UnderlyingType >( lhs ) ^
-	    static_cast< UnderlyingType >( rhs )
-	);
+		static_cast< UnderlyingType >( lhs ) ^
+		static_cast< UnderlyingType >( rhs )
+		);
 
 	return lhs;
 }

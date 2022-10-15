@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuites>
-	<testsuite name="example suite">
-		<testcase name="example case">
-		</testcase>
-	</testsuite>
-</testsuites>
