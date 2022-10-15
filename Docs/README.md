@@ -31,6 +31,10 @@ Start with the [simple example](https://github.com/ProgramMax/maxGUI/blob/master
 
 If you would like maxGUI to support more contacts us and let us know.
 
+## Migration
+
+If your project already has GUI code, you can read the [migration docs](Migration.md) for help migrating to maxGUI.
+
 ## Deprecation Schedule
 
 We know transitioning a codebase to a new technology takes time. And we know customers may still be on an old OS.
