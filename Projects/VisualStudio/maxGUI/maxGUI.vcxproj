@@ -30,6 +30,7 @@
     <None Include="..\..\..\Tooling\AppVeyor\AppVeyor.yml" />
     <None Include="..\..\..\Tooling\Cppcheck\.gitignore" />
     <None Include="..\..\..\Tooling\Cppcheck\maxGUI.cppcheck" />
+    <None Include="Migration.md" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml" />
