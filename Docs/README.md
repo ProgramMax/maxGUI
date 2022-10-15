@@ -14,10 +14,6 @@ That said, expect the APIs to change. Like I said, this is very new.
 
 Start with the [simple example](https://github.com/ProgramMax/maxGUI/blob/master/Code/Examples/1%20-%20SimpleExample/EntryPoint.cpp). It shows the basics in an easy-to-follow way.
 
-## Migration
-
-If your project already has GUI code, you can read the [migration docs](https://github.com/ProgramMax/maxGUI/blob/master/Docs/Migration.md) for help migrating to maxGUI.
-
 ## Support
 
 * Compilers:
@@ -34,6 +30,10 @@ If your project already has GUI code, you can read the [migration docs](https://
 *coming soon
 
 If you would like maxGUI to support more contacts us and let us know.
+
+## Migration
+
+If your project already has GUI code, you can read the [migration docs](Migration.md) for help migrating to maxGUI.
 
 ## Deprecation Schedule
 
