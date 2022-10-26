@@ -6,6 +6,10 @@
 #define MAXGUI_PROGRESSBAR_HPP
 
 #include <max/Compiling/Configuration.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+
+#include <max/Compiling/Configuration.hpp>
 #include <max/Compiling/Bitmask.hpp>
 #include <maxGUI/Control.hpp>
 #include <maxGUI/Rectangle.hpp>
@@ -101,5 +105,7 @@ namespace maxGUI
 	};
 
 } //  namespace maxGUI
+
+#endif // #if defined(MAX_PLATFORM_WINDOWS)
 
 #endif // #ifndef MAXGUI_PROGRESSBAR_HPP
