@@ -11,6 +11,12 @@
 #include <string>
 #include <utility>
 
+
+#include <max/Compiling/Configuration.hpp>
+
+// TODO: Add Linux version of TextBox
+#if defined(MAX_PLATFORM_WINDOWS)
+
 namespace maxGUI
 {
 
@@ -74,5 +80,8 @@ namespace maxGUI
 	};
 
 } //  namespace maxGUI
+
+
+#endif // #if defined(MAX_PLATFORM_WINDOWS)
 
 #endif // #ifndef MAXGUI_TEXTBOX_HPP
