@@ -3,10 +3,7 @@
 // found in the LICENSE file.
 
 // Include both max and maxGUI in your project's libraries & include paths.
-#include <maxGUI/Form.hpp>
-#include <maxGUI/EntryPoint.hpp>
-#include <maxGUI/MultilineTextBox.hpp>
-#include <maxGUI/Rectangle.hpp>
+#include <maxGUI/maxGUI.hpp>
 
 // Create a custom form that implements the behavior you want.
 class CustomForm {
@@ -20,6 +17,7 @@ public:
 
 	void OnResized(maxGUI::FormConcept* /*form*/, int new_height, int new_width) noexcept {
 		// In this example, make the multiline textbox take the entire area.
+		// TODO: Move Rectangle into max.
 		multiline_textbox_->Move(maxGUI::Rectangle(0, 0, new_height, new_width));
 	}
 

@@ -2,14 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include <maxGUI/EntryPoint.hpp>
-#include <maxGUI/Form.hpp>
+#include <memory>
+
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
 #include <Windows.h>
 
-#include <memory>
+#include <maxGUI/maxGUI.hpp>
 
 class CustomPaintingForm {
 public:

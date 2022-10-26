@@ -50,14 +50,20 @@
     <None Include="..\..\..\Docs\DeprecationSchedule.md">
       <Filter>Docs</Filter>
     </None>
-    <None Include="..\..\..\Code\maxGUI\Form.inl">
-      <Filter>Code</Filter>
-    </None>
     <None Include="..\..\..\.github\workflows\build-and-test.yaml">
       <Filter>.github\workflows</Filter>
     </None>
     <None Include="Migration.md">
       <Filter>Docs</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\FormModel.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\FormAllocatorModel.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\FormContainer.inl">
+      <Filter>Code</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -120,15 +126,21 @@
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithList.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\Form.cpp">
+    <ClCompile Include="..\..\..\Code\maxGUI\FormConcept.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\FormContainer.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\FormFactory.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\FormAllocatorConcept.cpp">
       <Filter>Code</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp">
-      <Filter>Code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Code\maxGUI\Form.hpp">
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp">
@@ -180,6 +192,28 @@
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithList.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\FormConcept.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\FormModel.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\FormContainer.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\FormFactory.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\FormStyles.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\FormAllocatorConcept.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\FormAllocatorModel.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\maxGUI.hpp">
       <Filter>Code</Filter>
     </ClInclude>
   </ItemGroup>
