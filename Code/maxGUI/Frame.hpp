@@ -5,6 +5,10 @@
 #ifndef MAXGUI_FRAME_HPP
 #define MAXGUI_FRAME_HPP
 
+#include <max/Compiling/Configuration.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/Rectangle.hpp>
 #include <string>
@@ -50,5 +54,7 @@ namespace maxGUI
 	};
 
 } //  namespace maxGUI
+
+#endif // #if defined(MAX_PLATFORM_WINDOWS)
 
 #endif // #ifndef MAXGUI_FRAME_HPP

@@ -6,7 +6,7 @@
 #define MAXGUI_ENTRYPOINT_HPP
 
 #include <max/Compiling/Configuration.hpp>
-#include <maxGUI/Form.hpp>
+#include <maxGUI/FormContainer.hpp>
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	#ifndef WIN32_LEAN_AND_MEAN

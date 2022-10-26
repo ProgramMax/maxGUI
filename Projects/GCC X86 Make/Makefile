@@ -4,7 +4,10 @@ CXX_SRCS = \
 	../../Code/maxGUI/Control.cpp \
 	../../Code/maxGUI/ControlWithText.cpp \
 	../../Code/maxGUI/EntryPoint.cpp \
-	../../Code/maxGUI/Form.cpp \
+		../../Code/maxGUI/FormAllocatorConcept.cpp \
+	../../Code/maxGUI/FormConcept.cpp \
+	../../Code/maxGUI/FormContainer.cpp \
+	../../Code/maxGUI/FormFactory.cpp \
 	../../Code/maxGUI/MultilineTextBox.cpp \
 	../../Code/maxGUI/Rectangle.cpp
 	#../../Code/maxGUI/CheckBox.cpp \

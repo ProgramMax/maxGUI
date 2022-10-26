@@ -2,14 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include <maxGUI/Button.hpp>
-#include <maxGUI/EntryPoint.hpp>
-#include <maxGUI/Form.hpp>
-#include <maxGUI/Label.hpp>
-#include <maxGUI/Rectangle.hpp>
-#include <maxGUI/TextBox.hpp>
 #include <memory>
 #include <utility>
+
+#include <maxGUI/maxGUI.hpp>
 
 // TODO: Add text changed handlers to the username and password fields.
 // Enable the login button if they are both not empty.
