@@ -19,10 +19,8 @@ namespace maxGUI
 	{}
 #elif defined(MAX_PLATFORM_LINUX)
 	MultilineTextBox::MultilineTextBox(QTextEdit* widget) noexcept
-		: ControlWithText()
-	{
-		(void)widget;
-	}
+		: ControlWithText(std::move(widget))
+	{}
 #endif
 
 #if defined(MAX_PLATFORM_WINDOWS)

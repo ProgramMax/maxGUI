@@ -17,6 +17,10 @@ namespace maxGUI
 	ControlWithText::ControlWithText(HWND window_handle) noexcept
 		: Control(std::move(window_handle))
 	{}
+#elif defined(MAX_PLATFORM_LINUX)
+	ControlWithText::ControlWithText(QWidget* widget) noexcept
+		: Control(std::move(widget))
+	{}
 #endif
 
 	std::string ControlWithText::GetText() const noexcept {

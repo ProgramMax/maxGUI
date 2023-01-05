@@ -27,6 +27,8 @@ namespace maxGUI
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		explicit Control(HWND window_handle) noexcept;
+#elif defined(MAX_PLATFORM_LINUX)
+		explicit Control(QWidget* widget) noexcept;
 #endif
 
 		virtual ~Control() noexcept = default;
@@ -35,6 +37,8 @@ namespace maxGUI
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		HWND window_handle_;
+#elif defined(MAX_PLATFORM_LINUX)
+		QWidget* widget_;
 #endif
 
 	//protected:

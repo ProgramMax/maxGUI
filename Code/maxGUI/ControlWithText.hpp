@@ -25,6 +25,8 @@ namespace maxGUI
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		explicit ControlWithText(HWND window_handle) noexcept;
+#elif defined(MAX_PLATFORM_LINUX)
+		explicit ControlWithText(QWidget* widget) noexcept;
 #endif
 
 		~ControlWithText() noexcept override = default;

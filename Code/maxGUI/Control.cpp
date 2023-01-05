@@ -14,6 +14,10 @@ namespace maxGUI
 	Control::Control(HWND window_handle) noexcept
 		: window_handle_(std::move(window_handle))
 	{}
+#elif defined(MAX_PLATFORM_LINUX)
+	Control::Control(QWidget* widget) noexcept
+		: widget_(std::move(widget))
+	{}
 #endif
 
 	void Control::Move(Rectangle rectangle) noexcept {
@@ -21,7 +25,9 @@ namespace maxGUI
 		SetWindowPos(window_handle_, NULL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, SWP_NOZORDER);
 #endif
 #if defined(MAX_PLATFORM_LINUX)
-		(void)rectangle;
+		if (this) {
+			widget_->setGeometry(rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_);
+		}
 #endif
 	}
 

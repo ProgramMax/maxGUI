@@ -7,6 +7,10 @@
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	#include <maxGUI/Win32String.hpp>
+#elif defined(MAX_PLATFORM_LINUX)
+	#include <QObject>
+	#include <QCloseEvent>
+	#include <QResizeEvent>
 #endif
 
 #include <utility>
@@ -123,22 +127,43 @@ namespace {
 
 namespace maxGUI {
 
+#if defined(MAX_PLATFORM_LINUX)
+	MaxGUIMainWindow::MaxGUIMainWindow(FormConcept* form)
+		: QMainWindow(nullptr)
+		, form_(std::move(form))
+	{}
+
+	void MaxGUIMainWindow::resizeEvent(QResizeEvent* event) {
+		form_->OnResized(form_, event->size().height(), event->size().width());
+		QMainWindow::resizeEvent(event);
+	};
+
+	void MaxGUIMainWindow::closeEvent(QCloseEvent* event) {
+		form_->OnClosed(form_);
+	}
+#endif
+
 #if defined(MAX_PLATFORM_WINDOWS)
 	FormConcept::FormConcept(HWND window_handle) noexcept
 		: window_handle_(std::move(window_handle))
 	{}
 #elif defined(MAX_PLATFORM_LINUX)
 	FormConcept::FormConcept(int height, int width, std::string title, FormStyles styles) noexcept
-		: window_()
+		: window_(this)
 	{
-		window_.setFixedSize(width, height);
+		switch (styles) {
+		case FormStyles::None:
+			break;
+		case FormStyles::DialogBox:
+			window_.setWindowFlags(Qt::WindowMinMaxButtonsHint);
+			window_.setGeometry(0, 0, width, height);
+			break;
+		case FormStyles::FixedSize:
+			window_.setFixedSize(width, height);
+			break;
+		}
 
-		// TODO: Set the title & styles
-		(void)title;
-		(void)styles;
-
-		// TODO: Ideally, once all controls are added the form will be shown.
-		//window_.show();
+		window_.setWindowTitle(title.c_str());
 	}
 #endif
 
@@ -150,10 +175,6 @@ namespace maxGUI {
 #endif
 		Control* raw_control_ptr = control_ptr.get();
 		controls_.push_back(std::move(control_ptr));
-#if defined(MAX_PLATFORM_LINUX)
-		// TODO: We should only show after all controls are added.
-		window_.show();
-#endif
 		return raw_control_ptr;
 	}
 
@@ -254,6 +275,7 @@ namespace maxGUI {
 		FormConcept* form = created_form.get();
 		form_container_->forms_.push_back(std::move(created_form));
 		form->OnCreated(form);
+		form->window_.show();
 		return true;
 	}
 #endif

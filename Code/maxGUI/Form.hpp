@@ -20,6 +20,7 @@
 	#include <Windows.h>
 #elif defined(MAX_PLATFORM_LINUX)
 	#include <QApplication>
+	#include <QMainWindow>
 #endif
 
 namespace maxGUI
@@ -37,6 +38,24 @@ MAX_BITMASKABLE_ENUM_CLASS(maxGUI::FormStyles);
 
 namespace maxGUI
 {
+
+#if defined(MAX_PLATFORM_LINUX)
+	class FormConcept;
+
+	class MaxGUIMainWindow : public QMainWindow {
+	public:
+		explicit MaxGUIMainWindow(FormConcept* form);
+
+	protected:
+		void resizeEvent(QResizeEvent* event) override;
+		void closeEvent(QCloseEvent* event) override;
+
+	private:
+		FormConcept* form_;
+
+	};
+#endif
+
 
 	class FormConcept {
 	public:
@@ -61,7 +80,7 @@ namespace maxGUI
 #if defined(MAX_PLATFORM_WINDOWS)
 		HWND window_handle_;
 #elif defined(MAX_PLATFORM_LINUX)
-		QWidget window_;
+		MaxGUIMainWindow window_;
 #endif
 		std::vector<std::unique_ptr<Control>> controls_;
 
