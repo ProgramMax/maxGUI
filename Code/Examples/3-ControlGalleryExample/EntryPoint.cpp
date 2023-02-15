@@ -9,18 +9,11 @@
 
 #include <maxGUI/maxGUI.hpp>
 
-class CustomButton : public maxGUI::Button
+class CustomButtonBehavior
 {
 public:
 
-	// TODO: Can we not need to know about HWND somehow?
-	explicit CustomButton(HWND window_handle) noexcept
-		: maxGUI::Button(window_handle)
-	{}
-
-	~CustomButton() noexcept override = default;
-
-	void OnPressed() noexcept override {
+	static void OnPressed() noexcept {
 		maxGUI::PostExitMessage(0);
 	}
 
@@ -30,7 +23,7 @@ class ControlGalleryForm {
 public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
-		maxGUI::ButtonFactory<CustomButton> custom_button_factory(maxGUI::Rectangle(25, 25, 50, 150), "Custom Button");
+		maxGUI::ButtonFactory<maxGUI::Button<CustomButtonBehavior>> custom_button_factory(maxGUI::Rectangle(25, 25, 50, 150), "Custom Button");
 		form->AddControl(&custom_button_factory);
 
 		std::vector<std::string> dropdown_options{"Option 1", "Option 2", "Option 3"};

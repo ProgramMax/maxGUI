@@ -10,18 +10,11 @@
 // TODO: Add text changed handlers to the username and password fields.
 // Enable the login button if they are both not empty.
 
-class LoginButton : public maxGUI::Button
+class LoginButtonBehavior
 {
 public:
 
-	// TODO: Can we not need to know about HWND somehow?
-	explicit LoginButton(HWND window_handle) noexcept
-		: maxGUI::Button(window_handle)
-	{}
-
-	~LoginButton() noexcept override = default;
-
-	void OnPressed() noexcept override {
+	static void OnPressed() noexcept {
 		maxGUI::PostExitMessage(0);
 	}
 
@@ -44,7 +37,7 @@ public:
 		password_textbox_ = form->AddControl(&password_textbox_factory);
 
 		// A Button can have the Default style, which allows the user to press Enter at any time to press the button.
-		maxGUI::ButtonFactory<LoginButton> login_button_factory(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
+		maxGUI::ButtonFactory<maxGUI::Button<LoginButtonBehavior>> login_button_factory(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
 		form->AddControl(&login_button_factory);
 	}
 
