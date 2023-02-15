@@ -42,6 +42,7 @@ namespace maxGUI
 
 	};
 
+	template< class Behavior >
 	class Button : public ControlWithText
 	{
 	public:
@@ -52,13 +53,13 @@ namespace maxGUI
 
 		~Button() noexcept override = default;
 
-		virtual void OnPressed() noexcept = 0;
-
 	//protected:
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		void OnCommand(WORD notification) noexcept override;
 #endif
+
+		Behavior behavior_;
 
 	};
 	
@@ -101,5 +102,7 @@ namespace maxGUI
 
 
 } //  namespace maxGUI
+
+#include <maxGUI/Button.inl>
 
 #endif // #ifndef MAXGUI_BUTTON_HPP
