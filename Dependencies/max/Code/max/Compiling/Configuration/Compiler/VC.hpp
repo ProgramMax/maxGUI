@@ -11,8 +11,12 @@
 
 #define MAX_COMPILER_MESSAGE( Message ) __pragma( message( Message ) )
 
-#if _MSC_VER > 1933
+#if _MSC_VER > 1934
 	MAX_COMPILER_MESSAGE( "Compiling with a newer version of MSVC than max recognizes. Using last known version." );
+#elif _MSC_VER >= 1934
+	// MSVC++ (Visual Studio 2022 / version 17.4)
+	#define MAX_COMPILER_VERSION_MAJOR 17
+	#define MAX_COMPILER_VERSION_MINOR 4
 #elif _MSC_VER >= 1933
 	// MSVC++ (Visual Studio 2022 / version 17.3)
 	#define MAX_COMPILER_VERSION_MAJOR 17
