@@ -270,4 +270,10 @@
 	#endif
 #endif
 
+#if MAX_COMPILER_VERSION_AT_LEAST( 17, 0, 0 )
+	#if __cpp_concepts
+		#define MAX_CONCEPTS_SUPPORTED
+	#endif
+#endif
+
 #endif // #ifndef MAX_COMPILING_CONFIGURATION_COMPILER_VC_HPP

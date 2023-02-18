@@ -12,6 +12,17 @@
 #include <string>
 #include <utility>
 
+#if defined(MAX_PLATFORM_WINDOWS)
+	#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+	#endif
+	#include <Windows.h>
+#endif
+
+#ifndef MAX_CONCEPTS_SUPPORTED
+	#include <max/Compiling/Exists.hpp>
+#endif
+
 namespace maxGUI
 {
 
@@ -42,9 +53,28 @@ namespace maxGUI
 
 	};
 
+#if defined(MAX_CONCEPTS_SUPPORTED)
+	template<typename T>
+	concept ButtonRequirements = requires(T button_concept) {
+		button_concept.OnPressed();
+	};
+#else
+	template<class U, class = decltype(U::OnPressed())>
+	struct OnPressedTest{};
+#endif
+
+
+#if defined(MAX_CONCEPTS_SUPPORTED)
+	template< ButtonRequirements Behavior >
+#else
 	template< class Behavior >
+#endif
 	class Button : public ControlWithText
 	{
+#ifndef MAX_CONCEPTS_SUPPORTED
+		static_assert(max::Compiling::Exists<Behavior, OnPressedTest>::value, "Button behavior must implement an OnPressed() static member function.");
+#endif
+
 	public:
 
 #if defined(MAX_PLATFORM_WINDOWS)
