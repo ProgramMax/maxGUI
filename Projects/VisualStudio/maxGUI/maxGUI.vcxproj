@@ -23,9 +23,12 @@
     <None Include="..\..\..\.github\ISSUE_TEMPLATE\feature_request.md" />
     <None Include="..\..\..\.github\workflows\build-and-test.yaml" />
     <None Include="..\..\..\AUTHORS" />
+    <None Include="..\..\..\Code\maxGUI\Button.inl" />
     <None Include="..\..\..\Code\maxGUI\FormAllocatorModel.inl" />
     <None Include="..\..\..\Code\maxGUI\FormContainer.inl" />
     <None Include="..\..\..\Code\maxGUI\FormModel.inl" />
+    <None Include="..\..\..\Dependencies\max\AUTHORS" />
+    <None Include="..\..\..\Dependencies\max\LICENSE" />
     <None Include="..\..\..\Docs\DeprecationSchedule.md" />
     <None Include="..\..\..\Docs\README.md" />
     <None Include="..\..\..\LICENSE" />
@@ -84,6 +87,20 @@
     <ClInclude Include="..\..\..\Code\maxGUI\Rectangle.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\TextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Win32String.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Bitmask.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Compiler.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Compiler\Clang.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Compiler\GCC.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Compiler\VC.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Platform.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Platform\Android.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Platform\Linux.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Platform\MacOS.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Platform\Win32.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\StandardLibrary.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Exists.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Macros.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A9E3E87-9F00-4240-8E5D-489DC37C73DA}</ProjectGuid>

@@ -69,4 +69,10 @@
 	#define MAX_IS_CONSTANT_EVALUATED_SUPPORTED
 #endif
 
+#if MAX_COMPILER_VERSION_AT_LEAST( 10, 0, 0 )
+	#if __cpp_concepts
+		#define MAX_CONCEPTS_SUPPORTED
+	#endif
+#endif
+
 #endif // #ifndef MAX_COMPILING_CONFIGURATION_COMPILER_GCC_HPP
