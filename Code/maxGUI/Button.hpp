@@ -12,10 +12,12 @@
 #include <string>
 #include <utility>
 
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
+#if defined(MAX_PLATFORM_WINDOWS)
+	#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+	#endif
+	#include <Windows.h>
 #endif
-#include <Windows.h>
 
 #ifndef MAX_CONCEPTS_SUPPORTED
 	#include <max/Compiling/Exists.hpp>
