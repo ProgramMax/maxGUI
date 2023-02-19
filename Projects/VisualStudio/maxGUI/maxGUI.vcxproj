@@ -28,6 +28,8 @@
     <None Include="..\..\..\Code\maxGUI\FormContainer.inl" />
     <None Include="..\..\..\Code\maxGUI\FormModel.inl" />
     <None Include="..\..\..\Dependencies\max\AUTHORS" />
+    <None Include="..\..\..\Dependencies\max\Code\max\Containers\Point.inl" />
+    <None Include="..\..\..\Dependencies\max\Code\max\Containers\Rectangle.inl" />
     <None Include="..\..\..\Dependencies\max\LICENSE" />
     <None Include="..\..\..\Docs\DeprecationSchedule.md" />
     <None Include="..\..\..\Docs\README.md" />
@@ -57,7 +59,6 @@
     <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ProgressBar.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\RadioButton.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\Rectangle.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\TextBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Win32String.cpp" />
   </ItemGroup>
@@ -83,9 +84,9 @@
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ProgressBar.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\RadioButton.hpp" />
-    <ClInclude Include="..\..\..\Code\maxGUI\Rectangle.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\TextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Win32String.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\AliasingOptimizations.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Bitmask.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Compiler.hpp" />
@@ -98,8 +99,11 @@
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Platform\MacOS.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\Platform\Win32.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Configuration\StandardLibrary.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\CurrentVersionNamespace.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Exists.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Macros.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Containers\Point.hpp" />
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Containers\Rectangle.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A9E3E87-9F00-4240-8E5D-489DC37C73DA}</ProjectGuid>

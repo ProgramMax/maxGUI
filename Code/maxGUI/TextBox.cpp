@@ -15,7 +15,7 @@ namespace maxGUI
 		: ControlWithText(std::move(window_handle))
 	{}
 	
-	HWND TextBox::Create(HWND parent_window_handle, Rectangle rectangle, std::string text, TextBoxStyles styles) noexcept {
+	HWND TextBox::Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, TextBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
@@ -49,7 +49,7 @@ namespace maxGUI
 		//EN_UPDATE - text changed
 
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
-		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), win32_text.text_, win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 
 } //  namespace maxGUI

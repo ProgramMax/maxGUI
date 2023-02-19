@@ -7,7 +7,6 @@
 
 #include <max/Compiling/Configuration.hpp>
 #include <maxGUI/Control.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <string>
 
 #if defined(MAX_PLATFORM_WINDOWS)
@@ -31,17 +30,6 @@ namespace maxGUI
 
 		std::string GetText() const noexcept;
 		void SetText(std::string text) noexcept;
-
-	};
-
-	class ControlWithTextFactory : public ControlFactory {
-	public:
-
-		ControlWithTextFactory(Rectangle rectangle, std::string text) noexcept;
-
-		~ControlWithTextFactory() noexcept override = default;
-
-		std::string text_;
 
 	};
 

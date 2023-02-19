@@ -36,7 +36,7 @@ public:
 		wglMakeCurrent(device_context_, rendering_context_);
 	}
 
-	void OnResized(maxGUI::FormConcept* form, int new_height, int new_width) noexcept {
+	void OnResized(maxGUI::FormConcept* form, int new_width, int new_height) noexcept {
 		glViewport(0, 0, new_width, new_height);
 		PostMessage(form->window_handle_, WM_PAINT, 0, 0);
 	}
@@ -97,7 +97,7 @@ private:
 
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
 	maxGUI::FormFactory opengl_form_factory(maxGUI::GetDefaultFormAllocator<OpenGLForm>());
-	if (!form_container.CreateForm(opengl_form_factory, 200, 350, "OpenGL")) {
+	if (!form_container.CreateForm(opengl_form_factory, 350, 200, "OpenGL")) {
 		return -1;
 	}
 

@@ -7,8 +7,8 @@
 
 #include <max/Compiling/Configuration.hpp>
 #include <max/Compiling/Bitmask.hpp>
+#include <max/Containers/Rectangle.hpp>
 #include <maxGUI/ControlWithText.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <memory>
 #include <string>
 
@@ -43,9 +43,9 @@ namespace maxGUI
 		~MultilineTextBox() noexcept override = default;
 
 #if defined(MAX_PLATFORM_WINDOWS)
-		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
+		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
 #elif defined(MAX_PLATFORM_LINUX)
-		static QTextEdit* Create(QWidget* parent_window, Rectangle rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
+		static QTextEdit* Create(QWidget* parent_window, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
 #endif
 
 	};

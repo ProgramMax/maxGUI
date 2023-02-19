@@ -42,9 +42,4 @@ namespace maxGUI
 #endif
 	}
 
-	ControlWithTextFactory::ControlWithTextFactory(Rectangle rectangle, std::string text) noexcept
-		: ControlFactory(std::move(rectangle))
-		, text_(std::move(text))
-	{}
-
 } // namespace maxGUI

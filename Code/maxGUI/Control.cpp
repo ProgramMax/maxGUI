@@ -16,9 +16,9 @@ namespace maxGUI
 	{}
 #endif
 
-	void Control::Move(Rectangle rectangle) noexcept {
+	void Control::Move(max::Containers::Rectangle<int, int> rectangle) noexcept {
 #if defined(MAX_PLATFORM_WINDOWS)
-		SetWindowPos(window_handle_, NULL, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, SWP_NOZORDER);
+		SetWindowPos(window_handle_, NULL, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, SWP_NOZORDER);
 #endif
 #if defined(MAX_PLATFORM_LINUX)
 		(void)rectangle;
@@ -29,9 +29,5 @@ namespace maxGUI
 	void Control::OnCommand(WORD /*notification*/) noexcept
 	{}
 #endif
-
-	ControlFactory::ControlFactory(Rectangle rectangle) noexcept
-		: rectangle_(std::move(rectangle))
-	{}
 
 } // namespace maxGUI

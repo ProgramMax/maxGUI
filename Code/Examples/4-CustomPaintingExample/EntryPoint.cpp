@@ -100,7 +100,7 @@ public:
 
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
 	maxGUI::FormFactory custom_painting_form_factory(maxGUI::GetDefaultFormAllocator<CustomPaintingForm>());
-	if (!form_container.CreateForm(custom_painting_form_factory, 200, 350, "Custom painting")) {
+	if (!form_container.CreateForm(custom_painting_form_factory, 350, 200, "Custom painting")) {
 		return -1;
 	}
 

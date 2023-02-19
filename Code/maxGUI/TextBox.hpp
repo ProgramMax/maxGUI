@@ -6,8 +6,8 @@
 #define MAXGUI_TEXTBOX_HPP
 
 #include <max/Compiling/Bitmask.hpp>
+#include <max/Containers/Rectangle.hpp>
 #include <maxGUI/ControlWithText.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
 
@@ -42,7 +42,7 @@ namespace maxGUI
 
 		~TextBox() noexcept override = default;
 
-		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::string text, TextBoxStyles styles = TextBoxStyles::None) noexcept;
+		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, TextBoxStyles styles = TextBoxStyles::None) noexcept;
 
 	};
 

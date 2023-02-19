@@ -11,8 +11,8 @@
 
 #include <max/Compiling/Configuration.hpp>
 #include <max/Compiling/Bitmask.hpp>
+#include <max/Containers/Rectangle.hpp>
 #include <maxGUI/Control.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <utility>
 
 #if defined(MAX_PLATFORM_LINUX)
@@ -48,9 +48,9 @@ namespace maxGUI
 		~ProgressBar() noexcept override = default;
 
 #if defined(MAX_PLATFORM_WINDOWS)
-		static HWND Create(HWND parent_window_handle, Rectangle rectangle, int min, int max, int value, ProgressBarStyles styles = ProgressBarStyles::None) noexcept;
+		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, int min, int max, int value, ProgressBarStyles styles = ProgressBarStyles::None) noexcept;
 #elif defiend(MAX_PLATFORM_LINUX)
-		static QProgressBar* Create(QWidget* parent_window, Rectangle rectangle, int min, int max, int value, ProgressBarStyles styles = ProgressBarStyles::None) noexcept;
+		static QProgressBar* Create(QWidget* parent_window, max::Containers::Rectangle<int, int> rectangle, int min, int max, int value, ProgressBarStyles styles = ProgressBarStyles::None) noexcept;
 #endif
 
 		void SetRange(int min, int max) noexcept;

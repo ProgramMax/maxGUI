@@ -6,7 +6,7 @@
 #define MAXGUI_CONTROL_HPP
 
 #include <max/Compiling/Configuration.hpp>
-#include <maxGUI/Rectangle.hpp>
+#include <max/Containers/Rectangle.hpp>
 #include <memory>
 
 #if defined(MAX_PLATFORM_WINDOWS)
@@ -31,7 +31,7 @@ namespace maxGUI
 
 		virtual ~Control() noexcept = default;
 
-		void Move(Rectangle rectangle) noexcept;
+		void Move(max::Containers::Rectangle<int, int> rectangle) noexcept;
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		HWND window_handle_;
@@ -42,24 +42,6 @@ namespace maxGUI
 #if defined(MAX_PLATFORM_WINDOWS)
 		virtual void OnCommand(WORD notification) noexcept;
 #endif
-
-	};
-
-	class ControlFactory {
-	public:
-
-		ControlFactory(Rectangle rectangle) noexcept;
-
-		virtual ~ControlFactory() noexcept = default;
-
-
-#if defined(MAX_PLATFORM_WINDOWS)
-		virtual std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept = 0;
-#elif defined(MAX_PLATFORM_LINUX)
-		virtual std::unique_ptr<Control> CreateControl(QWidget* parent_window) const noexcept = 0;
-#endif
-
-		Rectangle rectangle_;
 
 	};
 

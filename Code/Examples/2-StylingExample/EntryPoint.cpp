@@ -24,31 +24,17 @@ class LoginForm {
 public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
-<<<<<<< Updated upstream
-		form->AddControl<maxGUI::Label>(maxGUI::Rectangle(50, 50, 500, 300), "Login");
-
-		username_textbox_ = form->AddControl<maxGUI::TextBox>(maxGUI::Rectangle(100, 50, 50, 300), "");
-=======
-		//form->AddControl<maxGUI::Label>(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{50, 50}, 300, 500), "Login");
 		form->AddControl<maxGUI::Label>(max::Containers::MakeRectangle(50, 50, 300, 500), "Login");
 
 		username_textbox_ = form->AddControl<maxGUI::TextBox>(max::Containers::MakeRectangle(50, 100, 300, 50), "");
->>>>>>> Stashed changes
 
 		// The extra optional parameter at the end is a bitmask of styles.
 		// Different controls have different optional styles available.
 		// For example, a TextBox can have the Password style which hides the character typed by the user.
-<<<<<<< Updated upstream
-		password_textbox_ = form->AddControl<maxGUI::TextBox>(maxGUI::Rectangle(150, 50, 50, 300), "", maxGUI::TextBoxStyles::Password);
-
-		// A Button can have the Default style, which allows the user to press Enter at any time to press the button.
-		form->AddControl<maxGUI::Button<LoginButtonBehavior>>(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
-=======
 		password_textbox_ = form->AddControl<maxGUI::TextBox>(max::Containers::MakeRectangle(50, 150, 300, 50), "", maxGUI::TextBoxStyles::Password);
 
 		// A Button can have the Default style, which allows the user to press Enter at any time to press the button.
 		form->AddControl<maxGUI::Button<LoginButtonBehavior>>(max::Containers::MakeRectangle(50, 250, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
->>>>>>> Stashed changes
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
@@ -63,7 +49,7 @@ public:
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
 	maxGUI::FormFactory login_form_factory(maxGUI::GetDefaultFormAllocator<LoginForm>());
 	// TODO: For controls, the style goes on the factory. Forms shouldn't be different.
-	if (!form_container.CreateForm(login_form_factory, 350, 400, "Login", maxGUI::FormStyles::FixedSize)) {
+	if (!form_container.CreateForm(login_form_factory, 400, 350, "Login", maxGUI::FormStyles::FixedSize)) {
 		return -1;
 	}
 

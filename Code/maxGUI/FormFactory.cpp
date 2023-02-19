@@ -76,7 +76,7 @@
 				int height = HIWORD(lparam);
 				int width = LOWORD(lparam);
 
-				form->OnResized(form, height, width);
+				form->OnResized(form, width, height);
 			}
 			return TRUE;
 			// TODO: This should be WM_CLOSE
@@ -128,7 +128,7 @@ namespace maxGUI {
 	{}
 
 	#if defined(MAX_PLATFORM_WINDOWS)
-		bool FormFactory::CreateForm(HINSTANCE instance_handle, int height, int width, std::string title, FormStyles styles) noexcept {
+		bool FormFactory::CreateForm(HINSTANCE instance_handle, int width, int height, std::string title, FormStyles styles) noexcept {
 			WNDCLASSEX wcx = {0};
 			wcx.cbSize = sizeof(wcx);
 			wcx.style = 0;
@@ -144,6 +144,7 @@ namespace maxGUI {
 			wcx.lpszMenuName = NULL;
 			wcx.lpszClassName = maxgui_window_class_name;
 			//wcx.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+			// TODO: Add the ability to package resources into the executable and use them
 			wcx.hIcon = reinterpret_cast< HICON >( LoadImageW( instance_handle, IDI_APPLICATION, IMAGE_ICON, 32, 32, LR_CREATEDIBSECTION ) );
 			wcx.hIconSm = reinterpret_cast< HICON >( LoadImageW( instance_handle, IDI_APPLICATION, IMAGE_ICON, 16, 16, LR_CREATEDIBSECTION ) );
 
@@ -205,8 +206,8 @@ namespace maxGUI {
 			return true;
 		}
 	#elif defined(MAX_PLATFORM_LINUX)
-		bool FormFactory::CreateForm(int height, int width, std::string title, FormStyles styles) noexcept {
-			std::unique_ptr<FormConcept> created_form = form_allocator_->AllocateForm(std::move(height), std::move(width), std::move(title), std::move(styles));
+		bool FormFactory::CreateForm(int width, int height, std::string title, FormStyles styles) noexcept {
+			std::unique_ptr<FormConcept> created_form = form_allocator_->AllocateForm(std::move(width), std::move(height), std::move(title), std::move(styles));
 			FormConcept* form = created_form.get();
 			form_container_->forms_.push_back(std::move(created_form));
 			form->OnCreated(form);

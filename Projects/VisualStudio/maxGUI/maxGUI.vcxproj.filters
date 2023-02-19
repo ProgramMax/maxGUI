@@ -43,6 +43,9 @@
     <Filter Include="Dependencies\max\Compiling\Configuration\Platform">
       <UniqueIdentifier>{909b7e6b-91df-47d2-99bd-96971330bb64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dependencies\max\Containers">
+      <UniqueIdentifier>{fe5511a1-43af-4dac-829d-83da64dce6aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Docs\README.md">
@@ -92,6 +95,12 @@
     <None Include="..\..\..\Dependencies\max\AUTHORS">
       <Filter>Dependencies\max</Filter>
     </None>
+    <None Include="..\..\..\Dependencies\max\Code\max\Containers\Point.inl">
+      <Filter>Dependencies\max\Containers</Filter>
+    </None>
+    <None Include="..\..\..\Dependencies\max\Code\max\Containers\Rectangle.inl">
+      <Filter>Dependencies\max\Containers</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml">
@@ -133,9 +142,6 @@
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\Rectangle.cpp">
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp">
@@ -201,9 +207,6 @@
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithText.hpp">
-      <Filter>Code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Code\maxGUI\Rectangle.hpp">
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithText.hpp">
@@ -282,6 +285,18 @@
       <Filter>Dependencies\max\Compiling\Configuration\Platform</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Exists.hpp">
+      <Filter>Dependencies\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Containers\Point.hpp">
+      <Filter>Dependencies\max\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Containers\Rectangle.hpp">
+      <Filter>Dependencies\max\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\AliasingOptimizations.hpp">
+      <Filter>Dependencies\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\CurrentVersionNamespace.hpp">
       <Filter>Dependencies\max\Compiling</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,6 +7,7 @@
 
 namespace {
 
+	// TODO: Use max's Exists here
 	template< typename T >
 	struct HasOnCreated {
 		typedef char yes[1];
@@ -60,16 +61,16 @@ namespace maxGUI {
 		{}
 	#elif defined(MAX_PLATFORM_LINUX)
 		template<typename T>
-		FormModel<T>::FormModel(std::unique_ptr<T> form, int height, int width, std::string title, FormStyles styles) noexcept
-			: FormConcept(std::move(height), std::move(width), std::move(title), std::move(styles))
+		FormModel<T>::FormModel(std::unique_ptr<T> form, int width, int height, std::string title, FormStyles styles) noexcept
+			: FormConcept(std::move(width), std::move(height), std::move(title), std::move(styles))
 			, form_(std::move(form))
 		{}
 	#endif
 
 	template<typename T>
-	void FormModel<T>::OnResized(FormConcept* form, int height, int width) noexcept {
+	void FormModel<T>::OnResized(FormConcept* form, int width, int height) noexcept {
 		if constexpr (HasOnResized<T>::value) {
-			form_->OnResized(std::move(form), std::move(height), std::move(width));
+			form_->OnResized(std::move(form), std::move(width), std::move(height));
 		}
 	}
 
