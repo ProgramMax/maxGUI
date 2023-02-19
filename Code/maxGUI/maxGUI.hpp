@@ -22,4 +22,12 @@
 #include <maxGUI/RadioButton.hpp>
 #include <maxGUI/TextBox.hpp>
 
+#include <max/Compiling/Configuration.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#define MAXGUI_PLATFORM_NEWLINE "\r\n"
+#elif defined(MAX_PLATFORM_LINUX)
+	#define MAXGUI_PLATFORM_NEWLINE "\n"
+#endif
+
 #endif // #ifndef MAXGUI_MAXGUI_HPP

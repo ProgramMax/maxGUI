@@ -52,7 +52,6 @@
     <ClCompile Include="..\..\..\Code\maxGUI\FormAllocatorConcept.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormConcept.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormContainer.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\FormFactory.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Frame.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Label.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ListBox.cpp" />
@@ -74,7 +73,6 @@
     <ClInclude Include="..\..\..\Code\maxGUI\FormAllocatorModel.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormConcept.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormContainer.hpp" />
-    <ClInclude Include="..\..\..\Code\maxGUI\FormFactory.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormModel.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormStyles.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Frame.hpp" />

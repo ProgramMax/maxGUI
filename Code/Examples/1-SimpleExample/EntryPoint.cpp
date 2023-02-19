@@ -11,38 +11,32 @@ public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
 		// Add controls inside the Form's OnCreated().
-		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(max::Containers::MakeRectangle(0, 0, 100, 100), "Multi-line\r\ntest");
+		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(max::Containers::MakeRectangle(0, 0, 100, 100), "Multi-line" MAXGUI_PLATFORM_NEWLINE "test");
 	}
 
 	void OnResized(maxGUI::FormConcept* /*form*/, int new_width, int new_height) noexcept {
 		// In this example, make the multiline textbox take the entire area.
-		// TODO: Move Rectangle into max.
 		multiline_textbox_->Move(max::Containers::MakeRectangle(0, 0, new_width, new_height));
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
+		// Post an "exit" message to the message pump to close the program.
 		maxGUI::PostExitMessage(0);
 	}
 
-	//maxGUI::Control* multiline_textbox_ = nullptr;
 	maxGUI::MultilineTextBox* multiline_textbox_ = nullptr;
 };
+
 
 // Name your function EXACTLY this, keep it in the global namespace, and make sure it has noexcept.
 // If you get a linker error of an unresolved external symbol for maxGUIEntryPoint(), you did this wrong.
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
 	// Create the form
-	maxGUI::FormFactory custom_form_factory(maxGUI::GetDefaultFormAllocator<CustomForm>());
-	// TODO: It is weird that the FormContainer has the CreateForm function instead of the FormFactory.
-	// Controls are similar. form.AddControl(factory). Maybe that is okay since it is "add" not "create"?
-	if (!form_container.CreateForm(custom_form_factory, 600, 400, "Simple Example")) {
+	auto form_allocator = maxGUI::GetDefaultFormAllocator<CustomForm>();
+	if (!form_container.CreateForm<CustomForm>(600, 400, "Simple Example", form_allocator.get())) {
 		return -1;
 	}
-	// IMPORTANT: Keep the form factory alive long enough for the form to be created by the message pump
-	// In this example, the form factory's lifetime ends at the } after the message pump has exited.
-	// You could choose to use the form's OnCreated() if you wanted.
 
-	// The message pump will loop until we call maxGUI::PostExitMessage(), which is the default behavior
-	// when a form is closed.
+	// The message pump will loop until we call maxGUI::PostExitMessage().
 	return maxGUI::MessagePump(form_container);
 }

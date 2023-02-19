@@ -22,6 +22,7 @@
 
 #include <maxGUI/FormConcept.hpp>
 #include <maxGUI/FormStyles.hpp>
+#include <maxGUI/FormAllocatorConcept.hpp>
 
 namespace maxGUI
 {
@@ -35,11 +36,8 @@ namespace maxGUI
 				explicit FormContainer(QApplication* app) noexcept;
 		#endif
 
-		template <typename FormFactoryType>
-		bool CreateForm(FormFactoryType& form_factory, int width, int height, std::string title) noexcept;
-
-		template <typename FormFactoryType>
-		bool CreateForm(FormFactoryType& form_factory, int width, int height, std::string title, FormStyles styles) noexcept;
+		template <typename FormType>
+		bool CreateForm(int width, int height, std::string title, FormAllocatorConcept* form_allocator, FormStyles styles = FormStyles::None) noexcept;
 
 		std::vector<std::unique_ptr<FormConcept>> forms_;
 
@@ -48,6 +46,26 @@ namespace maxGUI
 		#elif defined(MAX_PLATFORM_LINUX)
 			QApplication* app_;
 		#endif
+
+	//private:
+
+#if defined(MAX_PLATFORM_WINDOWS)
+			struct CreationParameters {
+				CreationParameters(FormAllocatorConcept* form_allocator, FormContainer* form_container) noexcept
+					: form_allocator_(std::move(form_allocator))
+					, form_container_(std::move(form_container))
+				{}
+
+				FormAllocatorConcept* form_allocator_;
+				FormContainer* form_container_;
+			};
+
+			static LPCTSTR maxgui_window_class_name;
+			static LPCTSTR maxgui_creation_parameters_property_name;
+			static LPCTSTR maxgui_formconcept_property_name;
+
+			static LRESULT CALLBACK BaseWindowProcedure(HWND window_handle, UINT message, WPARAM wparam, LPARAM lparam) noexcept;
+#endif
 
 	};
 
