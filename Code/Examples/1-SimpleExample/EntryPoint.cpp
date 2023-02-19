@@ -11,13 +11,13 @@ public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
 		// Add controls inside the Form's OnCreated().
-		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(maxGUI::Rectangle(0, 0, 100, 100), "Multi-line\r\ntest");
+		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{0, 0}, 100, 100), "Multi-line\r\ntest");
 	}
 
-	void OnResized(maxGUI::FormConcept* /*form*/, int new_height, int new_width) noexcept {
+	void OnResized(maxGUI::FormConcept* /*form*/, int new_width, int new_height) noexcept {
 		// In this example, make the multiline textbox take the entire area.
 		// TODO: Move Rectangle into max.
-		multiline_textbox_->Move(maxGUI::Rectangle(0, 0, new_height, new_width));
+		multiline_textbox_->Move(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{0, 0}, new_width, new_height));
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
@@ -35,7 +35,7 @@ int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
 	maxGUI::FormFactory custom_form_factory(maxGUI::GetDefaultFormAllocator<CustomForm>());
 	// TODO: It is weird that the FormContainer has the CreateForm function instead of the FormFactory.
 	// Controls are similar. form.AddControl(factory). Maybe that is okay since it is "add" not "create"?
-	if (!form_container.CreateForm(custom_form_factory, 400, 600, "Simple Example")) {
+	if (!form_container.CreateForm(custom_form_factory, 600, 400, "Simple Example")) {
 		return -1;
 	}
 	// IMPORTANT: Keep the form factory alive long enough for the form to be created by the message pump

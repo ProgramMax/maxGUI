@@ -6,7 +6,6 @@
 #define MAXGUI_CONTROLWITHLIST_HPP
 
 #include <maxGUI/Control.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <vector>
 #ifndef WIN32_LEAN_AND_MEAN
@@ -25,17 +24,6 @@ namespace maxGUI
 		~ControlWithList() noexcept override = default;
 
 		virtual void OnSelectionChanged(int newly_selected_index) noexcept;
-
-	};
-
-	class ControlWithListFactory : public ControlFactory {
-	public:
-
-		ControlWithListFactory(Rectangle rectangle, std::vector<std::string> list) noexcept;
-
-		~ControlWithListFactory() noexcept override = default;
-
-		std::vector<std::string> list_;
 
 	};
 

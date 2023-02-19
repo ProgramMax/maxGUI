@@ -36,10 +36,10 @@ namespace maxGUI
 		#endif
 
 		template <typename FormFactoryType>
-		bool CreateForm(FormFactoryType& form_factory, int height, int width, std::string title) noexcept;
+		bool CreateForm(FormFactoryType& form_factory, int width, int height, std::string title) noexcept;
 
 		template <typename FormFactoryType>
-		bool CreateForm(FormFactoryType& form_factory, int height, int width, std::string title, FormStyles styles) noexcept;
+		bool CreateForm(FormFactoryType& form_factory, int width, int height, std::string title, FormStyles styles) noexcept;
 
 		std::vector<std::unique_ptr<FormConcept>> forms_;
 

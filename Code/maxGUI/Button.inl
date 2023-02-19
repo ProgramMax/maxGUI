@@ -27,7 +27,7 @@ namespace maxGUI
 #else
 	template< class Behavior >
 #endif
-	HWND Button< Behavior >::Create(HWND parent_window_handle, Rectangle rectangle, std::string text, ButtonStyles styles) noexcept {
+	HWND Button< Behavior >::Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, ButtonStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
@@ -47,7 +47,7 @@ namespace maxGUI
 
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
 
-		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 #endif
 

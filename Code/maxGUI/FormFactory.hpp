@@ -35,9 +35,9 @@ namespace maxGUI
 		FormFactory& operator =(const FormFactory& rhs) = delete;
 
 		#if defined(MAX_PLATFORM_WINDOWS)
-			bool CreateForm(HINSTANCE instance_handle, int height, int width, std::string title, FormStyles styles) noexcept;
+			bool CreateForm(HINSTANCE instance_handle, int width, int height, std::string title, FormStyles styles) noexcept;
 		#elif defined(MAX_PLATFORM_LINUX)
-			bool CreateForm(int height, int width, std::string title, FormStyles style) noexcept;
+			bool CreateForm(int width, int height, std::string title, FormStyles style) noexcept;
 		#endif
 
 		// On Windows, this is set by FormContainer::CreateForm() and needs to remain set until WM_CREATE is received

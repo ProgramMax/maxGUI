@@ -8,8 +8,7 @@ CXX_SRCS = \
 	../../Code/maxGUI/FormConcept.cpp \
 	../../Code/maxGUI/FormContainer.cpp \
 	../../Code/maxGUI/FormFactory.cpp \
-	../../Code/maxGUI/MultilineTextBox.cpp \
-	../../Code/maxGUI/Rectangle.cpp
+	../../Code/maxGUI/MultilineTextBox.cpp
 	#../../Code/maxGUI/CheckBox.cpp \
 	#../../Code/maxGUI/ControlWithList.cpp \
 	#../../Code/maxGUI/DropDownBox.cpp \

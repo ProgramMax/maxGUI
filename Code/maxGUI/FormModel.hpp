@@ -32,11 +32,11 @@ namespace maxGUI
 		#if defined(MAX_PLATFORM_WINDOWS)
 			FormModel(std::unique_ptr<T> form, HWND window_handle) noexcept;
 		#elif defined(MAX_PLATFORM_LINUX)
-			FormModel(std::unique_ptr<T> form, int height, int width, std::string title, FormStyles styles) noexcept;
+			FormModel(std::unique_ptr<T> form, int width, int height, std::string title, FormStyles styles) noexcept;
 		#endif
 		~FormModel() noexcept override = default;
 
-		void OnResized(FormConcept* form, int height, int width) noexcept override;
+		void OnResized(FormConcept* form, int width, int height) noexcept override;
 		void OnClosed(FormConcept* form) noexcept override;
 		void OnCreated(FormConcept* form) noexcept override;
 		#if defined(MAX_PLATFORM_WINDOWS)

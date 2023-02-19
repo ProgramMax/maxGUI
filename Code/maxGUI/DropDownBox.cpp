@@ -21,7 +21,7 @@ namespace maxGUI
 		}
 	}
 	
-	HWND DropDownBox::Create(HWND parent_window_handle, Rectangle rectangle, std::vector<std::string> list, DropDownBoxStyles styles) noexcept {
+	HWND DropDownBox::Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::vector<std::string> list, DropDownBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | CBS_DROPDOWN | CBS_HASSTRINGS /*| CBS_DROPDOWNLIST*/;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
@@ -32,7 +32,7 @@ namespace maxGUI
 			win32_styles |= WS_DISABLED;
 		}
 		#pragma warning(pop)
-		HWND window_handle = CreateWindowEx(0, TEXT("COMBOBOX"), TEXT(""), win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		HWND window_handle = CreateWindowEx(0, TEXT("COMBOBOX"), TEXT(""), win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 
 		for (const auto& text : list) {
 			Win32String win32_text = Utf8ToWin32String(text);

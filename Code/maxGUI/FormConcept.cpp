@@ -14,7 +14,7 @@ namespace maxGUI {
 			: window_handle_(std::move(window_handle))
 		{}
 	#elif defined(MAX_PLATFORM_LINUX)
-		FormConcept::FormConcept(int height, int width, std::string title, FormStyles styles) noexcept
+		FormConcept::FormConcept(int width, int height, std::string title, FormStyles styles) noexcept
 			: window_()
 		{
 			window_.setFixedSize(width, height);

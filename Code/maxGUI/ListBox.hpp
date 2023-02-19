@@ -10,8 +10,8 @@
 #if defined(MAX_PLATFORM_WINDOWS)
 
 #include <max/Compiling/Bitmask.hpp>
+#include <max/Containers/Rectangle.hpp>
 #include <maxGUI/ControlWithList.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
 #include <vector>
@@ -41,7 +41,7 @@ namespace maxGUI
 
 		~ListBox() noexcept override = default;
 
-		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles = ListBoxStyles::None) noexcept;
+		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::vector<std::string> list, ListBoxStyles styles = ListBoxStyles::None) noexcept;
 
 	//protected:
 

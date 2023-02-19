@@ -6,11 +6,11 @@
 #define MAXGUI_LABEL_HPP
 
 #include <max/Compiling/Configuration.hpp>
+#include <max/Containers/Rectangle.hpp>
 
 #if defined(MAX_PLATFORM_WINDOWS)
 
 #include <maxGUI/ControlWithText.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
 
@@ -25,7 +25,7 @@ namespace maxGUI
 
 		~Label() noexcept override = default;
 
-		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::string text) noexcept;
+		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text) noexcept;
 
 	};
 
