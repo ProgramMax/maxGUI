@@ -13,7 +13,6 @@
 #include <maxGUI/FormAllocatorModel.hpp>
 #include <maxGUI/FormConcept.hpp>
 #include <maxGUI/FormContainer.hpp>
-#include <maxGUI/FormFactory.hpp>
 #include <maxGUI/Frame.hpp>
 #include <maxGUI/Label.hpp>
 #include <maxGUI/ListBox.hpp>
