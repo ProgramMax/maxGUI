@@ -11,13 +11,13 @@ public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
 		// Add controls inside the Form's OnCreated().
-		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{0, 0}, 100, 100), "Multi-line\r\ntest");
+		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(max::Containers::MakeRectangle(0, 0, 100, 100), "Multi-line\r\ntest");
 	}
 
 	void OnResized(maxGUI::FormConcept* /*form*/, int new_width, int new_height) noexcept {
 		// In this example, make the multiline textbox take the entire area.
 		// TODO: Move Rectangle into max.
-		multiline_textbox_->Move(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{0, 0}, new_width, new_height));
+		multiline_textbox_->Move(max::Containers::MakeRectangle(0, 0, new_width, new_height));
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {

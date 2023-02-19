@@ -18,6 +18,11 @@ namespace Containers
 		, Height(std::move(Height))
 	{}
 
+	template< typename PointOrdinateType, typename LengthType >
+	Rectangle< PointOrdinateType, LengthType > MakeRectangle( PointOrdinateType left, PointOrdinateType top, LengthType width, LengthType height ) noexcept {
+		return Rectangle( CartesianPoint< PointOrdinateType, 2 >{ left, top }, width, height );
+	}
+
 } // namespace Containers
 } // namespace v0
 } // namespace max

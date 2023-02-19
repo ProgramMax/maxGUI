@@ -32,6 +32,9 @@ namespace Containers
 
 	};
 
+	template< typename PointOrdinateType, typename LengthType >
+	Rectangle< PointOrdinateType, LengthType > MakeRectangle( PointOrdinateType left, PointOrdinateType top, LengthType width, LengthType height ) noexcept;
+
 } // namespace Containers
 } // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 MAX_CURRENT_VERSION_NAMESPACE_END( v0 )

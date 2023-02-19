@@ -24,17 +24,17 @@ class LoginForm {
 public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
-		form->AddControl<maxGUI::Label>(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{50, 50}, 300, 500), "Login");
+		form->AddControl<maxGUI::Label>(max::Containers::MakeRectangle(50, 50, 300, 500), "Login");
 
-		username_textbox_ = form->AddControl<maxGUI::TextBox>(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{50, 100}, 300, 50), "");
+		username_textbox_ = form->AddControl<maxGUI::TextBox>(max::Containers::MakeRectangle(50, 100, 300, 50), "");
 
 		// The extra optional parameter at the end is a bitmask of styles.
 		// Different controls have different optional styles available.
 		// For example, a TextBox can have the Password style which hides the character typed by the user.
-		password_textbox_ = form->AddControl<maxGUI::TextBox>(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{50, 150}, 300, 50), "", maxGUI::TextBoxStyles::Password);
+		password_textbox_ = form->AddControl<maxGUI::TextBox>(max::Containers::MakeRectangle(50, 150, 300, 50), "", maxGUI::TextBoxStyles::Password);
 
 		// A Button can have the Default style, which allows the user to press Enter at any time to press the button.
-		form->AddControl<maxGUI::Button<LoginButtonBehavior>>(max::Containers::Rectangle(max::Containers::CartesianPoint<int, 2>{50, 250}, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
+		form->AddControl<maxGUI::Button<LoginButtonBehavior>>(max::Containers::MakeRectangle(50, 250, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
