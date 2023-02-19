@@ -48,8 +48,6 @@ public:
 
 
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
-	maxGUI::FormFactory login_form_factory(maxGUI::GetDefaultFormAllocator<LoginForm>());
-	// TODO: For controls, the style goes on the factory. Forms shouldn't be different.
 	auto form_allocator = maxGUI::GetDefaultFormAllocator<LoginForm>();
 	if (!form_container.CreateForm<LoginForm>(400, 350, "Login", form_allocator.get(), maxGUI::FormStyles::FixedSize)) {
 		return -1;
