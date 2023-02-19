@@ -24,7 +24,7 @@ class LoginForm {
 public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
-		form->AddControl2<maxGUI::Label>(maxGUI::Rectangle(50, 50, 500, 300), "Login");
+		form->AddControl<maxGUI::Label>(maxGUI::Rectangle(50, 50, 500, 300), "Login");
 
 		username_textbox_ = form->AddControl<maxGUI::TextBox>(maxGUI::Rectangle(100, 50, 50, 300), "");
 
@@ -34,7 +34,7 @@ public:
 		password_textbox_ = form->AddControl<maxGUI::TextBox>(maxGUI::Rectangle(150, 50, 50, 300), "", maxGUI::TextBoxStyles::Password);
 
 		// A Button can have the Default style, which allows the user to press Enter at any time to press the button.
-		form->AddControl2<maxGUI::Button<LoginButtonBehavior>>(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
+		form->AddControl<maxGUI::Button<LoginButtonBehavior>>(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
