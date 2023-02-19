@@ -13,6 +13,24 @@ namespace maxGUI
 		: ControlWithText(std::move(window_handle))
 	{}
 
+	HWND CheckBox::Create(HWND parent_window_handle, Rectangle rectangle, std::string text, CheckBoxStyles styles) noexcept {
+		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_CHECKBOX;
+		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
+		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
+		// See https://developercommunity.visualstudio.com/t/C26813-incompatible-with-enum-class/10145182
+		#pragma warning(push)
+		#pragma warning(disable: 26813)
+		if ((styles & CheckBoxStyles::Disabled) == CheckBoxStyles::Disabled) {
+			win32_styles |= WS_DISABLED;
+		}
+		if ((styles & CheckBoxStyles::Flat) == CheckBoxStyles::Flat) {
+			win32_styles |= BS_FLAT;
+		}
+		#pragma warning(pop)
+		Win32String win32_text = Utf8ToWin32String(std::move(text));
+		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+	}
+
 	void CheckBox::OnPressed() noexcept {
 		if (IsChecked()) {
 			Uncheck();
@@ -38,24 +56,6 @@ namespace maxGUI
 
 	void CheckBox::Uncheck() noexcept {
 		SendMessage(window_handle_, BM_SETCHECK, BST_UNCHECKED, 0);
-	}
-
-	HWND CheckBoxFactoryImplementationDetails::CreateCheckBox(std::string text, Rectangle rectangle, CheckBoxStyles styles, HWND parent_window_handle) noexcept {
-		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_CHECKBOX;
-		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
-		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
-		// See https://developercommunity.visualstudio.com/t/C26813-incompatible-with-enum-class/10145182
-		#pragma warning(push)
-		#pragma warning(disable: 26813)
-		if ((styles & CheckBoxStyles::Disabled) == CheckBoxStyles::Disabled) {
-			win32_styles |= WS_DISABLED;
-		}
-		if ((styles & CheckBoxStyles::Flat) == CheckBoxStyles::Flat) {
-			win32_styles |= BS_FLAT;
-		}
-		#pragma warning(pop)
-		Win32String win32_text = Utf8ToWin32String(std::move(text));
-		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 
 } //  namespace maxGUI

@@ -41,44 +41,11 @@ namespace maxGUI
 
 		~ListBox() noexcept override = default;
 
+		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles = ListBoxStyles::None) noexcept;
+
 	//protected:
 
 		void OnCommand(WORD notification) noexcept override;
-
-	};
-
-	class ListBoxFactoryImplementationDetails
-	{
-	public:
-
-		static HWND CreateListBox(Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles, HWND parent_window_handle) noexcept;
-
-	};
-	
-	template <typename ListBoxType = ListBox>
-	class ListBoxFactory : public ControlWithListFactory
-	{
-	public:
-
-		ListBoxFactory(Rectangle rectangle, std::vector<std::string> list) noexcept
-			: ListBoxFactory(std::move(rectangle), std::move(list), ListBoxStyles::None)
-		{}
-
-		ListBoxFactory(Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles) noexcept
-			: ControlWithListFactory(std::move(rectangle), std::move(list))
-			, styles_(std::move(styles))
-		{}
-
-		~ListBoxFactory() noexcept override = default;
-
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = ListBoxFactoryImplementationDetails::CreateListBox(rectangle_, list_, styles_, std::move(parent_window_handle));
-			return std::make_unique<ListBoxType>(std::move(window_handle));
-		}
-
-	private:
-
-		ListBoxStyles styles_;
 
 	};
 

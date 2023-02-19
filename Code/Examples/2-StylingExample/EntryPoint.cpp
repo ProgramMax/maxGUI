@@ -24,29 +24,25 @@ class LoginForm {
 public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
-		maxGUI::LabelFactory<> welcome_label_factory(maxGUI::Rectangle(50, 50, 500, 300), "Login");
-		form->AddControl(&welcome_label_factory);
+		form->AddControl2<maxGUI::Label>(maxGUI::Rectangle(50, 50, 500, 300), "Login");
 
-		maxGUI::TextBoxFactory<> username_textbox_factory(maxGUI::Rectangle(100, 50, 50, 300), "");
-		username_textbox_ = form->AddControl(&username_textbox_factory);
+		username_textbox_ = form->AddControl<maxGUI::TextBox>(maxGUI::Rectangle(100, 50, 50, 300), "");
 
 		// The extra optional parameter at the end is a bitmask of styles.
 		// Different controls have different optional styles available.
 		// For example, a TextBox can have the Password style which hides the character typed by the user.
-		maxGUI::TextBoxFactory<> password_textbox_factory(maxGUI::Rectangle(150, 50, 50, 300), "", maxGUI::TextBoxStyles::Password);
-		password_textbox_ = form->AddControl(&password_textbox_factory);
+		password_textbox_ = form->AddControl<maxGUI::TextBox>(maxGUI::Rectangle(150, 50, 50, 300), "", maxGUI::TextBoxStyles::Password);
 
 		// A Button can have the Default style, which allows the user to press Enter at any time to press the button.
-		maxGUI::ButtonFactory<maxGUI::Button<LoginButtonBehavior>> login_button_factory(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
-		form->AddControl(&login_button_factory);
+		form->AddControl2<maxGUI::Button<LoginButtonBehavior>>(maxGUI::Rectangle(250, 50, 100, 100), "Login", maxGUI::ButtonStyles::Default | maxGUI::ButtonStyles::Disabled);
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
 		maxGUI::PostExitMessage(0);
 	}
 
-	maxGUI::Control* username_textbox_ = nullptr;
-	maxGUI::Control* password_textbox_ = nullptr;
+	maxGUI::TextBox* username_textbox_ = nullptr;
+	maxGUI::TextBox* password_textbox_ = nullptr;
 
 };
 

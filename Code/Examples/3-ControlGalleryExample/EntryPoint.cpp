@@ -23,42 +23,31 @@ class ControlGalleryForm {
 public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
-		maxGUI::ButtonFactory<maxGUI::Button<CustomButtonBehavior>> custom_button_factory(maxGUI::Rectangle(25, 25, 50, 150), "Custom Button");
-		form->AddControl(&custom_button_factory);
+		form->AddControl<maxGUI::Button<CustomButtonBehavior>>(maxGUI::Rectangle(25, 25, 50, 150), "Custom Button");
 
 		std::vector<std::string> dropdown_options{"Option 1", "Option 2", "Option 3"};
-		maxGUI::DropDownBoxFactory<> dropdownbox_factory(maxGUI::Rectangle(100, 25, 250, 300), std::move(dropdown_options));
-		form->AddControl(&dropdownbox_factory);
+		form->AddControl<maxGUI::DropDownBox>(maxGUI::Rectangle(100, 25, 250, 300), std::move(dropdown_options));
 
 		// TODO: Add the radio buttons inside the frame
-		maxGUI::FrameFactory<> frame_factory(maxGUI::Rectangle(150, 25, 50, 300), "Frame");
-		form->AddControl(&frame_factory);
+		form->AddControl<maxGUI::Frame>(maxGUI::Rectangle(150, 25, 50, 300), "Frame");
 
-		maxGUI::LabelFactory<> label_factory(maxGUI::Rectangle(225, 25, 25, 300), "Label");
-		form->AddControl(&label_factory);
+		form->AddControl<maxGUI::Label>(maxGUI::Rectangle(225, 25, 25, 300), "Label");
 
 		std::vector<std::string> listbox_options{"Item 1", "Item 2", "Item 3"};
-		maxGUI::ListBoxFactory<> listbox_factory(maxGUI::Rectangle(275, 25, 150, 300), std::move(listbox_options));
-		form->AddControl(&listbox_factory);
+		form->AddControl<maxGUI::ListBox>(maxGUI::Rectangle(275, 25, 150, 300), std::move(listbox_options));
 
-		maxGUI::MultilineTextBoxFactory<> multilinetextbox_factory(maxGUI::Rectangle(450, 25, 150, 300), "Multiline\r\ntextbox");
-		form->AddControl(&multilinetextbox_factory);
+		form->AddControl<maxGUI::MultilineTextBox>(maxGUI::Rectangle(450, 25, 150, 300), "Multiline\r\ntextbox");
 
-		maxGUI::ProgressBarFactory<> progressbar_factory(maxGUI::Rectangle(625, 25, 25, 300), 0, 100, 50);
-		form->AddControl(&progressbar_factory);
+		form->AddControl<maxGUI::ProgressBar>(maxGUI::Rectangle(625, 25, 25, 300), 0, 100, 50);
 
-		maxGUI::CheckBoxFactory<> checkbox_factory(maxGUI::Rectangle(675, 25, 25, 300), "Check 1");
-		form->AddControl(&checkbox_factory);
+		form->AddControl<maxGUI::CheckBox>(maxGUI::Rectangle(675, 25, 25, 300), "Check 1");
 
 		// When using multiple RadioButtons that belong to one group, be sure to add the FirstInGroup style to the first option.
-		maxGUI::RadioButtonFactory<> radiobutton_factory(maxGUI::Rectangle(725, 25, 25, 300), "Option 1", maxGUI::RadioButtonStyles::FirstInGroup);
-		form->AddControl(&radiobutton_factory);
+		form->AddControl<maxGUI::RadioButton>(maxGUI::Rectangle(725, 25, 25, 300), "Option 1", maxGUI::RadioButtonStyles::FirstInGroup);
 
-		maxGUI::RadioButtonFactory<> radiobutton_factory2(maxGUI::Rectangle(750, 25, 25, 300), "Option 2");
-		form->AddControl(&radiobutton_factory2);
+		form->AddControl<maxGUI::RadioButton>(maxGUI::Rectangle(750, 25, 25, 300), "Option 2");
 
-		maxGUI::TextBoxFactory<> textbox_factory(maxGUI::Rectangle(800, 25, 25, 300), "Textbox");
-		form->AddControl(&textbox_factory);
+		form->AddControl<maxGUI::TextBox>(maxGUI::Rectangle(800, 25, 25, 300), "Textbox");
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {

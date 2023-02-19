@@ -14,15 +14,7 @@ namespace maxGUI
 		: ControlWithList(std::move(window_handle))
 	{}
 
-	void ListBox::OnCommand(WORD notification) noexcept {
-		if (notification == LBN_SELCHANGE)
-		{
-			int index = static_cast<int>(SendMessage(window_handle_, LB_GETCURSEL, 0, 0));
-			OnSelectionChanged(index);
-		}
-	}
-
-	HWND ListBoxFactoryImplementationDetails::CreateListBox(Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles, HWND parent_window_handle) noexcept {
+	HWND ListBox::Create(HWND parent_window_handle, Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | LBS_STANDARD;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
@@ -47,6 +39,14 @@ namespace maxGUI
 		}
 
 		return window_handle;
+	}
+
+	void ListBox::OnCommand(WORD notification) noexcept {
+		if (notification == LBN_SELCHANGE)
+		{
+			int index = static_cast<int>(SendMessage(window_handle_, LB_GETCURSEL, 0, 0));
+			OnSelectionChanged(index);
+		}
 	}
 
 } //  namespace maxGUI
