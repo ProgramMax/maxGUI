@@ -50,7 +50,7 @@ namespace maxGUI
 			HWND window_handle = T::Create(window_handle_, std::forward<Params>(params)...);
 			auto control_ptr = std::make_unique<T>(std::move(window_handle));
 #elif defined(MAX_PLATFORM_LINUX)
-			QWidget* widget = T::Create(window_, std::forward<Params>(params)...);
+			QWidget* widget = T::Create(&window_, std::forward<Params>(params)...);
 			auto control_ptr = std::make_unique<T>(std::move(widget));
 #endif
 			T* raw_control_ptr = control_ptr.get();
