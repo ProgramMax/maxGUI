@@ -41,46 +41,13 @@ namespace maxGUI
 
 		~RadioButton() noexcept override = default;
 
+		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::string text, RadioButtonStyles styles = RadioButtonStyles::None) noexcept;
+
 		virtual void OnPressed() noexcept;
 
 	//protected:
 
 		void OnCommand(WORD notification) noexcept override;
-
-	};
-
-	class RadioButtonFactoryImplementationDetails
-	{
-	public:
-
-		static HWND CreateRadioButton(std::string text, Rectangle rectangle, RadioButtonStyles styles, HWND parent_window_handle) noexcept;
-
-	};
-	
-	template <typename RadioButtonType = RadioButton>
-	class RadioButtonFactory : public ControlWithTextFactory
-	{
-	public:
-
-		RadioButtonFactory(Rectangle rectangle, std::string text) noexcept
-			: RadioButtonFactory(std::move(rectangle), std::move(text), RadioButtonStyles::None)
-		{}
-
-		RadioButtonFactory(Rectangle rectangle, std::string text, RadioButtonStyles styles) noexcept
-			: ControlWithTextFactory(std::move(rectangle), std::move(text))
-			, styles_(std::move(styles))
-		{}
-
-		~RadioButtonFactory() noexcept override = default;
-
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = RadioButtonFactoryImplementationDetails::CreateRadioButton(text_, rectangle_, styles_, std::move(parent_window_handle));
-			return std::make_unique<RadioButtonType>(std::move(window_handle));
-		}
-
-	private:
-
-		RadioButtonStyles styles_;
 
 	};
 

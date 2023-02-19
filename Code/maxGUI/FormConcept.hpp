@@ -44,8 +44,23 @@ namespace maxGUI
 			virtual LRESULT OnWindowMessage(FormConcept* form, UINT message, WPARAM wparam, LPARAM lparam) noexcept = 0;
 		#endif
 
-		// TODO: Can this be templated so the factories don't need to be templated?
-		Control* AddControl(const ControlFactory* control_factory) noexcept;
+		template<typename T, typename... Params>
+		T* AddControl(Params&&... params) noexcept {
+#if defined(MAX_PLATFORM_WINDOWS)
+			HWND window_handle = T::Create(window_handle_, std::forward<Params>(params)...);
+			auto control_ptr = std::make_unique<T>(std::move(window_handle));
+#elif defined(MAX_PLATFORM_LINUX)
+			auto* widget = T::Create(&window_, std::forward<Params>(params)...);
+			auto control_ptr = std::make_unique<T>(std::move(widget));
+#endif
+			T* raw_control_ptr = control_ptr.get();
+			controls_.push_back(std::move(control_ptr));
+#if defined(MAX_PLATFORM_LINUX)
+			// TODO: We should only show after all controls are added.
+			window_.show();
+#endif
+			return raw_control_ptr;
+		}
 
 		#if defined(MAX_PLATFORM_WINDOWS)
 			HWND window_handle_;

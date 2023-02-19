@@ -15,7 +15,7 @@ namespace maxGUI
 		: ControlWithText(std::move(window_handle))
 	{}
 	
-	HWND TextBoxFactoryImplementationDetails::CreateTextBox(std::string text, Rectangle rectangle, TextBoxStyles styles, HWND parent_window_handle) noexcept {
+	HWND TextBox::Create(HWND parent_window_handle, Rectangle rectangle, std::string text, TextBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | ES_AUTOHSCROLL;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.

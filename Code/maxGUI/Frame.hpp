@@ -25,31 +25,7 @@ namespace maxGUI
 
 		~Frame() noexcept override = default;
 
-	};
-
-	class FrameFactoryImplementationDetails
-	{
-	public:
-
-		static HWND CreateFrame(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept;
-
-	};
-	
-	template <typename FrameType = Frame>
-	class FrameFactory : public ControlWithTextFactory
-	{
-	public:
-
-		FrameFactory(Rectangle rectangle, std::string text) noexcept
-			: ControlWithTextFactory(std::move(rectangle), std::move(text))
-		{}
-
-		~FrameFactory() noexcept override = default;
-
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = FrameFactoryImplementationDetails::CreateFrame(text_, rectangle_, std::move(parent_window_handle));
-			return std::make_unique<FrameType>(std::move(window_handle));
-		}
+		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::string text) noexcept;
 
 	};
 

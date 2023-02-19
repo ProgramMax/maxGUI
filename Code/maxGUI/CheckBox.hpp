@@ -39,6 +39,8 @@ namespace maxGUI
 
 		~CheckBox() noexcept override = default;
 
+		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::string text, CheckBoxStyles styles = CheckBoxStyles::None) noexcept;
+
 		virtual void OnPressed() noexcept;
 
 		bool IsChecked() const noexcept;
@@ -51,42 +53,6 @@ namespace maxGUI
 
 	};
 	
-	class CheckBoxFactoryImplementationDetails
-	{
-	public:
-
-		static HWND CreateCheckBox(std::string text, Rectangle rectangle, CheckBoxStyles styles, HWND parent_window_handle) noexcept;
-
-	};
-
-	template <typename CheckBoxType = CheckBox>
-	class CheckBoxFactory : public ControlWithTextFactory
-	{
-	public:
-
-		CheckBoxFactory(Rectangle rectangle, std::string text) noexcept
-			: CheckBoxFactory(std::move(rectangle), std::move(text), CheckBoxStyles::None)
-		{}
-
-		CheckBoxFactory(Rectangle rectangle, std::string text, CheckBoxStyles styles) noexcept
-			: ControlWithTextFactory(std::move(rectangle), std::move(text))
-			, styles_(std::move(styles))
-		{}
-
-		~CheckBoxFactory() noexcept override = default;
-
-		std::unique_ptr<Control> CreateControl(HWND parent_window_handle) const noexcept override {
-			HWND window_handle = CheckBoxFactoryImplementationDetails::CreateCheckBox(text_, rectangle_, styles_, std::move(parent_window_handle));
-			return std::make_unique<CheckBoxType>(std::move(window_handle));
-		}
-
-	private:
-
-		CheckBoxStyles styles_;
-
-	};
-
-
 } //  namespace maxGUI
 
 #endif // #if defined(MAX_PLATFORM_WINDOWS)

@@ -41,7 +41,6 @@
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Code\maxGUI\Button.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\CheckBox.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithList.cpp" />

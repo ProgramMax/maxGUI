@@ -102,9 +102,6 @@
     <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\Button.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp">
       <Filter>Code</Filter>
     </ClCompile>

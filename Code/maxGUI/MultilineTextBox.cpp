@@ -26,7 +26,7 @@ namespace maxGUI
 #endif
 
 #if defined(MAX_PLATFORM_WINDOWS)
-	HWND MultilineTextBoxFactoryImplementationDetails::CreateMultilineTextBox(std::string text, Rectangle rectangle, MultilineTextBoxStyles styles, HWND parent_window_handle) noexcept {
+	HWND MultilineTextBox::Create(HWND parent_window_handle, Rectangle rectangle, std::string text, MultilineTextBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP | ES_MULTILINE | ES_WANTRETURN | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
@@ -41,7 +41,7 @@ namespace maxGUI
 		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), win32_text.text_, win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 #elif defined(MAX_PLATFORM_LINUX)
-	QTextEdit* MultilineTextBoxFactoryImplementationDetails::CreateMultilineTextBox(std::string text, Rectangle rectangle, MultilineTextBoxStyles styles, QWidget* parent_window) noexcept {
+	QTextEdit* MultilineTextBox::Create(QWidget* parent_window, Rectangle rectangle, std::string text, MultilineTextBoxStyles styles) noexcept {
 		QTextEdit* multiline_textbox = new QTextEdit(text.c_str(), parent_window);
 		multiline_textbox->setGeometry(rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_);
 		// TODO: Handle MultilineTextBoxStyles styles

@@ -11,8 +11,7 @@ public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
 		// Add controls inside the Form's OnCreated().
-		maxGUI::MultilineTextBoxFactory<> multiline_textbox_factory(maxGUI::Rectangle(0, 0, 100, 100), "Multi-line\r\ntest");
-		multiline_textbox_ = form->AddControl(&multiline_textbox_factory);
+		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(maxGUI::Rectangle(0, 0, 100, 100), "Multi-line\r\ntest");
 	}
 
 	void OnResized(maxGUI::FormConcept* /*form*/, int new_height, int new_width) noexcept {
@@ -25,7 +24,8 @@ public:
 		maxGUI::PostExitMessage(0);
 	}
 
-	maxGUI::Control* multiline_textbox_ = nullptr;
+	//maxGUI::Control* multiline_textbox_ = nullptr;
+	maxGUI::MultilineTextBox* multiline_textbox_ = nullptr;
 };
 
 // Name your function EXACTLY this, keep it in the global namespace, and make sure it has noexcept.

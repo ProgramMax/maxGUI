@@ -21,7 +21,7 @@ namespace maxGUI
 		}
 	}
 	
-	HWND DropDownBoxFactoryImplementationDetails::CreateDropDownBox(Rectangle rectangle, std::vector<std::string> list, DropDownBoxStyles styles, HWND parent_window_handle) noexcept {
+	HWND DropDownBox::Create(HWND parent_window_handle, Rectangle rectangle, std::vector<std::string> list, DropDownBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | CBS_DROPDOWN | CBS_HASSTRINGS /*| CBS_DROPDOWNLIST*/;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.

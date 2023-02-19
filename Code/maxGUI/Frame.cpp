@@ -13,7 +13,7 @@ namespace maxGUI
 		: ControlWithText(std::move(window_handle))
 	{}
 	
-	HWND FrameFactoryImplementationDetails::CreateFrame(std::string text, Rectangle rectangle, HWND parent_window_handle) noexcept {
+	HWND Frame::Create(HWND parent_window_handle, Rectangle rectangle, std::string text) noexcept {
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
 		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, WS_CHILD | WS_VISIBLE | BS_GROUPBOX, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
