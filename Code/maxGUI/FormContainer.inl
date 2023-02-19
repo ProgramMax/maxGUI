@@ -7,17 +7,17 @@
 namespace maxGUI {
 
 	template <typename FormFactoryType>
-	bool FormContainer::CreateForm(FormFactoryType& form_factory, int height, int width, std::string title) noexcept {
-		return CreateForm(form_factory, std::move(height), std::move(width), std::move(title), FormStyles::None);
+	bool FormContainer::CreateForm(FormFactoryType& form_factory, int width, int height, std::string title) noexcept {
+		return CreateForm(form_factory, std::move(width), std::move(height), std::move(title), FormStyles::None);
 	}
 
 	template <typename FormFactoryType>
-	bool FormContainer::CreateForm(FormFactoryType& form_factory, int height, int width, std::string title, FormStyles styles) noexcept {
+	bool FormContainer::CreateForm(FormFactoryType& form_factory, int width, int height, std::string title, FormStyles styles) noexcept {
 		form_factory.form_container_ = this;
 		#if defined(MAX_PLATFORM_WINDOWS)
-			return form_factory.CreateForm(instance_handle_, std::move(height), std::move(width), std::move(title), std::move(styles));
+			return form_factory.CreateForm(instance_handle_, std::move(width), std::move(height), std::move(title), std::move(styles));
 		#elif defined(MAX_PLATFORM_LINUX)
-			return form_factory.CreateForm(std::move(height), std::move(width), std::move(title), std::move(styles));
+			return form_factory.CreateForm(std::move(width), std::move(height), std::move(title), std::move(styles));
 		#endif
 }
 

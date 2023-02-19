@@ -14,7 +14,7 @@ namespace maxGUI
 		: ControlWithList(std::move(window_handle))
 	{}
 
-	HWND ListBox::Create(HWND parent_window_handle, Rectangle rectangle, std::vector<std::string> list, ListBoxStyles styles) noexcept {
+	HWND ListBox::Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::vector<std::string> list, ListBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | LBS_STANDARD;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
 		// But this doesn't play nicely with enum classes because ultimately it needs to convert to bool.
@@ -31,7 +31,7 @@ namespace maxGUI
 			win32_styles |= LBS_EXTENDEDSEL;
 		}
 		#pragma warning(pop)
-		HWND window_handle = CreateWindowEx(0, TEXT("LISTBOX"), TEXT(""), win32_styles, rectangle.left_, rectangle.top_, rectangle.width_, rectangle.height_, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		HWND window_handle = CreateWindowEx(0, TEXT("LISTBOX"), TEXT(""), win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 
 		for (const auto& text : list) {
 			Win32String win32_text = Utf8ToWin32String(text);

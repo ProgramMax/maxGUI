@@ -20,8 +20,6 @@
 #include <maxGUI/MultilineTextBox.hpp>
 #include <maxGUI/ProgressBar.hpp>
 #include <maxGUI/RadioButton.hpp>
-// TODO: Move Rectangle to max
-#include <maxGUI/Rectangle.hpp>
 #include <maxGUI/TextBox.hpp>
 
 #endif // #ifndef MAXGUI_MAXGUI_HPP

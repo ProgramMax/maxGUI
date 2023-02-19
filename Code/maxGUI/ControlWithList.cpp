@@ -16,9 +16,4 @@ namespace maxGUI
 	void ControlWithList::OnSelectionChanged(int /*newly_selected_index*/) noexcept
 	{}
 
-	ControlWithListFactory::ControlWithListFactory(Rectangle rectangle, std::vector<std::string> list) noexcept
-		: ControlFactory(std::move(rectangle))
-		, list_(std::move(list))
-	{}
-
 } // namespace maxGUI

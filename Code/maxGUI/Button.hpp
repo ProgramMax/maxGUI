@@ -7,8 +7,8 @@
 
 #include <max/Compiling/Configuration.hpp>
 #include <max/Compiling/Bitmask.hpp>
+#include <max/Containers/Rectangle.hpp>
 #include <maxGUI/ControlWithText.hpp>
-#include <maxGUI/Rectangle.hpp>
 #include <string>
 #include <utility>
 
@@ -71,7 +71,7 @@ namespace maxGUI
 		~Button() noexcept override = default;
 
 #if defined(MAX_PLATFORM_WINDOWS)
-		static HWND Create(HWND parent_window_handle, Rectangle rectangle, std::string text, ButtonStyles styles = ButtonStyles::None) noexcept;
+		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, ButtonStyles styles = ButtonStyles::None) noexcept;
 #endif
 
 	//protected:

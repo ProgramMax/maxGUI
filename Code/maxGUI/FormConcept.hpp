@@ -33,11 +33,11 @@ namespace maxGUI
 		#if defined(MAX_PLATFORM_WINDOWS)
 			explicit FormConcept(HWND window_handle) noexcept;
 		#elif defined(MAX_PLATFORM_LINUX)
-			FormConcept(int height, int width, std::string title, FormStyles styles) noexcept;
+			FormConcept(int width, int height, std::string title, FormStyles styles) noexcept;
 		#endif
 		virtual ~FormConcept() noexcept;
 
-		virtual void OnResized(FormConcept* form, int height, int width) noexcept = 0;
+		virtual void OnResized(FormConcept* form, int width, int height) noexcept = 0;
 		virtual void OnClosed(FormConcept* form) noexcept = 0;
 		virtual void OnCreated(FormConcept* form) noexcept = 0;
 		#if defined(MAX_PLATFORM_WINDOWS)
