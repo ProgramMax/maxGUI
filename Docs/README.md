@@ -4,11 +4,7 @@ maxGUI allows for easy, light-weight, and cross-platform* GUI coding.
 
 [![Build and test](https://github.com/ProgramMax/maxGUI/actions/workflows/build-and-test.yaml/badge.svg)](https://github.com/ProgramMax/maxGUI/actions/workflows/build-and-test.yaml)
 
-maxGUI is VERY new and deliberately missing features to focus on the core. If you need a feature, submit a [feature request](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=feature_request.md&title=).
-
-maxGUI has been through a handful of rewrites. It turns out designing an easy-to-use C++ GUI library takes more design experience then I had when I first started this in ~2006, when I was in college. I'm proud enough of the current design approach. It is what I wanted for other projects of mine.
-
-That said, expect the APIs to change. Like I said, this is very new.
+If maxGUI is missing a feature you need, submit a [feature request](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=feature_request.md&title=).
 
 ## Examples
 
