@@ -162,9 +162,6 @@
     <ClCompile Include="..\..\..\Code\maxGUI\FormContainer.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\FormFactory.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\FormAllocatorConcept.cpp">
       <Filter>Code</Filter>
     </ClCompile>
@@ -228,9 +225,6 @@
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\FormContainer.hpp">
-      <Filter>Code</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Code\maxGUI\FormFactory.hpp">
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\FormAllocatorConcept.hpp">

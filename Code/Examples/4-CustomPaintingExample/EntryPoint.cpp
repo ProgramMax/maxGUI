@@ -98,9 +98,10 @@ public:
 
 };
 
+
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
-	maxGUI::FormFactory custom_painting_form_factory(maxGUI::GetDefaultFormAllocator<CustomPaintingForm>());
-	if (!form_container.CreateForm(custom_painting_form_factory, 350, 200, "Custom painting")) {
+	auto form_allocator = maxGUI::GetDefaultFormAllocator<CustomPaintingForm>();
+	if (!form_container.CreateForm<CustomPaintingForm>(350, 200, "Custom painting", form_allocator.get())) {
 		return -1;
 	}
 

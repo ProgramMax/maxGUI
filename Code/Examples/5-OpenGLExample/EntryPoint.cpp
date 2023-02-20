@@ -95,9 +95,10 @@ private:
 
 };
 
+
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
-	maxGUI::FormFactory opengl_form_factory(maxGUI::GetDefaultFormAllocator<OpenGLForm>());
-	if (!form_container.CreateForm(opengl_form_factory, 350, 200, "OpenGL")) {
+	auto form_allocator = maxGUI::GetDefaultFormAllocator<OpenGLForm>();
+	if (!form_container.CreateForm<OpenGLForm>(350, 200, "OpenGL", form_allocator.get())) {
 		return -1;
 	}
 

@@ -13,7 +13,6 @@
 #include <maxGUI/FormAllocatorModel.hpp>
 #include <maxGUI/FormConcept.hpp>
 #include <maxGUI/FormContainer.hpp>
-#include <maxGUI/FormFactory.hpp>
 #include <maxGUI/Frame.hpp>
 #include <maxGUI/Label.hpp>
 #include <maxGUI/ListBox.hpp>
@@ -21,5 +20,13 @@
 #include <maxGUI/ProgressBar.hpp>
 #include <maxGUI/RadioButton.hpp>
 #include <maxGUI/TextBox.hpp>
+
+#include <max/Compiling/Configuration.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#define MAXGUI_PLATFORM_NEWLINE "\r\n"
+#elif defined(MAX_PLATFORM_LINUX)
+	#define MAXGUI_PLATFORM_NEWLINE "\n"
+#endif
 
 #endif // #ifndef MAXGUI_MAXGUI_HPP

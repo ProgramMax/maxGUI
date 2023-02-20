@@ -56,9 +56,10 @@ public:
 
 };
 
+
 int maxGUIEntryPoint(maxGUI::FormContainer form_container) noexcept {
-	maxGUI::FormFactory control_gallery_form_factory(maxGUI::GetDefaultFormAllocator<ControlGalleryForm>());
-	if (!form_container.CreateForm(control_gallery_form_factory, 350, 825, "Control gallery", maxGUI::FormStyles::FixedSize)) {
+	auto form_allocator = maxGUI::GetDefaultFormAllocator<ControlGalleryForm>();
+	if (!form_container.CreateForm<ControlGalleryForm>(350, 825, "Control gallery", form_allocator.get(), maxGUI::FormStyles::FixedSize)) {
 		return -1;
 	}
 
