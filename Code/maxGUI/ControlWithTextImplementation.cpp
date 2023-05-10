@@ -4,7 +4,9 @@
 
 #include <maxGUI/ControlWithTextImplementation.hpp>
 
-#include <maxGUI/Win32String.hpp>
+#if defined(MAX_PLATFORM_WINDOWS)
+	#include <maxGUI/Win32String.hpp>
+#endif
 
 namespace maxGUI
 {
