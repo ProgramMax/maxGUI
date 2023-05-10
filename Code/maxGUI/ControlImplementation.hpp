@@ -30,7 +30,9 @@ namespace maxGUI
 
 	//private:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		HWND window_handle_;
+#endif
 
 	};
 
