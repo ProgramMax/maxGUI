@@ -9,9 +9,11 @@
 namespace maxGUI
 {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	ControlWithTextImplementation::ControlWithTextImplementation(HWND window_handle) noexcept
 		: ControlImplementation(std::move(window_handle))
 	{}
+#endif
 
 	ControlWithTextImplementation::~ControlWithTextImplementation() noexcept = default;
 

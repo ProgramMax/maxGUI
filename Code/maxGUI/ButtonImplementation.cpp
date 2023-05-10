@@ -9,9 +9,11 @@
 namespace maxGUI
 {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	ButtonImplementation::ButtonImplementation(HWND window_handle) noexcept
 		: ControlWithTextImplementation(std::move(window_handle))
 	{}
+#endif
 
 	ButtonImplementation::~ButtonImplementation() noexcept = default;
 
@@ -36,7 +38,18 @@ namespace maxGUI
 
 		Win32String win32_text = Utf8ToWin32String(std::move(text));
 
-		return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		//return CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+		HWND window_handle = CreateWindowEx(0, TEXT("BUTTON"), win32_text.text_, win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
+
+		const int font_height_in_points = 10;
+		HDC screen_device_context = GetDC(NULL);
+		const int font_height_in_logical_units = -MulDiv(font_height_in_points, GetDeviceCaps(screen_device_context, LOGPIXELSY), 72);
+		//const int font_height_in_logical_units = -12;
+		HFONT font = CreateFont(font_height_in_logical_units, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, FF_DONTCARE | DEFAULT_PITCH, TEXT("Segoe UI"));
+
+		SendMessage(window_handle, WM_SETFONT, reinterpret_cast<WPARAM>(font), TRUE);
+
+		return window_handle;
 	}
 #endif
 

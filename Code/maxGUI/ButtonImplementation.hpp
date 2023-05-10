@@ -42,11 +42,15 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit ButtonImplementation(HWND window_handle) noexcept;
+#endif
 
 		~ButtonImplementation() noexcept;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, ButtonStyles styles) noexcept;
+#endif
 
 	};
 
