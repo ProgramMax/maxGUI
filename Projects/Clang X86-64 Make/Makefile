@@ -1,22 +1,24 @@
 PROGRAM_NAME = maxGUI
 CXX_SRCS = \
-	../../Code/maxGUI/Button.cpp \
+	../../Code/maxGUI/ButtonImplementation.cpp \
 	../../Code/maxGUI/Control.cpp \
+	../../Code/maxGUI/ControlImplementation.cpp \
 	../../Code/maxGUI/ControlWithText.cpp \
+	../../Code/maxGUI/ControlWithTextImplementation.cpp \
 	../../Code/maxGUI/EntryPoint.cpp \
 	../../Code/maxGUI/FormAllocatorConcept.cpp \
 	../../Code/maxGUI/FormConcept.cpp \
 	../../Code/maxGUI/FormContainer.cpp \
-	../../Code/maxGUI/MultilineTextBox.cpp
-	#../../Code/maxGUI/CheckBox.cpp \
+	../../Code/maxGUI/MultilineTextBoxImplementation.cpp
+	#../../Code/maxGUI/CheckBoxImplementation.cpp \
 	#../../Code/maxGUI/ControlWithList.cpp \
-	#../../Code/maxGUI/DropDownBox.cpp \
+	#../../Code/maxGUI/DropDownBoxImplementation.cpp \
 	#../../Code/maxGUI/Frame.cpp \
 	#../../Code/maxGUI/Label.cpp \
-	#../../Code/maxGUI/ListBox.cpp \
+	#../../Code/maxGUI/ListBoxImplementation.cpp \
 	#../../Code/maxGUI/ProgressBar.cpp \
-	#../../Code/maxGUI/RadioButton.cpp \
-	#../../Code/maxGUI/TextBox.cpp
+	#../../Code/maxGUI/RadioButtonImplementation.cpp \
+	#../../Code/maxGUI/TextBoxImplementation.cpp
 CXX_OBJS = $(CXX_SRCS:.cpp=.o)
 
 INCLUDE_PATHS = \
