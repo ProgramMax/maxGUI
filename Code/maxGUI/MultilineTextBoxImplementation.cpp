@@ -37,7 +37,7 @@ namespace maxGUI
 		return CreateWindowEx(WS_EX_CLIENTEDGE, TEXT("EDIT"), win32_text.text_, win32_styles, rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height, parent_window_handle, NULL, reinterpret_cast<HINSTANCE>(GetWindowLongPtr(parent_window_handle, GWLP_HINSTANCE)), NULL);
 	}
 #elif defined(MAX_PLATFORM_LINUX)
-	QTextEdit* MultilineTextBox::Create(QWidget* parent_window, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles) noexcept {
+	QTextEdit* MultilineTextBoxImplementation::Create(QWidget* parent_window, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles) noexcept {
 		QTextEdit* multiline_textbox = new QTextEdit(text.c_str(), parent_window);
 		multiline_textbox->setGeometry(rectangle.TopLeft.X(), rectangle.TopLeft.Y(), rectangle.Width, rectangle.Height);
 		// TODO: Handle MultilineTextBoxStyles styles
