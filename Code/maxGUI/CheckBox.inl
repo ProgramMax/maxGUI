@@ -5,6 +5,8 @@
 namespace maxGUI
 {
 	
+#if defined(MAX_PLATFORM_WINDOWS)
+
 	template< class Behavior >
 	CheckBox< Behavior >::CheckBox(HWND window_handle) noexcept
 		: ControlWithText(window_handle)
@@ -63,5 +65,7 @@ namespace maxGUI
 	void CheckBox< Behavior >::Uncheck() noexcept {
 		return implementation_.Uncheck();
 	}
+
+#endif
 
 } //  namespace maxGUI
