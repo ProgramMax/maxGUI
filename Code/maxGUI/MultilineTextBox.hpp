@@ -5,12 +5,12 @@
 #ifndef MAXGUI_MULTILINETEXTBOX_HPP
 #define MAXGUI_MULTILINETEXTBOX_HPP
 
+#include <string>
+
 #include <max/Compiling/Configuration.hpp>
-#include <max/Compiling/Bitmask.hpp>
 #include <max/Containers/Rectangle.hpp>
 #include <maxGUI/ControlWithText.hpp>
-#include <memory>
-#include <string>
+#include <maxGUI/MultilineTextBoxImplementation.hpp>
 
 #if defined(MAX_PLATFORM_LINUX)
 	#include <QTextEdit>
@@ -19,18 +19,10 @@
 namespace maxGUI
 {
 
-	enum class MultilineTextBoxStyles : uint8_t {
-		None = 0,
-		Disabled = 1,
+	class DefaultMultilineTextBoxBehavior {
 	};
-
-} // namespace maxGUI
-
-MAX_BITMASKABLE_ENUM_CLASS(maxGUI::MultilineTextBoxStyles);
-
-namespace maxGUI
-{
 	
+	template< class Behavior = DefaultMultilineTextBoxBehavior >
 	class MultilineTextBox : public ControlWithText
 	{
 	public:
@@ -40,7 +32,8 @@ namespace maxGUI
 #elif defined(MAX_PLATFORM_LINUX)
 		explicit MultilineTextBox(QTextEdit* widget) noexcept;
 #endif
-		~MultilineTextBox() noexcept override = default;
+
+		~MultilineTextBox() noexcept;
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
@@ -48,8 +41,20 @@ namespace maxGUI
 		static QTextEdit* Create(QWidget* parent_window, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
 #endif
 
+	//protected:
+#if defined(MAX_PLATFORM_WINDOWS)
+		void OnCommand(WORD notification) noexcept override;
+#endif
+
+	private:
+
+		Behavior behavior_;
+		MultilineTextBoxImplementation implementation_;
+
 	};
 
 } //  namespace maxGUI
+
+#include <maxGUI/MultilineTextBox.inl>
 
 #endif // #ifndef MAXGUI_MULTILINETEXTBOX_HPP

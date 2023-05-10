@@ -5,50 +5,43 @@
 #ifndef MAXGUI_TEXTBOX_HPP
 #define MAXGUI_TEXTBOX_HPP
 
-#include <max/Compiling/Bitmask.hpp>
-#include <max/Containers/Rectangle.hpp>
-#include <maxGUI/ControlWithText.hpp>
 #include <string>
-#include <utility>
-
 
 #include <max/Compiling/Configuration.hpp>
-
-// TODO: Add Linux version of TextBox
-#if defined(MAX_PLATFORM_WINDOWS)
+#include <max/Containers/Rectangle.hpp>
+#include <maxGUI/ControlWithText.hpp>
+#include <maxGUI/TextBoxImplementation.hpp>
 
 namespace maxGUI
 {
 
-	enum class TextBoxStyles : uint8_t {
-		None = 0,
-		Disabled = 1,
-		Password = 2,
-		ReadOnly = 4,
+	class DefaultTextBoxBehavior {
 	};
 
-} // namespace maxGUI
-
-MAX_BITMASKABLE_ENUM_CLASS(maxGUI::TextBoxStyles);
-
-namespace maxGUI
-{
-
+	template< class Behavior = DefaultTextBoxBehavior >
 	class TextBox : public ControlWithText
 	{
 	public:
 
 		explicit TextBox(HWND window_handle) noexcept;
 
-		~TextBox() noexcept override = default;
+		~TextBox() noexcept override;
 
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, TextBoxStyles styles = TextBoxStyles::None) noexcept;
+
+		//protected:
+
+#if defined(MAX_PLATFORM_WINDOWS)
+		void OnCommand(WORD notification) noexcept override;
+#endif
+
+		Behavior behavior_;
+		TextBoxImplementation implementation_;
 
 	};
 
 } //  namespace maxGUI
 
-
-#endif // #if defined(MAX_PLATFORM_WINDOWS)
+#include <maxGUI/TextBox.inl>
 
 #endif // #ifndef MAXGUI_TEXTBOX_HPP
