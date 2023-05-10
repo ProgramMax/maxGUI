@@ -40,11 +40,15 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit CheckBoxImplementation(HWND window_handle) noexcept;
+#endif
 
 		~CheckBoxImplementation() noexcept;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, CheckBoxStyles styles) noexcept;
+#endif
 
 		bool IsChecked() const noexcept;
 		void Check() noexcept;

@@ -13,12 +13,15 @@
 namespace maxGUI
 {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	DropDownBoxImplementation::DropDownBoxImplementation(HWND window_handle) noexcept
 		: ControlWithTextImplementation(std::move(window_handle))
 	{}
+#endif
 
 	DropDownBoxImplementation::~DropDownBoxImplementation() noexcept = default;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	HWND DropDownBoxImplementation::Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::vector<std::string> list, DropDownBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | CBS_DROPDOWN | CBS_HASSTRINGS /*| CBS_DROPDOWNLIST*/;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
@@ -44,5 +47,6 @@ namespace maxGUI
 
 		return window_handle;
 	}
+#endif
 
 } // namespace maxGUI

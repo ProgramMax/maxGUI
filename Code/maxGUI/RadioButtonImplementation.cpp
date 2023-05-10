@@ -13,12 +13,15 @@
 namespace maxGUI
 {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	RadioButtonImplementation::RadioButtonImplementation(HWND window_handle) noexcept
 		: ControlWithTextImplementation(std::move(window_handle))
 	{}
+#endif
 
 	RadioButtonImplementation::~RadioButtonImplementation() noexcept = default;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	HWND RadioButtonImplementation::Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, RadioButtonStyles style) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON | BS_NOTIFY;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
@@ -58,5 +61,6 @@ namespace maxGUI
 
 		return window_handle;
 	}
+#endif
 
 } // namespace maxGUI

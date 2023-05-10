@@ -39,11 +39,15 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit MultilineTextBoxImplementation(HWND window_handle) noexcept;
+#endif
 
 		~MultilineTextBoxImplementation() noexcept;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
+#endif
 
 	};
 

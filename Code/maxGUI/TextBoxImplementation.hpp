@@ -42,11 +42,15 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit TextBoxImplementation(HWND window_handle) noexcept;
+#endif
 
 		~TextBoxImplementation() noexcept override;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, TextBoxStyles styles) noexcept;
+#endif
 
 	};
 

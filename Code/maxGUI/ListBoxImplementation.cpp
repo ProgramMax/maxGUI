@@ -13,12 +13,15 @@
 namespace maxGUI
 {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	ListBoxImplementation::ListBoxImplementation(HWND window_handle) noexcept
 		: ControlWithTextImplementation(std::move(window_handle))
 	{}
+#endif
 
 	ListBoxImplementation::~ListBoxImplementation() noexcept = default;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	HWND ListBoxImplementation::Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::vector<std::string> list, ListBoxStyles styles) noexcept {
 		DWORD win32_styles = WS_CHILD | WS_VISIBLE | WS_TABSTOP | LBS_STANDARD;
 		// MSVC at warning level 4 issues C26813 because it wants "if (styles & ButtonStyles::Default) {"
@@ -45,5 +48,6 @@ namespace maxGUI
 
 		return window_handle;
 	}
+#endif
 
 } // namespace maxGUI

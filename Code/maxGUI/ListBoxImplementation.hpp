@@ -42,11 +42,15 @@ namespace maxGUI
 	{
 	public:
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		explicit ListBoxImplementation(HWND window_handle) noexcept;
+#endif
 
 		~ListBoxImplementation() noexcept;
 
+#if defined(MAX_PLATFORM_WINDOWS)
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::vector<std::string> list, ListBoxStyles styles) noexcept;
+#endif
 
 	};
 

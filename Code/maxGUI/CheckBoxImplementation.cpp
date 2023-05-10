@@ -13,9 +13,11 @@
 namespace maxGUI
 {
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	CheckBoxImplementation::CheckBoxImplementation(HWND window_handle) noexcept
 		: ControlWithTextImplementation(std::move(window_handle))
 	{}
+#endif
 
 	CheckBoxImplementation::~CheckBoxImplementation() noexcept = default;
 
