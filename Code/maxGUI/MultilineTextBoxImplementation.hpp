@@ -18,6 +18,8 @@
 	#endif
 
 	#include <Windows.h>
+#elif defined(MAX_PLATFORM_LINUX)
+	#include <QTextEdit>
 #endif
 
 namespace maxGUI
@@ -47,6 +49,8 @@ namespace maxGUI
 
 #if defined(MAX_PLATFORM_WINDOWS)
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
+#elif defined(MAX_PLATFORM_LINUX)
+		static QTextEdit* Create(QWidget* parent_window, max::Containers::Rectangle<int, int> rectangle, std::string text, MultilineTextBoxStyles styles = MultilineTextBoxStyles::None) noexcept;
 #endif
 
 	};
