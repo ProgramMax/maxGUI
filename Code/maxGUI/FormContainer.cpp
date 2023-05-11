@@ -4,6 +4,14 @@
 
 #include <maxGUI/FormContainer.hpp>
 
+#if defined __has_include
+#if __has_include(<winrt/Windows.UI.ViewManagement.h>)
+#include <winrt/Windows.UI.ViewManagement.h>
+#define MAX_HAS_WINUI
+#endif
+#endif
+
+
 #if defined(MAX_PLATFORM_WINDOWS)
 namespace {
 
@@ -104,6 +112,9 @@ namespace maxGUI {
 				if (HIWORD(wparam) == 0 && lparam == 0) // menu
 				{
 					//auto menu_identifier = LOWORD(wparam);
+					if (LOWORD(wparam) == 10) {
+						MessageBox(window_handle, L"Yay", L"Yay", 0);
+					}
 				} else if (HIWORD(wparam) == 1 && lparam == 0) { // accelerator
 					//auto accelerator_identifier = LOWORD(wparam);
 				} else {
@@ -115,6 +126,20 @@ namespace maxGUI {
 						}
 					}
 				}
+			}
+			return 0;
+			case WM_SETTINGCHANGE:
+			{
+				DWORD is_light_mode = {0};
+				DWORD size = sizeof(is_light_mode);
+				auto result = RegGetValueW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", L"AppsUseLightTheme", RRF_RT_REG_DWORD, nullptr, &is_light_mode, &size);
+				if (result != ERROR_SUCCESS) {
+					// Not supported
+					return 0;
+				}
+
+				BOOL is_dark_mode = !is_light_mode;
+				DwmSetWindowAttribute(window_handle, DWMWA_USE_IMMERSIVE_DARK_MODE, &is_dark_mode, sizeof(is_dark_mode));
 			}
 			return 0;
 			}

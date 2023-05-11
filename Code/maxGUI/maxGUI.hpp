@@ -16,6 +16,7 @@
 #include <maxGUI/Frame.hpp>
 #include <maxGUI/Label.hpp>
 #include <maxGUI/ListBox.hpp>
+#include <maxGUI/Menu.hpp>
 #include <maxGUI/MultilineTextBox.hpp>
 #include <maxGUI/ProgressBar.hpp>
 #include <maxGUI/RadioButton.hpp>
@@ -25,6 +26,10 @@
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	#define MAXGUI_PLATFORM_NEWLINE "\r\n"
+
+	constexpr int MAXGUI_CONTENT_PADDING = 16;
+	constexpr int MAXGUI_SECTION_PADDING = 12;
+	constexpr int MAXGUI_CONTROL_PADDING = 8;
 #elif defined(MAX_PLATFORM_LINUX)
 	#define MAXGUI_PLATFORM_NEWLINE "\n"
 #endif

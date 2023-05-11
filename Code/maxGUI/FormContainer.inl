@@ -6,6 +6,7 @@
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	#include <maxGUI/Win32String.hpp>
+	#include <dwmapi.h>
 #endif
 
 namespace maxGUI {
@@ -25,6 +26,7 @@ namespace maxGUI {
 		//wcx.hbrBackground = (HBRUSH)(COLOR_3DFACE + 1);
 		//wcx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 		wcx.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_BTNFACE + 1);
+		//wcx.hbrBackground = bar;
 		wcx.lpszMenuName = NULL;
 		wcx.lpszClassName = maxgui_window_class_name;
 		//wcx.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
@@ -85,6 +87,14 @@ namespace maxGUI {
 		HWND window_handle = CreateWindowEx(extra_style, /*reinterpret_cast<LPCWSTR>(atom)*/maxgui_window_class_name, win32_title.text_, win32_styles, area.left, area.top, total_width, total_height, 0, 0, instance_handle_, static_cast<LPVOID>(&creation_parameters));
 		if (window_handle == NULL) {
 			return false;
+		}
+
+		DWORD is_light_mode = {0};
+		DWORD size = sizeof(is_light_mode);
+		auto result = RegGetValueW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", L"AppsUseLightTheme", RRF_RT_REG_DWORD, nullptr, &is_light_mode, &size);
+		if (result == ERROR_SUCCESS) {
+			BOOL is_dark_mode = !is_light_mode;
+			DwmSetWindowAttribute(window_handle, DWMWA_USE_IMMERSIVE_DARK_MODE, &is_dark_mode, sizeof(is_dark_mode));
 		}
 
 		ShowWindow(window_handle, SW_SHOWNORMAL);
