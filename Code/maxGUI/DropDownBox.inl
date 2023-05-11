@@ -4,6 +4,8 @@
 
 #include <utility>
 
+#if defined(MAX_PLATFORM_WINDOWS)
+
 namespace maxGUI
 {
 	
@@ -44,3 +46,5 @@ namespace maxGUI
 	};
 
 } //  namespace maxGUI
+
+#endif
