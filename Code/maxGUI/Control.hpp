@@ -12,8 +12,9 @@
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	#ifndef WIN32_LEAN_AND_MEAN
-	#define WIN32_LEAN_AND_MEAN
+		#define WIN32_LEAN_AND_MEAN
 	#endif
+
 	#include <Windows.h>
 #elif defined(MAX_PLATFORM_LINUX)
 	#include <QWidget>
