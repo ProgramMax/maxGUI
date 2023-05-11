@@ -10,15 +10,12 @@
 
 #include <max/Compiling/Configuration.hpp>
 #include <maxGUI/Control.hpp>
-#include <maxGUI/Menu.hpp>
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	#ifndef WIN32_LEAN_AND_MEAN
 		#define WIN32_LEAN_AND_MEAN
 	#endif
 	#include <Windows.h>
-
-	#include <maxGUI/Win32String.hpp>
 #elif defined(MAX_PLATFORM_LINUX)
 	#include <string>
 
@@ -46,23 +43,6 @@ namespace maxGUI
 		#if defined(MAX_PLATFORM_WINDOWS)
 			virtual LRESULT OnWindowMessage(FormConcept* form, UINT message, WPARAM wparam, LPARAM lparam) noexcept = 0;
 		#endif
-
-		void FooMenu(Menu menu) noexcept {
-#if defined(MAX_PLATFORM_WINDOWS)
-			// TODO: Make this nest menu depths
-			HMENU menu_handle = CreateMenu();
-
-			HMENU submenu_handle = CreatePopupMenu();
-			for(auto& submenu : menu.submenus_) {
-				auto text = Utf8ToWin32String(std::move(submenu.text_));
-				AppendMenu(submenu_handle, MF_STRING, 10, text.text_);
-			}
-			auto text = Utf8ToWin32String(std::move(menu.text_));
-			AppendMenu(menu_handle, MF_STRING | MF_POPUP, reinterpret_cast<UINT_PTR>(submenu_handle), text.text_);
-
-			SetMenu(window_handle_, menu_handle);
-#endif
-		}
 
 		template<typename T, typename... Params>
 		T* AddControl(Params&&... params) noexcept {
