@@ -25,10 +25,6 @@
 
 #if defined(MAX_PLATFORM_WINDOWS)
 	#define MAXGUI_PLATFORM_NEWLINE "\r\n"
-
-	constexpr int MAXGUI_CONTENT_PADDING = 16;
-	constexpr int MAXGUI_SECTION_PADDING = 12;
-	constexpr int MAXGUI_CONTROL_PADDING = 8;
 #elif defined(MAX_PLATFORM_LINUX)
 	#define MAXGUI_PLATFORM_NEWLINE "\n"
 #endif
