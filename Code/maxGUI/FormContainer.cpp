@@ -104,6 +104,9 @@ namespace maxGUI {
 				if (HIWORD(wparam) == 0 && lparam == 0) // menu
 				{
 					//auto menu_identifier = LOWORD(wparam);
+					if (LOWORD(wparam) == 10) {
+						MessageBox(window_handle, L"Yay", L"Yay", 0);
+					}
 				} else if (HIWORD(wparam) == 1 && lparam == 0) { // accelerator
 					//auto accelerator_identifier = LOWORD(wparam);
 				} else {

@@ -16,6 +16,7 @@
 #include <maxGUI/Frame.hpp>
 #include <maxGUI/Label.hpp>
 #include <maxGUI/ListBox.hpp>
+#include <maxGUI/Menu.hpp>
 #include <maxGUI/MultilineTextBox.hpp>
 #include <maxGUI/ProgressBar.hpp>
 #include <maxGUI/RadioButton.hpp>
