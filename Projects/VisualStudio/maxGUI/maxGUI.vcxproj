@@ -24,9 +24,15 @@
     <None Include="..\..\..\.github\workflows\build-and-test.yaml" />
     <None Include="..\..\..\AUTHORS" />
     <None Include="..\..\..\Code\maxGUI\Button.inl" />
+    <None Include="..\..\..\Code\maxGUI\CheckBox.inl" />
+    <None Include="..\..\..\Code\maxGUI\DropDownBox.inl" />
     <None Include="..\..\..\Code\maxGUI\FormAllocatorModel.inl" />
     <None Include="..\..\..\Code\maxGUI\FormContainer.inl" />
     <None Include="..\..\..\Code\maxGUI\FormModel.inl" />
+    <None Include="..\..\..\Code\maxGUI\ListBox.inl" />
+    <None Include="..\..\..\Code\maxGUI\MultilineTextBox.inl" />
+    <None Include="..\..\..\Code\maxGUI\RadioButton.inl" />
+    <None Include="..\..\..\Code\maxGUI\TextBox.inl" />
     <None Include="..\..\..\Dependencies\max\AUTHORS" />
     <None Include="..\..\..\Dependencies\max\Code\max\Containers\Point.inl" />
     <None Include="..\..\..\Dependencies\max\Code\max\Containers\Rectangle.inl" />
@@ -43,30 +49,38 @@
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Code\maxGUI\CheckBox.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ButtonImplementation.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\CheckBoxImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ControlImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithList.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\DropDownBox.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ControlWithTextImplementation.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\DropDownBoxImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormAllocatorConcept.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormConcept.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormContainer.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Frame.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Label.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\ListBox.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBox.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\ListBoxImplementation.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ProgressBar.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\RadioButton.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\TextBox.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\RadioButtonImplementation.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\TextBoxImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Win32String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ButtonImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\CheckBox.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\CheckBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Control.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ControlImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithList.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithText.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ControlWithTextImplementation.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\DropDownBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\DropDownBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormAllocatorConcept.hpp" />
@@ -78,11 +92,15 @@
     <ClInclude Include="..\..\..\Code\maxGUI\Frame.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Label.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ListBox.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\ListBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\maxGUI.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ProgressBar.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\RadioButton.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\RadioButtonImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\TextBox.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\TextBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Win32String.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\AliasingOptimizations.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Bitmask.hpp" />
@@ -193,6 +211,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderFile />
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -211,6 +230,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderFile />
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -231,6 +251,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderFile />
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -253,6 +274,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderFile />
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

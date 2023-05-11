@@ -101,6 +101,24 @@
     <None Include="..\..\..\Dependencies\max\Code\max\Containers\Rectangle.inl">
       <Filter>Dependencies\max\Containers</Filter>
     </None>
+    <None Include="..\..\..\Code\maxGUI\TextBox.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\MultilineTextBox.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\CheckBox.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\DropDownBox.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\ListBox.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="..\..\..\Code\maxGUI\RadioButton.inl">
+      <Filter>Code</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml">
@@ -114,30 +132,15 @@
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBox.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\ProgressBar.cpp">
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\Frame.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\TextBox.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\RadioButton.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\Label.cpp">
       <Filter>Code</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\DropDownBox.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\ListBox.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\Win32String.cpp">
       <Filter>Code</Filter>
     </ClCompile>
@@ -148,9 +151,6 @@
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\Win32String.cpp">
-      <Filter>Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Code\maxGUI\CheckBox.cpp">
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithList.cpp">
@@ -163,6 +163,33 @@
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\FormAllocatorConcept.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\TextBoxImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\CheckBoxImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\ControlImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\ControlWithTextImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\DropDownBoxImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\ListBoxImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\RadioButtonImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\ButtonImplementation.cpp">
       <Filter>Code</Filter>
     </ClCompile>
   </ItemGroup>
@@ -292,6 +319,33 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\CurrentVersionNamespace.hpp">
       <Filter>Dependencies\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\TextBoxImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\CheckBoxImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\ControlImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\ControlWithTextImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\DropDownBoxImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\ListBoxImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\RadioButtonImplementation.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\ButtonImplementation.hpp">
+      <Filter>Code</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

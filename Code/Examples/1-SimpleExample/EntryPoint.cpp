@@ -11,7 +11,7 @@ public:
 
 	void OnCreated(maxGUI::FormConcept* form) noexcept {
 		// Add controls inside the Form's OnCreated().
-		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox>(max::Containers::MakeRectangle(0, 0, 100, 100), "Multi-line" MAXGUI_PLATFORM_NEWLINE "test");
+		multiline_textbox_ = form->AddControl<maxGUI::MultilineTextBox<>>(max::Containers::MakeRectangle(0, 0, 100, 100), "Multi-line" MAXGUI_PLATFORM_NEWLINE "test");
 	}
 
 	void OnResized(maxGUI::FormConcept* /*form*/, int new_width, int new_height) noexcept {
@@ -24,7 +24,7 @@ public:
 		maxGUI::PostExitMessage(0);
 	}
 
-	maxGUI::MultilineTextBox* multiline_textbox_ = nullptr;
+	maxGUI::MultilineTextBox<>* multiline_textbox_ = nullptr;
 };
 
 

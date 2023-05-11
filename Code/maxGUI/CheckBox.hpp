@@ -5,39 +5,30 @@
 #ifndef MAXGUI_CHECKBOX_HPP
 #define MAXGUI_CHECKBOX_HPP
 
+#include <string>
+
 #include <max/Compiling/Configuration.hpp>
 #include <max/Containers/Rectangle.hpp>
+#include <maxGUI/CheckBoxImplementation.hpp>
+#include <maxGUI/ControlWithText.hpp>
+
 
 #if defined(MAX_PLATFORM_WINDOWS)
 
-#include <max/Compiling/Bitmask.hpp>
-#include <maxGUI/ControlWithText.hpp>
-#include <string>
-#include <utility>
-
 namespace maxGUI
 {
 
-	enum class CheckBoxStyles : uint8_t {
-		None = 0,
-		Disabled = 1,
-		Flat = 2,
+	class DefaultCheckBoxBehavior {
 	};
 
-} // namespace maxGUI
-
-MAX_BITMASKABLE_ENUM_CLASS(maxGUI::CheckBoxStyles);
-
-namespace maxGUI
-{
-
+	template< class Behavior = DefaultCheckBoxBehavior >
 	class CheckBox : public ControlWithText
 	{
 	public:
 
 		explicit CheckBox(HWND window_handle) noexcept;
 
-		~CheckBox() noexcept override = default;
+		~CheckBox() noexcept override;
 
 		static HWND Create(HWND parent_window_handle, max::Containers::Rectangle<int, int> rectangle, std::string text, CheckBoxStyles styles = CheckBoxStyles::None) noexcept;
 
@@ -51,10 +42,17 @@ namespace maxGUI
 
 		void OnCommand(WORD notification) noexcept override;
 
+	private:
+
+		Behavior behavior_;
+		CheckBoxImplementation implementation_;
+
 	};
 	
 } //  namespace maxGUI
 
 #endif // #if defined(MAX_PLATFORM_WINDOWS)
+
+#include <maxGUI/CheckBox.inl>
 
 #endif // #ifndef MAXGUI_BUTTON_HPP
