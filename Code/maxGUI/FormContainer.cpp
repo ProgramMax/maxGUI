@@ -130,6 +130,12 @@ namespace maxGUI {
 			return 0;
 			case WM_SETTINGCHANGE:
 			{
+				// new font settings possible
+				auto form = GetFormFromHWND(window_handle);
+				for (auto& control : form->controls_) {
+					control->NewSystemFont();
+				}
+
 				DWORD is_light_mode = {0};
 				DWORD size = sizeof(is_light_mode);
 				auto result = RegGetValueW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", L"AppsUseLightTheme", RRF_RT_REG_DWORD, nullptr, &is_light_mode, &size);
