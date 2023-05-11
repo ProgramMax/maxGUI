@@ -117,6 +117,20 @@ namespace maxGUI {
 				}
 			}
 			return 0;
+			case WM_SETTINGCHANGE:
+			{
+				DWORD is_light_mode = {0};
+				DWORD size = sizeof(is_light_mode);
+				auto result = RegGetValueW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", L"AppsUseLightTheme", RRF_RT_REG_DWORD, nullptr, &is_light_mode, &size);
+				if (result != ERROR_SUCCESS) {
+					// Not supported
+					return 0;
+				}
+
+				BOOL is_dark_mode = !is_light_mode;
+				DwmSetWindowAttribute(window_handle, DWMWA_USE_IMMERSIVE_DARK_MODE, &is_dark_mode, sizeof(is_dark_mode));
+			}
+			return 0;
 			}
 
 			auto form = GetFormFromHWND(window_handle);
