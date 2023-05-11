@@ -25,8 +25,8 @@ namespace maxGUI
 #endif
 	}
 
-#if defined(MAX_PLATFORM_WINDOWS)
 	void Control::NewSystemFont() noexcept {
+#if defined(MAX_PLATFORM_WINDOWS)
 		// Win32 way
 		LOGFONT lf = {0};
 		SystemParametersInfo(SPI_GETICONTITLELOGFONT, sizeof(lf), &lf, 0);
@@ -43,8 +43,10 @@ namespace maxGUI
 		HFONT font = CreateFont(font_height_in_logical_units, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, FF_DONTCARE | DEFAULT_PITCH, TEXT("Segoe UI"));
 		SendMessage(window_handle_, WM_SETFONT, reinterpret_cast<WPARAM>(font), TRUE);
 		*/
+#endif
 	}
 
+#if defined(MAX_PLATFORM_WINDOWS)
 	void Control::OnCommand(WORD /*notification*/) noexcept
 	{}
 #endif
