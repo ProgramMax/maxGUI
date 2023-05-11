@@ -119,6 +119,10 @@
     <None Include="..\..\..\Code\maxGUI\RadioButton.inl">
       <Filter>Code</Filter>
     </None>
+    <None Include="..\..\..\Code\maxGUI\Menu.inl">
+      <Filter>Code</Filter>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml">
@@ -190,6 +194,9 @@
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\ButtonImplementation.cpp">
+      <Filter>Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\maxGUI\Menu.cpp">
       <Filter>Code</Filter>
     </ClCompile>
   </ItemGroup>
@@ -347,5 +354,13 @@
     <ClInclude Include="..\..\..\Code\maxGUI\ButtonImplementation.hpp">
       <Filter>Code</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Code\maxGUI\Menu.hpp">
+      <Filter>Code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Design.xaml">
+      <Filter>Docs</Filter>
+    </Page>
   </ItemGroup>
 </Project>

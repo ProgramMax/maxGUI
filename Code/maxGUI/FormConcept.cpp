@@ -11,6 +11,7 @@ namespace maxGUI {
 	#if defined(MAX_PLATFORM_WINDOWS)
 		FormConcept::FormConcept(HWND window_handle) noexcept
 			: window_handle_(std::move(window_handle))
+			, menu_bar_handle_(static_cast<HMENU>(INVALID_HANDLE_VALUE))
 		{}
 	#elif defined(MAX_PLATFORM_LINUX)
 		FormConcept::FormConcept(int width, int height, std::string title, FormStyles styles) noexcept

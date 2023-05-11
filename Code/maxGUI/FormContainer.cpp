@@ -98,12 +98,29 @@ namespace maxGUI {
 			case WM_NCDESTROY:
 				RemoveProp(window_handle, maxgui_formconcept_property_name);
 				return 0;
+			case WM_MENUCOMMAND:
+			{
+				MENUITEMINFO menu_item_info;
+				menu_item_info.cbSize = sizeof(MENUITEMINFO);
+				menu_item_info.fMask = MIIM_DATA | MIIM_ID;
+				BOOL result = GetMenuItemInfo(reinterpret_cast<HMENU>(lparam), static_cast<UINT>(wparam), TRUE, &menu_item_info);
+				if (result == 0) {
+					// error
+				}
+
+				typedef void (*OnPressedType)();
+				OnPressedType on_pressed = reinterpret_cast<OnPressedType>(menu_item_info.dwItemData);
+				if (on_pressed != nullptr) {
+					on_pressed();
+				}
+				return 0;
+			}
 			case WM_COMMAND:
 			{
 				auto form = GetFormFromHWND(window_handle);
 				if (HIWORD(wparam) == 0 && lparam == 0) // menu
 				{
-					//auto menu_identifier = LOWORD(wparam);
+					//auto menu_id = LOWORD(wparam);
 				} else if (HIWORD(wparam) == 1 && lparam == 0) { // accelerator
 					//auto accelerator_identifier = LOWORD(wparam);
 				} else {
