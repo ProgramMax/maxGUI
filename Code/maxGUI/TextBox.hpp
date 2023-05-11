@@ -12,6 +12,8 @@
 #include <maxGUI/ControlWithText.hpp>
 #include <maxGUI/TextBoxImplementation.hpp>
 
+#if defined(MAX_PLATFORM_WINDOWS)
+
 namespace maxGUI
 {
 
@@ -41,6 +43,8 @@ namespace maxGUI
 	};
 
 } //  namespace maxGUI
+
+#endif
 
 #include <maxGUI/TextBox.inl>
 
