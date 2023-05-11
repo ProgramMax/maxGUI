@@ -2,9 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include <maxGUI/Win32String.hpp>
-
 #if defined(MAX_PLATFORM_WINDOWS)
+
+#include <maxGUI/Win32String.hpp>
 
 namespace maxGUI
 {
