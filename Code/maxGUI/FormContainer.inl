@@ -25,7 +25,6 @@ namespace maxGUI {
 		//wcx.hbrBackground = (HBRUSH)(COLOR_3DFACE + 1);
 		//wcx.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 		wcx.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_BTNFACE + 1);
-		//wcx.hbrBackground = bar;
 		wcx.lpszMenuName = NULL;
 		wcx.lpszClassName = maxgui_window_class_name;
 		//wcx.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
