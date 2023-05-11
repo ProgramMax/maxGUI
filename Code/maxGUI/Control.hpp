@@ -73,6 +73,8 @@ namespace maxGUI
 
 	//protected:
 
+		void NewSystemFont() noexcept;
+
 #if defined(MAX_PLATFORM_WINDOWS)
 		virtual void OnCommand(WORD notification) noexcept;
 #endif

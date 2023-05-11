@@ -53,6 +53,7 @@ namespace maxGUI
 			auto* widget = T::Create(&window_, std::forward<Params>(params)...);
 			auto control_ptr = std::make_unique<T>(std::move(widget));
 #endif
+			control_ptr->NewSystemFont();
 			T* raw_control_ptr = control_ptr.get();
 			controls_.push_back(std::move(control_ptr));
 #if defined(MAX_PLATFORM_LINUX)

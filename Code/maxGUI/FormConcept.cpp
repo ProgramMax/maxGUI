@@ -6,7 +6,6 @@
 
 #include <utility>
 
-
 namespace maxGUI {
 
 	#if defined(MAX_PLATFORM_WINDOWS)

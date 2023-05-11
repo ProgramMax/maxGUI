@@ -117,6 +117,15 @@ namespace maxGUI {
 				}
 			}
 			return 0;
+			case WM_SETTINGCHANGE:
+			{
+				// new font settings possible
+				auto form = GetFormFromHWND(window_handle);
+				for (auto& control : form->controls_) {
+					control->NewSystemFont();
+				}
+			}
+			return 0;
 			}
 
 			auto form = GetFormFromHWND(window_handle);
