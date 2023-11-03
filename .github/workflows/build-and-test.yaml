@@ -61,8 +61,8 @@ jobs:
     - name: Build
       #env:
       #  CXX: g++-10
-      working-directory: ${{ github.workspace }}/Projects/${{ matrix.compiler }} ${{ matrix.platform }} Make
+      working-directory: ${{ github.workspace }}/Projects/Make
       run: make
 
     - name: Test
-      run: ${{ github.workspace }}/Projects/${{ matrix.compiler }}\ ${{ matrix.platform }}\ Make/maxGUIAutomatedTests
+      run: ${{ github.workspace }}/Projects/Make/maxGUIAutomatedTests
