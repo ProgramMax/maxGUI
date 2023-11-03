@@ -1,4 +1,5 @@
-PROGRAM_NAME = maxGUI
+LIBRARY = maxGUI
+
 CXX_SRCS = \
 	../../Code/maxGUI/ButtonImplementation.cpp \
 	../../Code/maxGUI/Control.cpp \
@@ -19,7 +20,8 @@ CXX_SRCS = \
 	#../../Code/maxGUI/ProgressBar.cpp \
 	#../../Code/maxGUI/RadioButtonImplementation.cpp \
 	#../../Code/maxGUI/TextBoxImplementation.cpp
-CXX_OBJS = $(CXX_SRCS:.cpp=.o)
+
+CXX_OBJS = $(patsubst ../../Code/%.cpp,Build/Objects/%.o,$(CXX_SRCS))
 
 INCLUDE_PATHS = \
 	../../Code \
@@ -32,7 +34,6 @@ INCLUDE_PATHS = \
 	/usr/include/x86_64-linux-gnu/qt5 \
 	/usr/include/x86_64-linux-gnu/QtCore \
 	/usr/include/x86_64-linux-gnu/QtGui
-
 INCLUDE_PATHS_FLAGS = $(foreach d, $(INCLUDE_PATHS), -I$d)
 
 LIBRARY_PATHS = \
@@ -41,38 +42,43 @@ LIBRARY_PATHS_FLAGS = $(foreach d, $(LIBRARY_PATHS), -L$d)
 
 AUTOMATED_TEST_CXX_SRCS = \
 	../../Code/maxGUI/TestingEntryPoint.cpp
-AUTOMATED_TEST_CXX_OBJS = $(AUTOMATED_TEST_CXX_SRCS:.cpp=.o)
+AUTOMATED_TEST_CXX_OBJS = $(patsubst ../../Code/%.cpp,Build/Objects/%.o,$(AUTOMATED_TEST_CXX_SRCS))
 
 EXAMPLE1_CXX_SRCS = \
 	../../Code/Examples/1-SimpleExample/EntryPoint.cpp
-EXAMPLE1_CXX_OBJS = $(EXAMPLE1_CXX_SRCS:.cpp=.o)
+EXAMPLE1_CXX_OBJS = $(patsubst ../../Code/%.cpp,Build/Objects/%.o,$(EXAMPLE1_CXX_SRCS))
 
 CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -std=c++20 -fPIC
 LINKER_FLAGS += $(LIBRARY_PATHS_FLAGS) -lQt5Widgets -lQt5Gui -lQt5Core
 
 
 
+all: lib$(LIBRARY).a maxGUIAutomatedTests example1
 
-all: lib$(PROGRAM_NAME).a maxGUIAutomatedTests example1
+lib$(LIBRARY).a: $(CXX_OBJS)
+	ar rcs lib$(LIBRARY).a $(CXX_OBJS)
 
-lib$(PROGRAM_NAME).a: $(PCH_OBJS) $(CXX_OBJS)
-	ar rcs lib$(PROGRAM_NAME).a $(CXX_OBJS)
+$(CXX_OBJS): $(CXX_SRCS)
+	mkdir -p $(dir $@)
+	$(CXX) -g $(CPPFLAGS) -c $(patsubst Build/Objects/%.o,../../Code/%.cpp,$@) -o $@
 
-maxGUIAutomatedTests: $(AUTOMATED_TEST_CXX_OBJS)
-	clang++ -g $(AUTOMATED_TEST_CXX_OBJS) $(LINKER_FLAGS) -l$(PROGRAM_NAME) -o maxGUIAutomatedTests
+maxGUIAutomatedTests: lib$(LIBRARY).a $(AUTOMATED_TEST_CXX_OBJS)
+	$(CXX) -g $(AUTOMATED_TEST_CXX_OBJS) $(LINKER_FLAGS) -l$(LIBRARY) -o maxGUIAutomatedTests
 
-example1: $(EXAMPLE1_CXX_OBJS)
-	clang++ -g $(EXAMPLE1_CXX_OBJS) $(LINKER_FLAGS) -l$(PROGRAM_NAME) -o example1
+$(AUTOMATED_TEST_CXX_OBJS): $(AUTOMATED_TEST_CXX_SRCS)
+	mkdir -p $(dir $@)
+	$(CXX) -g $(CPPFLAGS) -c $(patsubst Build/Objects/%.o,../../Code/%.cpp,$@) -o $@
 
-.cpp.o:
-	clang++ -g $(CPPFLAGS) -c $< -o $@
+example1: lib$(LIBRARY).a $(EXAMPLE1_CXX_OBJS)
+	$(CXX) -g $(EXAMPLE1_CXX_OBJS) $(LINKER_FLAGS) -l$(LIBRARY) -o example1
 
-clean:
-	@- $(RM) lib$(PROGRAM_NAME).a
-	@- $(RM) $(CXX_OBJS)
-	@- $(RM) maxGUIAutomatedTests
-	@- $(RM) $(AUTOMATED_TEST_CXX_OBJS)
-	@- $(RM) example1
-	@- $(RM) $(EXAMPLE1_CXX_OBJS)
+$(EXAMPLE1_CXX_OBJS): $(EXAMPLE1_CXX_SRCS)
+	mkdir -p $(dir $@)
+	$(CXX) -g $(CPPFLAGS) -c $(patsubst Build/Objects/%.o,../../Code/%.cpp,$@) -o $@
 
+.PHONY: clean
 distclean: clean
+clean:
+	for file in lib$(LIBRARY).a $(CXX_OBJS) maxGUIAutomatedTests $(AUTOMATED_TEST_CXX_OBJS) example1 $(EXAMPLE1_CXX_OBJS) ; do \
+		rm $${file} ; \
+	done
