@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include <maxGUI/EntryPoint.hpp>
+#include <maxGUI/maxGUIEntryPoint.hpp>
 
 #if defined(MAX_PLATFORM_LINUX)
 	#include <QApplication>

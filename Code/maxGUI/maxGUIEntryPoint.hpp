@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef MAXGUI_ENTRYPOINT_HPP
-#define MAXGUI_ENTRYPOINT_HPP
+#ifndef MAXGUI_MAXGUIENTRYPOINT_HPP
+#define MAXGUI_MAXGUIENTRYPOINT_HPP
 
 #include <max/Compiling/Configuration.hpp>
 #include <maxGUI/FormContainer.hpp>
@@ -46,4 +46,4 @@ namespace maxGUI {
 
 } // namespace maxGUI
 
-#endif // #ifndef MAXGUI_ENTRYPOINT_HPP
+#endif // #ifndef MAXGUI_MAXGUIENTRYPOINT_HPP

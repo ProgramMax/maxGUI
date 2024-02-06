@@ -126,7 +126,7 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp">
+    <ClCompile Include="..\..\..\Code\maxGUI\maxGUIEntryPoint.cpp">
       <Filter>Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Code\maxGUI\Control.cpp">
@@ -194,7 +194,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp">
+    <ClInclude Include="..\..\..\Code\maxGUI\maxGUIEntryPoint.hpp">
       <Filter>Code</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Code\maxGUI\Button.hpp">
