@@ -57,7 +57,7 @@
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithText.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ControlWithTextImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\DropDownBoxImplementation.cpp" />
-    <ClCompile Include="..\..\..\Code\maxGUI\EntryPoint.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\maxGUIEntryPoint.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormAllocatorConcept.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormConcept.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\FormContainer.cpp" />
@@ -82,7 +82,7 @@
     <ClInclude Include="..\..\..\Code\maxGUI\ControlWithTextImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\DropDownBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\DropDownBox.hpp" />
-    <ClInclude Include="..\..\..\Code\maxGUI\EntryPoint.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\maxGUIEntryPoint.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormAllocatorConcept.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormAllocatorModel.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\FormConcept.hpp" />

@@ -8,7 +8,7 @@
 #include <maxGUI/Button.hpp>
 #include <maxGUI/CheckBox.hpp>
 #include <maxGUI/DropDownBox.hpp>
-#include <maxGUI/EntryPoint.hpp>
+#include <maxGUI/maxGUIEntryPoint.hpp>
 #include <maxGUI/FormAllocatorConcept.hpp>
 #include <maxGUI/FormAllocatorModel.hpp>
 #include <maxGUI/FormConcept.hpp>
