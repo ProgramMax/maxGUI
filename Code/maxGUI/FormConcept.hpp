@@ -66,7 +66,7 @@ namespace maxGUI
 			template< typename T, typename... Params >
 			T* AppendMenu(Params&&... params) noexcept {
 #if defined(MAX_PLATFORM_WINDOWS)
-				bool is_first_menu = menus_size() == 0;
+				bool is_first_menu = menus_.size() == 0;
 				if (is_first_menu) {
 					menu_bar_handle_ = CreateMenu();
 
@@ -89,9 +89,12 @@ namespace maxGUI
 					// TODO: This is only required if the window has already been drawn. IE the menus were added after WM_CREATE
 					DrawMenuBar(window_handle_);
 				}
-#endif
 
 				return raw_menu_ptr;
+#else
+				// TODO: Implement on other platforms
+				return nullptr;
+#endif
 			}
 
 		template<typename T, typename... Params>
