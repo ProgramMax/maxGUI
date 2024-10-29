@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -30,6 +31,7 @@
     <None Include="..\..\..\Code\maxGUI\FormContainer.inl" />
     <None Include="..\..\..\Code\maxGUI\FormModel.inl" />
     <None Include="..\..\..\Code\maxGUI\ListBox.inl" />
+    <None Include="..\..\..\Code\maxGUI\Menu.inl" />
     <None Include="..\..\..\Code\maxGUI\MultilineTextBox.inl" />
     <None Include="..\..\..\Code\maxGUI\RadioButton.inl" />
     <None Include="..\..\..\Code\maxGUI\TextBox.inl" />
@@ -44,6 +46,7 @@
     <None Include="..\..\..\Tooling\Cppcheck\.gitignore" />
     <None Include="..\..\..\Tooling\Cppcheck\maxGUI.cppcheck" />
     <None Include="Migration.md" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\..\..\Tooling\AppVeyor\junit-results.xml" />
@@ -64,6 +67,7 @@
     <ClCompile Include="..\..\..\Code\maxGUI\Frame.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Label.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ListBoxImplementation.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\Menu.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ProgressBar.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\RadioButtonImplementation.cpp" />
@@ -94,6 +98,7 @@
     <ClInclude Include="..\..\..\Code\maxGUI\ListBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ListBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\maxGUI.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\Menu.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ProgressBar.hpp" />
@@ -120,6 +125,11 @@
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Macros.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Containers\Point.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Containers\Rectangle.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Design.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A9E3E87-9F00-4240-8E5D-489DC37C73DA}</ProjectGuid>
@@ -288,5 +298,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+    <Import Project="..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Windows.CppWinRT.2.0.220531.1\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+  </Target>
 </Project>

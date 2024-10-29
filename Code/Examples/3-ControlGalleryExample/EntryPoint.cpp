@@ -18,6 +18,15 @@ public:
 
 };
 
+class ExitMenuBehavior {
+public:
+
+	static void OnPressed() noexcept {
+		maxGUI::PostExitMessage(0);
+	}
+
+};
+
 class ControlGalleryForm {
 public:
 
@@ -47,6 +56,9 @@ public:
 		form->AddControl<maxGUI::RadioButton<>>(max::Containers::MakeRectangle(25, 750, 300, 25), "Option 2");
 
 		form->AddControl<maxGUI::TextBox<>>(max::Containers::MakeRectangle(25, 800, 300, 25), "Textbox");
+
+		auto file_menu = form->AppendMenu<maxGUI::ParentMenu>("&File");
+		file_menu->AppendMenu<maxGUI::PressableMenu<ExitMenuBehavior>>("E&xit");
 	}
 
 	void OnClosed(maxGUI::FormConcept* /*form*/) noexcept {
