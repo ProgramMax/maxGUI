@@ -4,6 +4,8 @@
 
 #include <utility>
 
+#if defined(MAX_PLATFORM_WINDOWS)
+
 #include <maxGUI/Win32String.hpp>
 
 namespace maxGUI
@@ -57,3 +59,5 @@ namespace maxGUI
 	}
 
 } //  namespace maxGUI
+
+#endif
