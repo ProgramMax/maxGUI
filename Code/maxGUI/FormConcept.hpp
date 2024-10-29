@@ -124,7 +124,9 @@ namespace maxGUI
 		#endif
 
 		std::vector<std::unique_ptr<Control>> controls_;
+#if defined(MAX_PLATFORM_WINDOWS)
 		std::vector<std::unique_ptr<Menu>> menus_;
+#endif
 
 	};
 
