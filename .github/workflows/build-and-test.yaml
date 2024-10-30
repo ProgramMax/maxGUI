@@ -26,7 +26,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Update NuGet packages
-      run: nuget update .\Projects\VisualStudio\maxGUI\packages.config
+      run: nuget update .\Projects\VisualStudio\maxGUI.sln
 
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
