@@ -11,8 +11,12 @@
 
 #define MAX_COMPILER_MESSAGE( Message ) __pragma( message( Message ) )
 
-#if _MSC_VER > 1939
-	MAX_COMPILER_MESSAGE( "Compiling with a newer version of MSVC than max recognizes. Using last known version." );
+#if _MSC_VER > 1943
+	MAX_COMPILER_MESSAGE("Compiling with a newer version of MSVC than max recognizes. Using last known version.");
+#elif _MSC_VER >= 1943
+	// MSVC++ (Visual Studio 2022 / version 17.13)
+	#define MAX_COMPILER_VERSION_MAJOR 17
+	#define MAX_COMPILER_VERSION_MINOR 13
 #elif _MSC_VER >= 1939
 	// MSVC++ (Visual Studio 2022 / version 17.9)
 	#define MAX_COMPILER_VERSION_MAJOR 17
@@ -244,8 +248,10 @@
 
 #if _MSC_FULL_VER >= 190024210 // MSVC++ 14.3 (Visual Studio 2015 Update 3)
 	// Visual Studio 2015 Update 3 introduced the _MSVC_LANG pre-defined macro
-	#if _MSVC_LANG > 202004L
-		#MAX_COMPILER_MESSAGE( "Compiling with a newer version of C++ than max recognizes. Using last known version.");
+	#if _MSVC_LANG > 202400L
+		MAX_COMPILER_MESSAGE("Compiling with a newer version of C++ than max recognizes. Using last known version.");
+	#elif _MSVC_LANG >= 202400L
+		#define MAX_CPP_23
 	#elif _MSVC_LANG >= 202004L
 		#define MAX_CPP_20
 	#elif _MSVC_LANG >= 201705L
