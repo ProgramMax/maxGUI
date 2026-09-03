@@ -5,6 +5,7 @@
 #ifndef MAXGUI_DROPDOWNBOXIMPLEMENTATION_HPP
 #define MAXGUI_DROPDOWNBOXIMPLEMENTATION_HPP
 
+#include <cstdint>
 #include <string>
 #include <vector>
 

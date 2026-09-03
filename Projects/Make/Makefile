@@ -33,7 +33,11 @@ INCLUDE_PATHS = \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets \
 	/usr/include/x86_64-linux-gnu/qt5 \
 	/usr/include/x86_64-linux-gnu/QtCore \
-	/usr/include/x86_64-linux-gnu/QtGui
+	/usr/include/x86_64-linux-gnu/QtGui \
+	/usr/include/aarch64-linux-gnu/qt5/QtWidgets \
+	/usr/include/aarch64-linux-gnu/qt5 \
+	/usr/include/aarch64-linux-gnu/QtCode \
+	/usr/include/aarch64-linux-gnu/QtGui
 INCLUDE_PATHS_FLAGS = $(foreach d, $(INCLUDE_PATHS), -I$d)
 
 LIBRARY_PATHS = \

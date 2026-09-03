@@ -15,7 +15,7 @@ jobs:
       matrix:
         platform: [Win32, x64]
         configuration: [Debug, Release]
-        runner: [windows-2022] # TODO: Add windows-2019, which errors on Platform Toolset = 'v143' missing.
+        runner: [windows-2025-vs2026, windows-11-vs2026-arm]
     runs-on: ${{ matrix.runner }}
 
     steps:
@@ -38,9 +38,9 @@ jobs:
   Linux:
     strategy:
       matrix:
-        platform: [X86-64] # TODO: Add X86, AArch32, and AArch64 platforms
+        platform: [X86-64]
         compiler: [Clang, GCC]
-        runner: [ubuntu-22.04, ubuntu-20.04]
+        runner: [ubuntu-26.04, ubuntu-24.04, ubuntu-22.04,] # TODO: Add these once ARM builds are working: ubuntu-26.04-arm, ubuntu-24.04-arm, ubuntu-22.04-arm
     runs-on: ${{ matrix.runner }}
 
     steps:
@@ -57,6 +57,7 @@ jobs:
            sudo apt update
            sudo apt install qtbase5-dev
 
+    # This is useful for finding the include path on different systems
     - name: Find Qt
       run: |
            find /usr/include -name QWidget
