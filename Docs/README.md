@@ -8,7 +8,7 @@ If maxGUI is missing a feature you need, submit a [feature request](https://gith
 
 ## Examples
 
-Start with the [simple example](https://github.com/ProgramMax/maxGUI/blob/master/Code/Examples/1%20-%20SimpleExample/EntryPoint.cpp). It shows the basics in an easy-to-follow way.
+Start with the [simple example](https://github.com/ProgramMax/maxGUI/blob/tip-of-tree/Code/Examples/1%20-%20SimpleExample/EntryPoint.cpp). It shows the basics in an easy-to-follow way.
 
 ## Support
 
@@ -44,10 +44,10 @@ You can reference the full [deprecation schedule](DeprecationSchedule.md) for ex
 ## Dependencies
 
 maxGUI depends on [max](https://github.com/ProgramMax/max), which also has a [BSD 3-Clause license](https://github.com/ProgramMax/max/blob/master/LICENSE).
-You can find some parts of max under [Dependencies/max](https://github.com/ProgramMax/maxGUI/blob/master/Dependencies/max).
+You can find some parts of max under [Dependencies/max](https://github.com/ProgramMax/maxGUI/blob/tip-of-tree/Dependencies/max).
 
 ## Engage
 
-* **Community:** We have a welcoming community which follows the [Code of Conduct](https://github.com/ProgramMax/maxGUI/blob/master/Docs/code_of_conduct.md).
+* **Community:** We have a welcoming community which follows the [Code of Conduct](https://github.com/ProgramMax/maxGUI/blob/tip-of-tree/Docs/code_of_conduct.md).
 * **Contribute:** We accept pull requests. Take a look at some [good first tasks](https://github.com/ProgramMax/maxGUI/issues?q=is%3Aissue+is%3Aopen+label%3A"good+first+issue").
 * **Support:** You can [report bugs](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=bug_report.md&title=) and [request changes](https://github.com/ProgramMax/maxGUI/issues/new?assignees=&labels=&template=feature_request.md&title=) using GitHub issues.
