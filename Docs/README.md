@@ -8,7 +8,7 @@ If maxGUI is missing a feature you need, submit a [feature request](https://gith
 
 ## Examples
 
-Start with the [simple example](https://github.com/ProgramMax/maxGUI/blob/tip-of-tree/Code/Examples/1%20-%20SimpleExample/EntryPoint.cpp). It shows the basics in an easy-to-follow way.
+Start with the [simple example](https://github.com/ProgramMax/maxGUI/blob/tip-of-tree/Code/Examples/1-SimpleExample/EntryPoint.cpp). It shows the basics in an easy-to-follow way.
 
 ## Support
 
