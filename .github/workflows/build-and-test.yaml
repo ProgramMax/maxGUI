@@ -60,7 +60,7 @@ jobs:
     # This is useful for finding the include path on different systems
     - name: Find Qt
       run: |
-           find /usr/include -name QtWidget
+           find /usr/include -name QWidget
 
     - name: Build
       #env:
