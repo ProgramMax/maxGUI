@@ -11,8 +11,22 @@
 
 #define MAX_COMPILER_MESSAGE( Message ) __pragma( message( Message ) )
 
-#if _MSC_VER > 1943
+#if _MSC_VER > 1951
 	MAX_COMPILER_MESSAGE("Compiling with a newer version of MSVC than max recognizes. Using last known version.");
+#elif _MSC_VER >= 1951
+	// MSVC++ (Visual Studio 2026 / version 18.9)
+	// TODO: This version number probably also matches some earlier version between the previous 18.2 and the current 18.9
+	#define MAX_COMPILER_VERSION_MAJOR 18
+	#define MAX_COMPILER_VERSION_MINOR 9
+#elif _MSC_VER >= 1950
+	// MSVC++ (Visual Studio 2026 / version 18.2)
+	#define MAX_COMPILER_VERSION_MAJOR 18
+	#define MAX_COMPILER_VERSION_MINOR 2
+// TODO: I missed 18.0 and 18.1. Find what their _MSC_VER was. Maybe they all share 1950? This might make sense because they're all MSVC Build Tools 14.50
+#elif _MSC_VER >= 1944
+	// MSVC++ (Visual Studio 2022 / version 17.14)
+	#define MAX_COMPILER_VERSION_MAJOR 17
+	#define MAX_COMPILER_VERSION_MINOR 14
 #elif _MSC_VER >= 1943
 	// MSVC++ (Visual Studio 2022 / version 17.13)
 	#define MAX_COMPILER_VERSION_MAJOR 17
