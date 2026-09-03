@@ -5,6 +5,7 @@
 #ifndef MAXGUI_BUTTONIMPLEMENTATION_HPP
 #define MAXGUI_BUTTONIMPLEMENTATION_HPP
 
+#include <cstdint>
 #include <string>
 
 #include <max/Compiling/Bitmask.hpp>
