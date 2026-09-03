@@ -40,7 +40,7 @@ jobs:
       matrix:
         platform: [X86-64]
         compiler: [Clang, GCC]
-        runner: [ubuntu-26.04, ubuntu-26.04-arm, ubuntu-24.04, ubuntu-24.04-arm, ubuntu-22.04, ubuntu-22.04-arm]
+        runner: [ubuntu-26.04, ubuntu-24.04, ubuntu-22.04,] # TODO: Add these once ARM builds are working: ubuntu-26.04-arm, ubuntu-24.04-arm, ubuntu-22.04-arm
     runs-on: ${{ matrix.runner }}
 
     steps:
@@ -60,7 +60,7 @@ jobs:
     # This is useful for finding the include path on different systems
     - name: Find Qt
       run: |
-           find /usr/lib -name libQt5Core.so
+           find /usr/include -name QtWidget
 
     - name: Build
       #env:
