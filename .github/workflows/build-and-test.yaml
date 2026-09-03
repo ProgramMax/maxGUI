@@ -55,11 +55,12 @@ jobs:
     - name: Install Qt 5
       run: |
            sudo apt update
-           sudo apt install -y qt6-base-dev qt6-declarative-dev libgl1-mesa-dev
+           sudo apt install qtbase5-dev
 
-    #- name: Find Qt
-    #  run: |
-    #       find /usr/include -name QWidget
+    # This is useful for finding the include path on different systems
+    - name: Find Qt
+      run: |
+           find /usr/include -name QWidget
 
     - name: Build
       #env:
