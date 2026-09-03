@@ -55,7 +55,7 @@ jobs:
     - name: Install Qt 5
       run: |
            sudo apt update
-           sudo apt install qtbase5-dev
+           sudo apt install -y libxcb-xinerama0 libgl1-mesa-dev libxkbcommon-x11-0 qtbase5-dev
 
     - name: Find Qt
       run: |
