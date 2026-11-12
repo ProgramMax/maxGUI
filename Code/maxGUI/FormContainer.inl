@@ -15,7 +15,7 @@ namespace maxGUI {
 	bool FormContainer::CreateForm(int width, int height, std::string title, FormAllocatorConcept* form_allocator, FormStyles styles) noexcept {
 		WNDCLASSEX wcx = {0};
 		wcx.cbSize = sizeof(wcx);
-		wcx.style = 0;
+		wcx.style = 0; // TODO: For OpenGL rendering, this *MUST* include CS_OWNDC
 		wcx.lpfnWndProc = BaseWindowProcedure;
 		wcx.cbClsExtra = 0;
 		wcx.cbWndExtra = 0;
