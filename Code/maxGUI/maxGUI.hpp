@@ -18,9 +18,11 @@
 #include <maxGUI/ListBox.hpp>
 #include <maxGUI/Menu.hpp>
 #include <maxGUI/MultilineTextBox.hpp>
+#include <maxGUI/PaintingContext.hpp>
 #include <maxGUI/ProgressBar.hpp>
 #include <maxGUI/RadioButton.hpp>
 #include <maxGUI/TextBox.hpp>
+#include <maxGUI/Texture.hpp>
 
 #include <max/Compiling/Configuration.hpp>
 

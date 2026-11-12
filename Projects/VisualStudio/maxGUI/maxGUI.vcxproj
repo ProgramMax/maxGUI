@@ -69,9 +69,11 @@
     <ClCompile Include="..\..\..\Code\maxGUI\ListBoxImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Menu.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\PaintingContext.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\ProgressBar.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\RadioButtonImplementation.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\TextBoxImplementation.cpp" />
+    <ClCompile Include="..\..\..\Code\maxGUI\Texture.cpp" />
     <ClCompile Include="..\..\..\Code\maxGUI\Win32String.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -101,11 +103,13 @@
     <ClInclude Include="..\..\..\Code\maxGUI\Menu.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\MultilineTextBoxImplementation.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\PaintingContext.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\ProgressBar.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\RadioButton.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\RadioButtonImplementation.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\TextBox.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\TextBoxImplementation.hpp" />
+    <ClInclude Include="..\..\..\Code\maxGUI\Texture.hpp" />
     <ClInclude Include="..\..\..\Code\maxGUI\Win32String.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\AliasingOptimizations.hpp" />
     <ClInclude Include="..\..\..\Dependencies\max\Code\max\Compiling\Bitmask.hpp" />
