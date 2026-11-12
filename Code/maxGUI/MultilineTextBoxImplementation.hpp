@@ -5,6 +5,7 @@
 #ifndef MAXGUI_MULTILINETEXTBOXIMPLEMENTATION_HPP
 #define MAXGUI_MULTILINETEXTBOXIMPLEMENTATION_HPP
 
+#include <cstdint>
 #include <string>
 
 #include <max/Compiling/Bitmask.hpp>

@@ -5,6 +5,7 @@
 #ifndef MAXGUI_CHECKBOXIMPLEMENTATION_HPP
 #define MAXGUI_CHECKBOXIMPLEMENTATION_HPP
 
+#include <cstdint>
 #include <string>
 
 #include <max/Compiling/Bitmask.hpp>

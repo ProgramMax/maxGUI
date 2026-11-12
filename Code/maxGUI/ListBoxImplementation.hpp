@@ -5,6 +5,7 @@
 #ifndef MAXGUI_LISTBOXIMPLEMENTATION_HPP
 #define MAXGUI_LISTBOXIMPLEMENTATION_HPP
 
+#include <cstdint>
 #include <string>
 #include <vector>
 

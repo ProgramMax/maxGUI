@@ -5,6 +5,7 @@
 #ifndef MAXGUI_RADIOBUTTONIMPLEMENTATION_HPP
 #define MAXGUI_RADIOBUTTONIMPLEMENTATION_HPP
 
+#include <cstdint>
 #include <string>
 
 #include <max/Compiling/Bitmask.hpp>
