@@ -40,7 +40,7 @@ jobs:
       matrix:
         platform: [X86-64] # TODO: Add X86, AArch32, and AArch64 platforms
         compiler: [Clang, GCC]
-        runner: [ubuntu-22.04, ubuntu-20.04]
+        runner: [ubuntu-20.04]
     runs-on: ${{ matrix.runner }}
 
     steps:
